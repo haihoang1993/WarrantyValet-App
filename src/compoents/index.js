@@ -1,3 +1,4 @@
 import ViewTest from './view';
-
-export {ViewTest};
+import ListPlans from './ListPlans';
+import ViewTestSaga from './ViewTestSaga';
+export {ViewTest, ListPlans, ViewTestSaga};

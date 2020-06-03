@@ -1,6 +1,34 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 
 import {NavigationApp} from '@screens';
 
-export default NavigationApp;
+//Redux
+import {createStore, applyMiddleware} from 'redux';
+import {Provider} from 'react-redux';
+
+import allReducers from './redux/reducers';
+
+//Redux saga
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from './redux/sagas/rootSaga';
+//Middleware
+const sagaMiddleware = createSagaMiddleware();
+//Từ applyMiddleware vào Reducers thì tạo một store, sagaMiddleware nằm giữa Action và Reducers.
+let store = createStore(allReducers, applyMiddleware(sagaMiddleware));
+
+// let store = createStore(allReducers);
+
+const App = () => (
+  <Provider store={store}>
+    <NavigationApp />
+  </Provider>
+);
+
+export default class AppSaga extends React.Component {
+  render() {
+    return <App />;
+  }
+}
+
+sagaMiddleware.run(rootSaga); //Chạy xuyên suốt các hàm rootSaga trong app
+// export default NavigationApp;

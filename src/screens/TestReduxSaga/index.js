@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import BaseScreen from '../BaseScreen';
-import {ListPlans} from '@compoents';
+import {ViewTestSaga as ListPlans} from '@compoents';
 import {connect} from 'react-redux';
 
-class ListPlansScreen extends BaseScreen {
+class TestReduxSaga extends BaseScreen {
   constructor(props) {
     super(props);
   }
@@ -36,6 +36,6 @@ const mapDispatchToProps = (dispatch) => {
 const CounterContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ListPlansScreen);
+)(TestReduxSaga);
 
 export default CounterContainer;

@@ -1,5 +1,5 @@
-/* eslint-disable no-unused-vars */
 import ListPlansScreen from './ListPlansScreen';
+import TestReduxSaga from './TestReduxSaga';
 import NavigationApp from './Navigation';
 
-export {ListPlansScreen, NavigationApp};
+export {ListPlansScreen, NavigationApp, TestReduxSaga};
