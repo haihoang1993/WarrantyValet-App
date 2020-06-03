@@ -3,13 +3,27 @@ import {View, Text} from 'react-native';
 import BaseScreen from '../BaseScreen';
 import {ListPlans} from '@compoents';
 import {connect} from 'react-redux';
+import {Button} from 'react-native-elements';
 
 class ListPlansScreen extends BaseScreen {
   constructor(props) {
     super(props);
   }
   render() {
-    return <ListPlans {...this.props} />;
+    return (
+      <View>
+        <ListPlans {...this.props} />
+        <View style={{marginHorizontal: 40}}>
+          <Button large rightIcon={{name: 'login'}} title="Login" />
+          <Button
+            style={{marginVertical: 10}}
+            large
+            rightIcon={{name: 'login'}}
+            title="Sign Up"
+          />
+        </View>
+      </View>
+    );
   }
 }
 

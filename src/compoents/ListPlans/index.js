@@ -31,19 +31,6 @@ export default (props) => {
   return (
     <View>
       <FlatList horizontal={true} data={[1, 2, 3]} renderItem={itemRender} />
-      <Button
-        onPress={() => {
-          props.onIncrement(1);
-        }}
-        title="+"
-      />
-      <Button
-        onPress={() => {
-          props.onDecrement(1);
-        }}
-        title="-"
-      />
-      <Text>Reuslt: {props.times}</Text>
     </View>
   );
 };

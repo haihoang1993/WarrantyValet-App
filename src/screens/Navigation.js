@@ -14,7 +14,7 @@ function  NavApp() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="ListPlansScreen" component={TestReduxSaga} />
+        <Stack.Screen name="ListPlansScreen" component={ListPlansScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
