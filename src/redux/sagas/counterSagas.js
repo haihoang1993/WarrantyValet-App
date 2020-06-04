@@ -2,7 +2,7 @@ import {INCREMENT, DECREMENT} from '../actions/actionTypes';
 import {setvalueAction} from '../actions';
 
 //takeEvery khi thực hiện một hành động nào đó nó sẻ gọi một hàm trước khi dispatch vào reducers
-import {takeEvery, put} from 'redux-saga/effects';
+import {takeEvery, takeLatest, put} from 'redux-saga/effects';
 
 function* increment(actions) {
   console.log('This is increment saga', actions);

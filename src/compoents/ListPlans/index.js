@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, Text, FlatList, Button} from 'react-native';
-import {PricingCard} from 'react-native-elements';
+import {View, Text, FlatList, Button, StyleSheet} from 'react-native';
+import {PricingCard, Card} from 'react-native-elements';
 import {Device} from '@common';
 
 export default (props) => {
@@ -8,7 +8,7 @@ export default (props) => {
   const itemRender = ({item}) => {
     return (
       <View style={{width: (Device.getWithScreen() / 100) * 80}}>
-        <PricingCard
+        {/* <PricingCard
           color="#4f9deb"
           title="Free"
           price="$0"
@@ -24,7 +24,13 @@ export default (props) => {
             'All Core Features',
           ]}
           button={{title: 'GET STARTED', icon: 'flight-takeoff'}}
-        />
+        /> */}
+        <Card containerStyle={styles.card}>
+          <View style={styles.header}>
+            <Text> Free Plan </Text>
+            <Text> Free Plan </Text>
+          </View>
+        </Card>
       </View>
     );
   };
@@ -34,3 +40,10 @@ export default (props) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  card: {
+    padding: 0,
+  },
+  header: {alignItems: 'center', backgroundColor: '#2f73f6'},
+});

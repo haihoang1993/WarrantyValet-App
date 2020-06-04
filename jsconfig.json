@@ -12,6 +12,9 @@
       "@screens":[
         "screens"
       ],
+      "@navigations":[
+        "navigations"
+      ],
     }
   },
   "exclude": [
