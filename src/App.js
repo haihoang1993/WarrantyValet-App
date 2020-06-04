@@ -11,9 +11,10 @@ import allReducers from './redux/reducers';
 //Redux saga
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './redux/sagas/rootSaga';
+
 //Middleware
 const sagaMiddleware = createSagaMiddleware();
-//Từ applyMiddleware vào Reducers thì tạo một store, sagaMiddleware nằm giữa Action và Reducers.
+//add Middleware in store
 let store = createStore(allReducers, applyMiddleware(sagaMiddleware));
 
 // let store = createStore(allReducers);
