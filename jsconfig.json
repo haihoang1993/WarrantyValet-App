@@ -15,6 +15,9 @@
       "@navigations":[
         "navigations"
       ],
+      "@images":[
+        "images"
+      ],
     }
   },
   "exclude": [
