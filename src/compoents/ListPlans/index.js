@@ -8,7 +8,7 @@ export default (props) => {
   const itemRender = ({item}) => {
     return (
       <View style={{width: (Device.getWithScreen() / 100) * 80}}>
-        {/* <PricingCard
+        <PricingCard
           color="#4f9deb"
           title="Free"
           price="$0"
@@ -24,13 +24,13 @@ export default (props) => {
             'All Core Features',
           ]}
           button={{title: 'GET STARTED', icon: 'flight-takeoff'}}
-        /> */}
-        <Card containerStyle={styles.card}>
+        />
+        {/* <Card containerStyle={styles.card}>
           <View style={styles.header}>
             <Text> Free Plan </Text>
             <Text> Free Plan </Text>
           </View>
-        </Card>
+        </Card> */}
       </View>
     );
   };

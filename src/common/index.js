@@ -1,3 +1,3 @@
 import Device from './Device';
-
-export {Device};
+import Theme from './Theme';
+export {Device, Theme};

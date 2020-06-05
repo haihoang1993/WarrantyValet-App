@@ -14,8 +14,8 @@ function  NavApp() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen options={{headerShown: false}}  name="ListPlansScreen" component={ListPlansScreen} /> */}
-        <Stack.Screen options={{headerShown: false}}  name="ListPlansScreen" component={MainScreen} />
+        <Stack.Screen options={{headerShown: false}}  name="ListPlansScreen" component={ListPlansScreen} />
+        {/* <Stack.Screen options={{headerShown: false}}  name="ListPlansScreen" component={MainScreen} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -2,6 +2,9 @@ import React from 'react';
 
 import {NavigationApp} from '@screens';
 
+import {Provider as PaperProvider} from 'react-native-paper';
+import {Theme} from '@common';
+
 //Redux
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
@@ -20,9 +23,11 @@ let store = createStore(allReducers, applyMiddleware(sagaMiddleware));
 // let store = createStore(allReducers);
 
 const App = () => (
-  <Provider store={store}>
-    <NavigationApp />
-  </Provider>
+  <PaperProvider theme={Theme.light}>
+    <Provider store={store}>
+      <NavigationApp />
+    </Provider>
+  </PaperProvider>
 );
 
 export default class AppSaga extends React.Component {
@@ -31,5 +36,5 @@ export default class AppSaga extends React.Component {
   }
 }
 
-sagaMiddleware.run(rootSaga); //Chạy xuyên suốt các hàm rootSaga trong app
+sagaMiddleware.run(rootSaga);
 // export default NavigationApp;

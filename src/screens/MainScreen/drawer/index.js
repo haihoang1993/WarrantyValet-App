@@ -3,27 +3,27 @@ import {Text, View} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import DrawerContent from '../drawer/DrawerContent';
 const Drawer = createDrawerNavigator();
-
-// function DrawerContent() {
-//   return (
-//     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-//       <Text>Drawer content</Text>
-//     </View>
-//   );
-// }
-
-function HomeScreen() {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
-    </View>
-  );
-}
+import HomeScreen from '../screens/Home';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const RootNavigator = (props) => {
+  const {navigation} = props;
   return (
     <Drawer.Navigator drawerContent={() => <DrawerContent {...props} />}>
-      <Drawer.Screen name="Home" component={HomeScreen} />
+      <Drawer.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          title: 'Home',
+          drawerIcon: ({focused, size}) => (
+            <Ionicons
+              name="md-home"
+              size={size}
+              color={focused ? '#7cc' : '#ccc'}
+            />
+          ),
+        }}
+      />
     </Drawer.Navigator>
   );
 };
