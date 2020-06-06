@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, FlatList, StyleSheet, Image} from 'react-native';
-import {PricingCard, Card} from 'react-native-elements';
+import {Card} from 'react-native-elements';
 import {Device, Images} from '@common';
 import {Button} from 'react-native-elements';
 import PriceTextView from './PriceTextView';
