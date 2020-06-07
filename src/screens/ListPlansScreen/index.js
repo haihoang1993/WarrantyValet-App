@@ -22,8 +22,8 @@ class ListPlansScreen extends BaseScreen {
             flexDirection: 'column',
             justifyContent: 'space-between',
           }}>
-          <ListPlans {...this.props} />
-          <View style={{marginHorizontal: 40, marginVertical: 20}}>
+          <ListPlans listPlans={[1, 2, 3, 4]} {...this.props} />
+          <View style={{marginHorizontal: 40}}>
             <Button large rightIcon={{name: 'login'}} title="Login" />
             <Button
               style={{marginVertical: 10}}

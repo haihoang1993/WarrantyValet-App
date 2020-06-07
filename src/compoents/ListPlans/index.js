@@ -4,37 +4,22 @@ import {Card} from 'react-native-elements';
 import {Device, Images} from '@common';
 import {Button} from 'react-native-elements';
 import PriceTextView from './PriceTextView';
+import ListContentPlan from './ListContentPlan';
+import PropTypes from 'prop-types';
 
-export default (props) => {
+const ListPlansCompents = (props) => {
+  const {listPlans} = props;
   const itemRender = ({item}) => {
     return (
       <View style={{width: (Device.getWithScreen() / 100) * 80}}>
         <Card containerStyle={styles.card}>
           <View style={styles.header}>
-            <Image style={{height: 50}} source={Images.IconPlanFree} />
+            <Image style={styles.iconPlan} source={Images.IconPlanFree} />
             <Text style={styles.textNamePlan}> Free Plan </Text>
             <PriceTextView />
+            <Text style={styles.subPlan}> Crafted for a Great Start </Text>
           </View>
-          <View>
-            <FlatList
-              data={[1, 2, 4, 5, 1, 2, 4, 5]}
-              renderItem={({item}) => {
-                return (
-                  <View
-                    style={{
-                      flex: 1,
-                      alignItems: 'center',
-                      borderBottomColor: '#d4d4d4',
-                      borderBottomWidth: 1,
-                      marginHorizontal: 15,
-                      marginVertical: 5,
-                    }}>
-                    <Text style={{fontSize: 23}}>hhh</Text>
-                  </View>
-                );
-              }}
-            />
-          </View>
+          <ListContentPlan />
           <View style={{padding: 5}}>
             <Button
               buttonStyle={{backgroundColor: '#ff023e', fontWeight: 'bold'}}
@@ -49,10 +34,16 @@ export default (props) => {
   };
   return (
     <View>
-      <FlatList horizontal={true} data={[1, 2, 3]} renderItem={itemRender} />
+      <FlatList horizontal={true} data={listPlans} renderItem={itemRender} />
     </View>
   );
 };
+
+ListPlansCompents.PropTypes = {
+  listPlans: PropTypes.array,
+};
+
+export default ListPlansCompents;
 
 const styles = StyleSheet.create({
   card: {
@@ -72,5 +63,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 20,
     marginVertical: 10,
+  },
+  iconPlan: {
+    height: 50,
+  },
+  subPlan: {
+    color: '#fff',
+    fontWeight: '600',
+    marginVertical: 10,
+    fontSize: 15,
   },
 });
