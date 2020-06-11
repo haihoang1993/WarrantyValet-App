@@ -14,10 +14,6 @@ import {connect} from 'react-redux';
 // import {Button} from 'react-native-elements';
 
 class LoginScreen extends BaseScreen {
-  static navigationOptions = ({navigation}) => {
-    return {header: null};
-  };
-
   constructor(props) {
     super(props);
   }

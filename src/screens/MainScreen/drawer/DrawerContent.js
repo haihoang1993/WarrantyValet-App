@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, FlatList} from 'react-native';
 import {DrawerItem, DrawerContentScrollView} from '@react-navigation/drawer';
 import {
   useTheme,
@@ -8,14 +8,20 @@ import {
   Caption,
   Paragraph,
   Drawer,
-  Text,
-  TouchableRipple,
-  Switch,
 } from 'react-native-paper';
-// import {MaterialCommunityIcons} from '@expo/vector-icons';
-// import {MaterialCommunityIcons} from 'react-native-vector-icon';
 
 export default function DrawerContent(props) {
+  const {listScreens = []} = props;
+  const renderListCotent = () => {
+    return (
+      <FlatList
+        data={listScreens}
+        renderItem={({item}) => {
+          return <DrawerItem label={item.label} onPress={() => {}} />;
+        }}
+      />
+    );
+  };
   return (
     <DrawerContentScrollView {...props}>
       <View style={styles.drawerContent}>
@@ -45,53 +51,7 @@ export default function DrawerContent(props) {
           </View>
         </View>
         <Drawer.Section style={styles.drawerSection}>
-          <DrawerItem
-            // icon={({color, size}) => (
-            //   <MaterialCommunityIcons
-            //     name="account-outline"
-            //     color={color}
-            //     size={size}
-            //   />
-            // )}
-            label="Profile"
-            onPress={() => {}}
-          />
-          <DrawerItem
-            // icon={({color, size}) => (
-            //   <MaterialCommunityIcons name="tune" color={color} size={size} />
-            // )}
-            label="Preferences"
-            onPress={() => {}}
-          />
-          <DrawerItem
-            // icon={({color, size}) => (
-            //   <MaterialCommunityIcons
-            //     name="bookmark-outline"
-            //     color={color}
-            //     size={size}
-            //   />
-            // )}
-            label="Bookmarks"
-            onPress={() => {}}
-          />
-        </Drawer.Section>
-        <Drawer.Section title="Preferences">
-          <TouchableRipple onPress={() => {}}>
-            <View style={styles.preference}>
-              <Text>Dark Theme</Text>
-              <View pointerEvents="none">
-                <Switch value={false} />
-              </View>
-            </View>
-          </TouchableRipple>
-          <TouchableRipple onPress={() => {}}>
-            <View style={styles.preference}>
-              <Text>RTL</Text>
-              <View pointerEvents="none">
-                <Switch value={false} />
-              </View>
-            </View>
-          </TouchableRipple>
+          {renderListCotent()}
         </Drawer.Section>
       </View>
     </DrawerContentScrollView>

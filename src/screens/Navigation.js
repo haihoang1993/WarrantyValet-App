@@ -7,7 +7,7 @@ import {View, Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {ListPlansScreen,TestReduxSaga,MainScreen,LoginScreen} from '@screens';
-
+import { useTheme } from 'react-native-paper';
 const Stack = createStackNavigator();
 
 function  NavApp() {
@@ -15,11 +15,26 @@ function  NavApp() {
     <NavigationContainer>
       <Stack.Navigator>
         {/* <Stack.Screen options={{headerShown: false}}  name="ListPlansScreen" component={ListPlansScreen} /> */}
-        <Stack.Screen  name="LoginScreen" component={LoginScreen} />
-        {/* <Stack.Screen options={{headerShown: false}}  name="ListPlansScreen" component={MainScreen} /> */}
+        {/* <Stack.Screen  options={header('Login')} name="LoginScreen" component={LoginScreen} /> */}
+        <Stack.Screen options={{headerShown: false}}  name="ListPlansScreen" component={MainScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
+}
+
+function header(title = ''){
+  const theme = useTheme();
+  const { colors } = theme;
+  return {
+    title: title,
+    headerStyle: {
+      backgroundColor: colors.primary ,
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  };
 }
 
 export default NavApp;
