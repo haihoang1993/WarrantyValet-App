@@ -6,7 +6,7 @@ import * as React from 'react';
 import {View, Text} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import {ListPlansScreen,TestReduxSaga,MainScreen,LoginScreen} from '@screens';
+import {ListPlansScreen,TestReduxSaga,MainScreen,LoginScreen,AddProducts} from '@screens';
 import { useTheme } from 'react-native-paper';
 const Stack = createStackNavigator();
 
@@ -17,6 +17,7 @@ function  NavApp() {
         {/* <Stack.Screen options={{headerShown: false}}  name="ListPlansScreen" component={ListPlansScreen} /> */}
         {/* <Stack.Screen  options={header('Login')} name="LoginScreen" component={LoginScreen} /> */}
         <Stack.Screen options={{headerShown: false}}  name="ListPlansScreen" component={MainScreen} />
+        <Stack.Screen  options={header('Add Product')}  name="AddProducts" component={AddProducts} />
       </Stack.Navigator>
     </NavigationContainer>
   );

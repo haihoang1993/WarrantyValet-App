@@ -12,7 +12,10 @@ const RootNavigator = (props) => {
       drawerContent={() => (
         <DrawerContent listScreens={Screens.ListScreens} {...props} />
       )}>
-      <Drawer.Screen name="Home" component={Screens.ProductsScreen} />
+      <Drawer.Screen
+        name={Screens.ListScreens[0].name}
+        component={Screens.ProductsScreen}
+      />
     </Drawer.Navigator>
   );
 };

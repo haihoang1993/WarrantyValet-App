@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Text, View, TextInput, Alert} from 'react-native';
+import {View, Alert} from 'react-native';
 import TextInputView from '../base/TextInputView';
 import {useForm} from 'react-hook-form';
 import {Button} from 'react-native-elements';

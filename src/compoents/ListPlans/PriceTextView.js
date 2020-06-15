@@ -1,8 +1,5 @@
 import React from 'react';
-import {View, Text, FlatList, StyleSheet, Image} from 'react-native';
-import {PricingCard, Card} from 'react-native-elements';
-import {Device, Images} from '@common';
-import {Button} from 'react-native-elements';
+import {View, Text, StyleSheet} from 'react-native';
 
 export default (props) => {
   const {price = 5.55} = props;

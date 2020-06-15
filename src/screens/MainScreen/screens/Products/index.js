@@ -1,6 +1,9 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import BaseScreen from '../../drawer/BaseScreen';
+import ActionButton from 'react-native-action-button';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {EventApp} from '@services';
 
 export default class ProductsScreen extends BaseScreen {
   constructor(props) {
@@ -16,8 +19,14 @@ export default class ProductsScreen extends BaseScreen {
             flex: 1,
             alignItems: 'center',
             justifyContent: 'center',
-          }}
-        />
+          }}>
+          <ActionButton
+            onPress={() => {
+              EventApp.EmitToScreen('AddProducts', {});
+            }}
+            buttonColor="rgba(231,76,60,1)"
+          />
+        </View>
       </>
     );
   }

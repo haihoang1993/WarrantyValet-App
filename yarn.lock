@@ -5727,6 +5727,13 @@ react-is@^16.12.0, react-is@^16.13.0, react-is@^16.7.0, react-is@^16.8.1, react-
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-native-action-button@^2.8.5:
+  version "2.8.5"
+  resolved "https://registry.yarnpkg.com/react-native-action-button/-/react-native-action-button-2.8.5.tgz#4152a50323a8a6b3468e6f161f9a9071f2f0739a"
+  integrity sha512-BvGZpzuGeuFR2Y6j93+vKiSqDhsF87VHvNXFs/qEYKfzT4b1ASAT/GQbgS6gNt4jRJCUnJWYrIwlBzRjesZQmQ==
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-elements@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/react-native-elements/-/react-native-elements-2.0.1.tgz#7c27f3f5b41f8d05a4378d258ff4335a62badf48"
@@ -5742,6 +5749,13 @@ react-native-elements@^2.0.1:
     react-native-ratings "^7.2.0"
     react-native-status-bar-height "^2.2.0"
 
+react-native-event-listeners@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/react-native-event-listeners/-/react-native-event-listeners-1.0.7.tgz#486d856dfebf295a7aeda97bc36d1cf81cee0623"
+  integrity sha512-yne2ldnqGtABnuN6VSPgs5afaHZZYIAGMoyBUJFn5O2t5t78eCbX9vNa3hvOIIwulKMkZVfqyRtYcSOrNMmMhg==
+  dependencies:
+    type-detect "^4.0.8"
+
 react-native-gesture-handler@^1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.6.1.tgz#678e2dce250ed66e93af409759be22cd6375dd17"
@@ -5751,6 +5765,11 @@ react-native-gesture-handler@^1.6.1:
     hoist-non-react-statics "^2.3.1"
     invariant "^2.2.4"
     prop-types "^15.7.2"
+
+react-native-image-picker@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-2.3.1.tgz#1977b65e07793d2c0b2d1976fb675c5f75ad7f11"
+  integrity sha512-c/a2h7/T7yBo5KlNQhcSn4xf4+6Li6LfJ59+GZT1ZzzWrj/6X8DiJ/TJBOlOZMC5tJriZKuRkWSsr74k6z+brw==
 
 react-native-iphone-x-helper@^1.2.1:
   version "1.2.1"
@@ -6974,7 +6993,7 @@ type-check@~0.3.2:
   dependencies:
     prelude-ls "~1.1.2"
 
-type-detect@4.0.8:
+type-detect@4.0.8, type-detect@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/type-detect/-/type-detect-4.0.8.tgz#7646fb5f18871cfbb7749e69bd39a6388eb7450c"
   integrity sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==
