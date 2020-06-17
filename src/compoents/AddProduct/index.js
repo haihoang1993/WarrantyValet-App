@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {View, Alert} from 'react-native';
+import {View, Alert, ScrollView} from 'react-native';
 import TextInputView from '../base/TextInputView';
 import PickerImage from '../base/PickerImage';
 import {useForm} from 'react-hook-form';
@@ -14,17 +14,23 @@ export default (props) => {
   }, [register]);
   return (
     <View>
-      <TextInputView
-        onChangeText={(text) => setValue('username', text, true)}
-        title="Product Title"
-      />
-      <PickerImage title="Receipt Photo" />
-      <Button
-        large
-        rightIcon={{name: 'login'}}
-        onPress={handleSubmit(onSubmit)}
-        title="Add"
-      />
+      <ScrollView>
+        <TextInputView
+          onChangeText={(text) => setValue('username', text, true)}
+          title="Product Title"
+        />
+        <PickerImage title="Receipt Photo" />
+        <PickerImage title="Warranty Page Information Photo" />
+        <PickerImage title="Product Photo" />
+        <PickerImage numPhotos={2} title="Actual Product Photos" />
+        <PickerImage numPhotos={2} title="Additional photos (option)" />
+        <Button
+          large
+          rightIcon={{name: 'login'}}
+          onPress={handleSubmit(onSubmit)}
+          title="Add"
+        />
+      </ScrollView>
     </View>
   );
 };

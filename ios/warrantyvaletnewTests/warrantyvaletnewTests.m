@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface WarrantyvaletTests : XCTestCase
+@interface warrantyvaletnewTests : XCTestCase
 
 @end
 
-@implementation WarrantyvaletTests
+@implementation warrantyvaletnewTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
 {

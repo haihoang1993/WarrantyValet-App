@@ -1,16 +1,112 @@
 import React, {useState, useEffect} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
-import Icon from 'react-native-vector-icons';
-// import ImagePicker from 'react-native-image-picker';
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  FlatList,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import ImagePicker from 'react-native-image-picker';
+import {Button} from 'react-native-elements';
 
 export default (props) => {
-  const {title = ''} = props;
-  const [uri, setUri] = useState(0);
+  const {title = '', numPhotos = 1} = props;
+  const [soucre, setSoucre] = useState(null);
+  const [listImages, setListImages] = useState([]);
+  // console.log('list image select:', listImages);
+  const pickImg = () => {
+    const options = {
+      title: 'Select Avatar',
+      customButtons: [{name: 'fb', title: 'Choose Photo from Facebook'}],
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+
+    /**
+     * The first arg is the options object for customization (it can also be null or omitted for default options),
+     * The second arg is the callback which sends object: response (more info in the API Reference)
+     */
+    ImagePicker.showImagePicker(options, (response) => {
+      console.log('Response = ', response);
+
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        if (numPhotos === 1) {
+          const sourceImport = {uri: response.uri};
+          // const sourceImport = {uri: 'data:image/jpeg;base64,' + response.data};
+          setSoucre(sourceImport);
+        } else {
+          // listImages.push(response.uri);
+          console.log('list images:', listImages);
+          setListImages([...listImages, ...[response.uri]]);
+        }
+        // You can also display the image using data:
+        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+
+        // this.setState({
+        //   avatarSource: source,
+        // });
+      }
+    });
+  };
+  //<i class="fad fa-image"></i>
+  const iconRemove = (index = -1) => {
+    return (
+      <TouchableOpacity
+        style={{position: 'absolute', right: 0}}
+        onPress={() => {
+          if (index !== -1) {
+            listImages.pop(index);
+            setListImages([...listImages]);
+          } else {
+            setSoucre(null);
+          }
+        }}>
+        <Icon size={25} name="trash-o" />
+      </TouchableOpacity>
+    );
+  };
   return (
     <View style={styles.wrap}>
-      <Text style={styles.textTile}>{title}</Text>
-      <View styles={styles.inputContainer}>
-      {/* <Icon name="rocket" size={30} color="#900" />; */}
+      <View>
+        <Text style={styles.textTile}>{title}</Text>
+      </View>
+      <View style={{flexDirection: numPhotos > 1 ? 'column' : 'row'}}>
+        {console.log('list render:', listImages)}
+        {listImages.length > 0 && numPhotos > 1 && (
+          <FlatList
+            horizontal={true}
+            data={listImages}
+            renderItem={({item, index}) => {
+              console.log('item select:', item);
+              const renderView = (
+                <View style={styles.viewImage}>
+                  <Image style={styles.image} source={{uri: item}} />
+                  {iconRemove(index)}
+                </View>
+              );
+              return renderView;
+            }}
+          />
+        )}
+        {soucre != null && numPhotos === 1 && (
+          <View style={styles.viewImage}>
+            <Image style={styles.image} source={soucre} />
+            {iconRemove()}
+          </View>
+        )}
+        <View style={[styles.vieButton]}>
+          <Button onPress={pickImg} title="Choose Photos" />
+        </View>
       </View>
     </View>
   );
@@ -22,7 +118,7 @@ const styles = StyleSheet.create({
   },
   wrap: {
     flexDirection: 'column',
-    marginBottom: 10,
+    marginBottom: 15,
   },
   textInput: {
     height: 50,
@@ -32,14 +128,19 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
   },
   inputContainer: {
-    borderBottomColor: '#3FF',
-    backgroundColor: '#FFFF0F',
-    borderRadius: 20,
-    borderBottomWidth: 1,
-    width: 500,
-    height: 45,
-    marginBottom: 20,
+    backgroundColor: '#000',
     flexDirection: 'row',
-    alignItems: 'center',
+  },
+  image: {
+    height: 130,
+    width: 130,
+  },
+  viewImage: {
+    height: 130,
+    width: 130,
+    marginRight: 5,
+  },
+  vieButton: {
+    alignSelf: 'flex-end',
   },
 });
