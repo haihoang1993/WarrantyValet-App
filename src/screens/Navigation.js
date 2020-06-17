@@ -17,7 +17,7 @@ function  NavApp() {
         {/* <Stack.Screen options={{headerShown: false}}  name="ListPlansScreen" component={ListPlansScreen} /> */}
         {/* <Stack.Screen  options={header('Login')} name="LoginScreen" component={LoginScreen} /> */}
         <Stack.Screen options={{headerShown: false}}  name="ListPlansScreen" component={MainScreen} />
-        <Stack.Screen  options={header('Add Product')}  name="AddProducts" component={AddProducts} />
+        <Stack.Screen  options={header('Add New Product')}  name="AddProducts" component={AddProducts} />
       </Stack.Navigator>
     </NavigationContainer>
   );
