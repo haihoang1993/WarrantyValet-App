@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 import BaseScreen from '../../drawer/BaseScreen';
+import {ListProducts} from '@compoents';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {EventApp} from '@services';
@@ -17,9 +18,8 @@ export default class ProductsScreen extends BaseScreen {
         <View
           style={{
             flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
           }}>
+          <ListProducts />
           <ActionButton
             onPress={() => {
               EventApp.EmitToScreen('AddProducts', {});

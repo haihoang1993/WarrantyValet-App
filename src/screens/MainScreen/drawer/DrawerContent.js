@@ -10,6 +10,8 @@ import {
   Drawer,
 } from 'react-native-paper';
 
+import {Button} from 'react-native-elements';
+
 export default function DrawerContent(props) {
   const {listScreens = []} = props;
   const renderListCotent = () => {
@@ -17,7 +19,13 @@ export default function DrawerContent(props) {
       <FlatList
         data={listScreens}
         renderItem={({item}) => {
-          return <DrawerItem label={item.label} onPress={() => {}} />;
+          return (
+            <DrawerItem
+              style={styles.itemMenu}
+              label={item.label}
+              onPress={() => {}}
+            />
+          );
         }}
       />
     );
@@ -43,10 +51,7 @@ export default function DrawerContent(props) {
               <Caption style={styles.caption}>Following</Caption>
             </View>
             <View style={styles.section}>
-              <Paragraph style={[styles.paragraph, styles.caption]}>
-                159
-              </Paragraph>
-              <Caption style={styles.caption}>Followers</Caption>
+              <Button title="Account details" />
             </View>
           </View>
         </View>
@@ -95,5 +100,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingVertical: 12,
     paddingHorizontal: 16,
+  },
+  itemMenu: {
+    borderBottomColor: '#c4c4c4',
+    borderBottomWidth: 0.3,
   },
 });
