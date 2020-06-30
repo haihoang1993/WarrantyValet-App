@@ -7,14 +7,22 @@ import * as Screens from '../screens';
 
 const RootNavigator = (props) => {
   const {navigation} = props;
+  const listScreen = Object.entries(Screens.ListScreens).map((e) => {
+    return {...e[1]};
+  });
+  console.log('list screen:', listScreen);
   return (
     <Drawer.Navigator
-      drawerContent={() => (
-        <DrawerContent listScreens={Screens.ListScreens} {...props} />
+      drawerContent={(props) => (
+        <DrawerContent listScreens={listScreen} {...props} />
       )}>
       <Drawer.Screen
-        name={Screens.ListScreens[0].name}
+        name={Screens.ListScreens.products.name}
         component={Screens.ProductsScreen}
+      />
+      <Drawer.Screen
+        name={Screens.ListScreens.subscription.name}
+        component={Screens.MySubscriptionScreen}
       />
     </Drawer.Navigator>
   );

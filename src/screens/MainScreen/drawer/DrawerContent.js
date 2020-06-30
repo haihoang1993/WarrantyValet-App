@@ -13,7 +13,8 @@ import {
 import {Button} from 'react-native-elements';
 
 export default function DrawerContent(props) {
-  const {listScreens = []} = props;
+  const {listScreens = [], navigation} = props;
+  console.log('DrawerContent',props);
   const renderListCotent = () => {
     return (
       <FlatList
@@ -23,7 +24,9 @@ export default function DrawerContent(props) {
             <DrawerItem
               style={styles.itemMenu}
               label={item.label}
-              onPress={() => {}}
+              onPress={() => {
+                navigation.navigate(item.name);
+              }}
             />
           );
         }}

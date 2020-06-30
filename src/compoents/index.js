@@ -5,7 +5,9 @@ import ListProducts from './Products';
 import LoginForm from './Login';
 import DetailProduct from './Products/DetailProduct';
 import SignupForm from './SignUp';
+import AppBarDraw from './Appbar';
 import ViewTestSaga from './ViewTestSaga';
+import * as MySubscriptionView from './MySubscriptionCompoent';
 export {
   ViewTest,
   ListPlans,
@@ -15,4 +17,6 @@ export {
   AddProducts,
   ListProducts,
   DetailProduct,
+  AppBarDraw,
+  MySubscriptionView,
 };
