@@ -15,8 +15,8 @@
       "@navigations":[
         "navigations"
       ],
-      "@services":[
-        "services"
+      "@helpers":[
+        "helpers"
       ],
       "@images":[
         "images"

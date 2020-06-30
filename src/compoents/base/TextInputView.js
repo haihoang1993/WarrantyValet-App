@@ -2,7 +2,17 @@ import React from 'react';
 import {Text, View, TextInput, StyleSheet} from 'react-native';
 
 export default (props) => {
-  const {title = ''} = props;
+  const {title = '', multiline = false} = props;
+  if (multiline) {
+    return (
+      <View style={styles.wrap}>
+        <Text style={styles.textTile}>{title}</Text>
+        <View styles={styles.inputMutilineContainer}>
+          <TextInput {...props} style={styles.textInput} />
+        </View>
+      </View>
+    );
+  }
   return (
     <View style={styles.wrap}>
       <Text style={styles.textTile}>{title}</Text>
@@ -22,13 +32,22 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   textInput: {
-    height: 50,
     backgroundColor: '#e8e8ed',
     borderRadius: 10,
     borderColor: '#a2a2a3',
     borderWidth: 0.5,
   },
   inputContainer: {
+    borderBottomColor: '#3FF',
+    backgroundColor: '#FFFF0F',
+    borderRadius: 20,
+    borderBottomWidth: 1,
+    width: 500,
+    marginBottom: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  inputMutilineContainer: {
     borderBottomColor: '#3FF',
     backgroundColor: '#FFFF0F',
     borderRadius: 20,

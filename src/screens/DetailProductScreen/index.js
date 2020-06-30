@@ -2,7 +2,7 @@
 import React from 'react';
 import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
 import BaseScreen from '../BaseScreen';
-import {AddProducts as AddProductsView} from '@compoents';
+import {DetailProduct as AddProductsView} from '@compoents';
 
 class AddProducts extends BaseScreen {
   constructor(props) {

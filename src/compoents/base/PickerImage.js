@@ -15,7 +15,7 @@ export default (props) => {
   const {title = '', numPhotos = 1} = props;
   const [soucre, setSoucre] = useState(null);
   const [listImages, setListImages] = useState([]);
-  // console.log('list image select:', listImages);
+
   const pickImg = () => {
     const options = {
       title: 'Select Avatar',
@@ -42,19 +42,12 @@ export default (props) => {
       } else {
         if (numPhotos === 1) {
           const sourceImport = {uri: response.uri};
-          // const sourceImport = {uri: 'data:image/jpeg;base64,' + response.data};
           setSoucre(sourceImport);
         } else {
           // listImages.push(response.uri);
           console.log('list images:', listImages);
           setListImages([...listImages, ...[response.uri]]);
         }
-        // You can also display the image using data:
-        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
-
-        // this.setState({
-        //   avatarSource: source,
-        // });
       }
     });
   };
@@ -104,7 +97,8 @@ export default (props) => {
             {iconRemove()}
           </View>
         )}
-        <View style={[styles.vieButton]}>
+        <View
+          style={[numPhotos > 0 ? styles.viewButtonLeft : styles.viewButton]}>
           <Button onPress={pickImg} title="Choose Photos" />
         </View>
       </View>
@@ -140,7 +134,10 @@ const styles = StyleSheet.create({
     width: 130,
     marginRight: 5,
   },
-  vieButton: {
+  viewButton: {
     alignSelf: 'flex-end',
+  },
+  viewButtonLeft: {
+    alignSelf: 'flex-start',
   },
 });

@@ -1,42 +1,44 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
 import BaseScreen from '../BaseScreen';
 import {ListPlans} from '@compoents';
 import {connect} from 'react-redux';
 import {Button} from 'react-native-elements';
+import {ScreensName} from '@screens';
 
-class ListPlansScreen extends BaseScreen {
-  static navigationOptions = ({navigation}) => {
-    return {header: null};
-  };
-
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <SafeAreaView style={{flex: 1}}>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-          }}>
-          <ListPlans listPlans={[1, 2, 3, 4]} {...this.props} />
-          <View style={{marginHorizontal: 40}}>
-            <Button large rightIcon={{name: 'login'}} title="Login" />
-            <Button
-              style={{marginVertical: 10}}
-              large
-              rightIcon={{name: 'login'}}
-              title="Sign Up"
-            />
-          </View>
+const ListPlansScreen = (props) => {
+  console.log('ListPlansScreen:', props);
+  const {navigation} = props;
+  return (
+    <SafeAreaView style={{flex: 1}}>
+      <View
+        style={{
+          flex: 1,
+        }}>
+        <ListPlans listPlans={[1, 2, 3, 4]} {...props} />
+        <View style={{marginHorizontal: 40}}>
+          <Button
+            onPress={() => {
+              navigation.push(ScreensName.LoginScreen);
+            }}
+            rightIcon={{name: 'login'}}
+            title="Login"
+          />
+          <Button
+            onPress={() => {
+              navigation.push(ScreensName.SignUpScreen);
+            }}
+            style={{marginVertical: 10}}
+            large
+            rightIcon={{name: 'login'}}
+            title="Sign Up"
+          />
         </View>
-      </SafeAreaView>
-    );
-  }
-}
+      </View>
+    </SafeAreaView>
+  );
+};
 
 //Actions
 import {increaseAction} from '../../redux/actions';

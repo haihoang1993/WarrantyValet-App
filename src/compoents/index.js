@@ -3,6 +3,7 @@ import ListPlans from './ListPlans';
 import AddProducts from './AddProduct';
 import ListProducts from './Products';
 import LoginForm from './Login';
+import DetailProduct from './Products/DetailProduct';
 import SignupForm from './SignUp';
 import ViewTestSaga from './ViewTestSaga';
 export {
@@ -13,4 +14,5 @@ export {
   SignupForm,
   AddProducts,
   ListProducts,
+  DetailProduct,
 };

@@ -12,12 +12,12 @@ import {
   Image,
 } from 'react-native';
 import BaseScreen from '../BaseScreen';
-import {LoginForm} from '@compoents';
+import {SignupForm} from '@compoents';
 import {connect} from 'react-redux';
 // import {Button} from 'react-native-elements';
 import {Device, Images} from '@common';
 
-const LoginScreen = (props) => {
+const SignUpScreen = (props) => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <View
@@ -32,21 +32,14 @@ const LoginScreen = (props) => {
             flexDirection: 'row',
             justifyContent: 'center',
             marginBottom: 30,
-          }}>
-          <Image
-            style={{
-              width: 300,
-            }}
-            resizeMode="contain"
-            source={Images.LogoApp}
-          />
-        </View>
+          }}
+        />
         <View style={{marginHorizontal: 35}}>
-          <LoginForm {...props} />
+          <SignupForm {...props} />
         </View>
       </View>
     </SafeAreaView>
   );
 };
 
-export default LoginScreen;
+export default SignUpScreen;

@@ -1,9 +1,11 @@
 import ListPlansScreen from './ListPlansScreen';
 import TestReduxSaga from './TestReduxSaga';
-import NavigationApp from './Navigation';
+import NavigationApp, {Screens as ScreensName} from './Navigation';
 import LoginScreen from './LoginScreen';
 import MainScreen from './MainScreen';
 import AddProducts from './AddProducts';
+import SignUpScreen from './SignUpScreen';
+import DetailProductScreen from './DetailProductScreen';
 
 export {
   ListPlansScreen,
@@ -12,4 +14,7 @@ export {
   MainScreen,
   LoginScreen,
   AddProducts,
+  ScreensName,
+  SignUpScreen,
+  DetailProductScreen,
 };

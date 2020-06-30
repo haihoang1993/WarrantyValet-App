@@ -1,8 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect} from 'react';
 import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
 import BaseScreen from '../BaseScreen';
 import Drawer from './drawer';
-import {EventApp} from '@services';
+import {EventApp} from '@helpers';
 
 export default (props) => {
   // Similar to componentDidMount and componentDidUpdate:
@@ -12,7 +13,7 @@ export default (props) => {
     EventApp.OnToScreen((name, data) => {
       navigation.push(name, data);
     });
-  });
+  }, []);
 
   return <Drawer />;
 };
