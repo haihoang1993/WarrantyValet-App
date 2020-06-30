@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react';
 import {View, Alert, ScrollView} from 'react-native';
 import TextInputView from '../../base/TextInputView';
-import PickerImage from '../base/PickerImage';
+import PickerImage from '../../base/PickerImage';
+import PickDate from '../../base/PickDate';
 import {useForm} from 'react-hook-form';
 import {Button} from 'react-native-elements';
 
@@ -13,7 +14,7 @@ export default (props) => {
     register({name: 'username'}, {required: true});
   }, [register]);
   return (
-    <View>
+    <View style={{marginHorizontal:10}}>
       <ScrollView>
         <TextInputView
           onChangeText={(text) => setValue('username', text, true)}
@@ -25,6 +26,17 @@ export default (props) => {
           onChangeText={(text) => setValue('username', text, true)}
           title="Product Description"
         />
+        <TextInputView
+          onChangeText={(text) => setValue('username', text, true)}
+          title="UPC/SKU Code"
+        />
+        <TextInputView
+          keyboardType="numeric"
+          onChangeText={(text) => setValue('username', text, true)}
+          title="Price"
+        />
+        <PickDate title="Purchase Date" />
+        <PickDate title="Warranty Expiration" />
         <PickerImage title="Receipt Photo" />
         <PickerImage title="Warranty Page Information Photo" />
         <PickerImage title="Product Photo" />

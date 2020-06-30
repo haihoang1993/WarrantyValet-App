@@ -1,23 +1,36 @@
 import React from 'react';
-import {View, Text, FlatList, StyleSheet, Image} from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import {Card} from 'react-native-elements';
-
+import {EventApp} from '@helpers';
+import {ScreensName} from '@screens';
 const ListProducts = (props) => {
   const itemR = ({item}) => {
     return (
-      <View style={{flex: 1}}>
-        <Card containerStyle={styles.styleCard}>
-          <View>
-            <View style={styles.styleViewRow}>
-              <Text style={styles.title}> New Product Title</Text>
+      <TouchableOpacity
+        onPress={() => {
+          EventApp.EmitToScreen(ScreensName.DetailProuctScreen, {});
+        }}>
+        <View style={{flex: 1}}>
+          <Card containerStyle={styles.styleCard}>
+            <View>
+              <View style={styles.styleViewRow}>
+                <Text style={styles.title}> New Product Title</Text>
+              </View>
             </View>
-          </View>
-          <View style={styles.styleViewRow}>
-            <Text style={styles.price}> Price: $0.00</Text>
-            <Text> May 12, 2020 </Text>
-          </View>
-        </Card>
-      </View>
+            <View style={styles.styleViewRow}>
+              <Text style={styles.price}> Price: $0.00</Text>
+              <Text> May 12, 2020 </Text>
+            </View>
+          </Card>
+        </View>
+      </TouchableOpacity>
     );
   };
   return (

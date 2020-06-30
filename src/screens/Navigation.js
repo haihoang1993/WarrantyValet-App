@@ -6,7 +6,7 @@ import * as React from 'react';
 import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { ListPlansScreen, TestReduxSaga,SignUpScreen, MainScreen, LoginScreen, AddProducts } from '@screens';
+import { ListPlansScreen, DetailProductScreen, TestReduxSaga,SignUpScreen, MainScreen, LoginScreen, AddProducts } from '@screens';
 import { useTheme } from 'react-native-paper';
 const Stack = createStackNavigator();
 
@@ -16,6 +16,7 @@ const Screens = {
   ListPlanScreen: 'ListPlanScreen',
   LoginScreen:'LoginScreen',
   SignUpScreen:'SignUpScren',
+  DetailProuctScreen:'DetailProductScreen',
 };
 
 function NavApp() {
@@ -44,6 +45,7 @@ function NavApp() {
         <Stack.Screen  options={header('Register')} name={Screens.SignUpScreen} component={SignUpScreen} /> */}
         <Stack.Screen options={{ headerShown: false }} name={Screens.MainScreen} component={MainScreen} />
         <Stack.Screen  options={header('Add New Product')} name={Screens.AddProductsScreen} component={AddProducts} />
+        <Stack.Screen  options={header('Product')} name={Screens.DetailProuctScreen} component={DetailProductScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -8,7 +8,10 @@ export default (props) => {
       <View style={styles.wrap}>
         <Text style={styles.textTile}>{title}</Text>
         <View styles={styles.inputMutilineContainer}>
-          <TextInput {...props} style={styles.textInput} />
+          <TextInput
+            {...props}
+            style={[styles.textInput, styles.textInputMutiline]}
+          />
         </View>
       </View>
     );
@@ -32,10 +35,15 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   textInput: {
+    fontSize: 18,
     backgroundColor: '#e8e8ed',
     borderRadius: 10,
     borderColor: '#a2a2a3',
     borderWidth: 0.5,
+    minHeight: 45,
+  },
+  textInputMutiline: {
+    minHeight: 100,
   },
   inputContainer: {
     borderBottomColor: '#3FF',

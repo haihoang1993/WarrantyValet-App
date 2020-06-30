@@ -7,7 +7,6 @@ import {Button} from 'react-native-elements';
 export default (props) => {
   const {register, setValue, handleSubmit, errors} = useForm();
   const onSubmit = (data) => Alert.alert('Form Data', JSON.stringify(data));
-
   useEffect(() => {
     register({name: 'username'}, {required: true});
     register({name: 'password'});
