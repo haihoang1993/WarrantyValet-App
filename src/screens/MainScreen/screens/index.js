@@ -1,5 +1,6 @@
 import ProductsScreen from './Products';
 import MySubscriptionScreen from './MySubscription';
+import PaymentScreen from './PaymentScreen';
 
 const ListScreens = {
   products: {
@@ -24,4 +25,4 @@ const ListScreens = {
   },
 };
 
-export {ProductsScreen, ListScreens, MySubscriptionScreen};
+export {ProductsScreen, ListScreens, MySubscriptionScreen, PaymentScreen};

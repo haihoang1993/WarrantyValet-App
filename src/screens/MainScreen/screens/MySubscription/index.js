@@ -5,7 +5,7 @@ import {AppBarDraw, MySubscriptionView} from '@compoents';
 export default (props) => {
   return (
     <>
-      <AppBarDraw title=" MySubscription" {...props} />
+      <AppBarDraw title="My Subscription" {...props} />
       <View style={{flex: 1}}>
         <View>
           <MySubscriptionView.TopView />

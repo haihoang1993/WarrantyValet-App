@@ -24,6 +24,10 @@ const RootNavigator = (props) => {
         name={Screens.ListScreens.subscription.name}
         component={Screens.MySubscriptionScreen}
       />
+      <Drawer.Screen
+        name={Screens.ListScreens.payment.name}
+        component={Screens.PaymentScreen}
+      />
     </Drawer.Navigator>
   );
 };
