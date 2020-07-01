@@ -9,6 +9,8 @@ export default (props) => {
       <View style={{flex: 1}}>
         <View>
           <MySubscriptionView.TopView />
+          <MySubscriptionView.SubscriptionTotalsView />
+          <MySubscriptionView.BillingAddressView />
         </View>
       </View>
     </>
