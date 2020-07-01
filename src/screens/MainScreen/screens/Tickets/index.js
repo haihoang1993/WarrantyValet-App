@@ -6,7 +6,7 @@ import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {EventApp} from '@helpers';
 
-export default class ProductsScreen extends BaseScreen {
+export default class TicketsScreen extends BaseScreen {
   constructor(props) {
     super(props);
     console.log('props:', props);

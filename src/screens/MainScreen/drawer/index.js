@@ -28,6 +28,10 @@ const RootNavigator = (props) => {
         name={Screens.ListScreens.payment.name}
         component={Screens.PaymentScreen}
       />
+      <Drawer.Screen
+        name={Screens.ListScreens.tickets.name}
+        component={Screens.TicketsScreen}
+      />
     </Drawer.Navigator>
   );
 };
