@@ -1,33 +1,36 @@
-import React from 'react';
-import {Text, View} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Text, View } from 'react-native';
 import BaseScreen from '../../drawer/BaseScreen';
-import {ListProducts} from '@compoents';
+import { ListProducts,AppBarDraw } from '@compoents';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
-import {EventApp} from '@helpers';
+import { EventApp, StorageDB } from '@helpers';
 
-export default class ProductsScreen extends BaseScreen {
-  constructor(props) {
-    super(props);
-    console.log('props:', props);
-  }
-  render() {
-    return (
-      <>
-        {this.renderAppBar('Products')}
-        <View
-          style={{
-            flex: 1,
-          }}>
-          <ListProducts />
-          <ActionButton
-            onPress={() => {
-              EventApp.EmitToScreen('AddProducts', {});
-            }}
-            buttonColor="rgba(231,76,60,1)"
-          />
-        </View>
-      </>
-    );
-  }
+export default function ProductsScreen(props) {
+
+  useEffect(()=>{
+    const getListProducts=async ()=>{
+      const user=await StorageDB.getUserLogin();
+      console.log('user login:',user);
+    }
+    getListProducts();
+  },[]);
+
+  return (
+    <>
+            <AppBarDraw title="My Subscription" {...props} />
+      <View
+        style={{
+          flex: 1,
+        }}>
+        <ListProducts />
+        <ActionButton
+          onPress={() => {
+            EventApp.EmitToScreen('AddProducts', {});
+          }}
+          buttonColor="rgba(231,76,60,1)"
+        />
+      </View>
+    </>
+  );
 }

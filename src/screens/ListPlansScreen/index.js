@@ -1,39 +1,42 @@
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
 import BaseScreen from '../BaseScreen';
-import {ListPlans} from '@compoents';
-import {connect} from 'react-redux';
-import {Button} from 'react-native-elements';
-import {ScreensName} from '@screens';
+import { ListPlans } from '@compoents';
+import { connect } from 'react-redux';
+import { Button } from 'react-native-elements';
+import { ScreensName } from '@screens';
 
 const ListPlansScreen = (props) => {
   console.log('ListPlansScreen:', props);
-  const {navigation} = props;
+  const { navigation } = props;
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{ flex: 1 }}>
       <View
         style={{
           flex: 1,
+          justifyContent: 'space-between'
         }}>
         <ListPlans listPlans={[1, 2, 3, 4]} {...props} />
-        <View style={{marginHorizontal: 40, marginVertical: 50}}>
-          <Button
-            onPress={() => {
-              navigation.push(ScreensName.LoginScreen);
-            }}
-            rightIcon={{name: 'login'}}
-            title="Login"
-          />
-          <Button
-            onPress={() => {
-              navigation.push(ScreensName.SignUpScreen);
-            }}
-            style={{marginVertical: 10}}
-            large
-            rightIcon={{name: 'login'}}
-            title="Sign Up"
-          />
+        <View style={{ marginHorizontal: 15, flexDirection: 'row', flex: 1,justifyContent:'center',alignItems:'center' }}>
+          <View style={{ flex: 0.5, marginRight: 3 }}>
+            <Button
+              onPress={() => {
+                navigation.push(ScreensName.LoginScreen);
+              }}
+              rightIcon={{ name: 'login' }}
+              title="Login"
+            />
+          </View>
+          <View style={{ flex: 0.5, marginLeft: 3 }}>
+            <Button
+              onPress={() => {
+                navigation.push(ScreensName.SignUpScreen);
+              }}
+              rightIcon={{ name: 'login' }}
+              title="Sign Up"
+            />
+          </View>
+
         </View>
       </View>
     </SafeAreaView>
@@ -41,8 +44,8 @@ const ListPlansScreen = (props) => {
 };
 
 //Actions
-import {increaseAction} from '../../redux/actions';
-import {decreaseAction} from '../../redux/actions';
+import { increaseAction } from '../../redux/actions';
+import { decreaseAction } from '../../redux/actions';
 
 const mapStateToProps = (state) => {
   return {

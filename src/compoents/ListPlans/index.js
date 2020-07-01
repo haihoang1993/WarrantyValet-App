@@ -25,7 +25,7 @@ const ListPlansCompents = (props) => {
               buttonStyle={{backgroundColor: '#ff023e', fontWeight: 'bold'}}
               large
               rightIcon={{name: 'login'}}
-              title="Login"
+              title="CHOOSE PLAN"
             />
           </View>
         </Card>

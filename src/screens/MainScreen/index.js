@@ -11,6 +11,7 @@ export default (props) => {
     // Update the document title using the browser API
     const {navigation} = props;
     EventApp.OnToScreen((name, data) => {
+      console.log('OnToScreen');
       navigation.push(name, data);
     });
   }, []);

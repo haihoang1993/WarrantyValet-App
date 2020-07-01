@@ -1,14 +1,14 @@
 import React from 'react';
-import {View, Text, FlatList, StyleSheet} from 'react-native';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
 export default (props) => {
   return (
     <View>
       <FlatList
-        data={[1, 2, 4, 5, 1, 2, 4, 5]}
-        renderItem={({item}) => {
+        data={[1, 2, 5, 1, 3, 4, 5, 6]}
+        renderItem={({ item }) => {
           return (
             <View style={styles.itemList}>
-              <Text style={{fontSize: 23}}>hhh</Text>
+              <Text style={{ fontSize: 18 }}>Content Plan</Text>
             </View>
           );
         }}

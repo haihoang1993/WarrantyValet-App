@@ -1,8 +1,10 @@
 import React from 'react';
-import {Text, View, TextInput, StyleSheet} from 'react-native';
+import { Text, View, TextInput, StyleSheet } from 'react-native';
 
 export default (props) => {
-  const {title = '', multiline = false} = props;
+  const { title = '', multiline = false, value = null, onChangeText = null } = props;
+  if (value!=null  && onChangeText!=null)
+    onChangeText(value);
   if (multiline) {
     return (
       <View style={styles.wrap}>
