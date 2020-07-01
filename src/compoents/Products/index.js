@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
   styleCard: {
     padding: 5,
     borderRadius: 10,
+    paddingVertical: 15,
   },
   styleViewRow: {flexDirection: 'row', justifyContent: 'space-between'},
   title: {
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
   },
   price: {
     fontSize: 17,
-    fontWeight: '700',
+    fontWeight: '600',
   },
 });
 

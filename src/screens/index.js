@@ -4,6 +4,7 @@ import NavigationApp, {Screens as ScreensName} from './Navigation';
 import LoginScreen from './LoginScreen';
 import MainScreen from './MainScreen';
 import AddProducts from './AddProducts';
+import AddTicketsScreen from './AddTicketsScreen';
 import SignUpScreen from './SignUpScreen';
 import DetailProductScreen from './DetailProductScreen';
 
@@ -17,4 +18,5 @@ export {
   ScreensName,
   SignUpScreen,
   DetailProductScreen,
+  AddTicketsScreen,
 };

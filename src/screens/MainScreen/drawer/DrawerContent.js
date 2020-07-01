@@ -14,7 +14,7 @@ import {Button} from 'react-native-elements';
 
 export default function DrawerContent(props) {
   const {listScreens = [], navigation} = props;
-  console.log('DrawerContent',props);
+  console.log('DrawerContent', props);
   const renderListCotent = () => {
     return (
       <FlatList
@@ -49,11 +49,11 @@ export default function DrawerContent(props) {
           <View style={styles.row}>
             <View style={styles.section}>
               <Paragraph style={[styles.paragraph, styles.caption]}>
-                202
+                Home Plan
               </Paragraph>
-              <Caption style={styles.caption}>Following</Caption>
+              <Caption style={styles.caption} />
             </View>
-            <View style={styles.section}>
+            <View style={styles.section} d dddd>
               <Button title="Account details" />
             </View>
           </View>

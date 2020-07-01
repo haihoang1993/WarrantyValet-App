@@ -32,8 +32,15 @@ const SignUpScreen = (props) => {
             flexDirection: 'row',
             justifyContent: 'center',
             marginBottom: 30,
-          }}
-        />
+          }}>
+          <Image
+            style={{
+              width: 300,
+            }}
+            resizeMode="contain"
+            source={Images.LogoApp}
+          />
+        </View>
         <View style={{marginHorizontal: 35}}>
           <SignupForm {...props} />
         </View>

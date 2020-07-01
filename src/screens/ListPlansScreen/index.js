@@ -17,7 +17,7 @@ const ListPlansScreen = (props) => {
           flex: 1,
         }}>
         <ListPlans listPlans={[1, 2, 3, 4]} {...props} />
-        <View style={{marginHorizontal: 40}}>
+        <View style={{marginHorizontal: 40, marginVertical: 50}}>
           <Button
             onPress={() => {
               navigation.push(ScreensName.LoginScreen);
