@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import SplashScreen from 'react-native-splash-screen'
+import { NavigationContainer } from '@react-navigation/native';
 
-import {NavigationApp} from '@screens';
+import { NavigationApp, ScreensName } from '@screens';
+import { StorageDB } from '@helpers';
 
-import {Provider as PaperProvider} from 'react-native-paper';
-import {Theme} from '@common';
+import { Provider as PaperProvider } from 'react-native-paper';
+import { Theme } from '@common';
 
 //Redux
-import {createStore, applyMiddleware} from 'redux';
-import {Provider} from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
 
 import allReducers from './redux/reducers';
 
@@ -22,13 +25,28 @@ let store = createStore(allReducers, applyMiddleware(sagaMiddleware));
 
 // let store = createStore(allReducers);
 
-const App = () => (
-  <PaperProvider theme={Theme.light}>
-    <Provider store={store}>
-      <NavigationApp />
-    </Provider>
-  </PaperProvider>
-);
+const App = () => {
+  // SplashScreen.show()
+  const [initPage, setInitPage] = useState(null);
+
+  useEffect(() => {
+    async function getData() {
+      const isLogin = await StorageDB.isLogin();
+      setInitPage(isLogin ? ScreensName.MainScreen : ScreensName.ListPlanScreen);
+    }
+    getData();
+  }, []);
+
+  return (
+    <PaperProvider theme={Theme.light}>
+      <Provider store={store}>
+        <NavigationContainer>
+          {initPage && <NavigationApp initPage={initPage} />}
+        </NavigationContainer>
+      </Provider>
+    </PaperProvider>
+  )
+};
 
 export default class AppSaga extends React.Component {
   render() {
