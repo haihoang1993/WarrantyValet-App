@@ -35,12 +35,12 @@ const ListPlansScreen = (props) => {
           flex: 1,
           justifyContent: 'space-between'
         }}>
-        <View style={{flex:0.9,justifyContent:'center'}}>
+        <View style={{flex:1,justifyContent:'center'}}>
           {loading && (<LoadingView />)}
           {!loading && ( <ListPlans listPlans={listPlans} {...props} />)}
             {/* <LoadingView></LoadingView> */}
         </View>
-        <View style={{ marginHorizontal: 15, flexDirection: 'row', flex: 0.1, justifyContent: 'center', alignItems: 'center' }}>
+        {/* <View style={{ marginHorizontal: 15, flexDirection: 'row', flex: 0.1, justifyContent: 'center', alignItems: 'center' }}>
           <View style={{ flex: 0.5, marginRight: 3 }}>
             <Button
               onPress={() => {
@@ -60,7 +60,7 @@ const ListPlansScreen = (props) => {
             />
           </View>
 
-        </View>
+        </View> */}
       </View>
     </SafeAreaView>
   );

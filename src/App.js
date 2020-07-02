@@ -32,7 +32,8 @@ const App = () => {
   useEffect(() => {
     async function getData() {
       const isLogin = await StorageDB.isLogin();
-      setInitPage(isLogin ? ScreensName.MainScreen : ScreensName.ListPlanScreen);
+      SplashScreen.hide();
+      setInitPage(isLogin ? ScreensName.MainScreen : ScreensName.PrewScreen);
     }
     getData();
   }, []);

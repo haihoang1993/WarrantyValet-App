@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, StyleSheet, FlatList} from 'react-native';
-import {DrawerItem, DrawerContentScrollView} from '@react-navigation/drawer';
+import { View, StyleSheet, FlatList, Alert } from 'react-native';
+import { DrawerItem, DrawerContentScrollView } from '@react-navigation/drawer';
 import {
   useTheme,
   Avatar,
@@ -9,23 +9,43 @@ import {
   Paragraph,
   Drawer,
 } from 'react-native-paper';
-
-import {Button} from 'react-native-elements';
+import { EventApp } from '@helpers';
+import { Button } from 'react-native-elements';
 
 export default function DrawerContent(props) {
-  const {listScreens = [], navigation} = props;
+  const { listScreens = [], navigation } = props;
   console.log('DrawerContent', props);
+  const createAlertLogout = () => {
+    Alert.alert(
+      "Logout",
+      "Are you sure you want to logout ?",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => EventApp.EmitToScreen('logout',{}) }
+      ],
+      { cancelable: false }
+    );
+  }
+
   const renderListCotent = () => {
     return (
       <FlatList
         data={listScreens}
-        renderItem={({item}) => {
+        renderItem={({ item }) => {
           return (
             <DrawerItem
               style={styles.itemMenu}
               label={item.label}
               onPress={() => {
-                navigation.navigate(item.name);
+                if (item.name == 'logout') {
+                  createAlertLogout();
+                } else {
+                  navigation.navigate(item.name);
+                }
               }}
             />
           );

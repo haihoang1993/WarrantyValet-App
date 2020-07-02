@@ -14,7 +14,7 @@ const Loading = props => {
 
 Loading.defaultProps = {
     size: 36,
-    color: 'white',
+    color: '#3252a8',
     containerStyle: {
         position: 'absolute',
         width: '100%',
