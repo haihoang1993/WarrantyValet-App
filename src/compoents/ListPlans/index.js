@@ -1,30 +1,37 @@
 import React from 'react';
-import {View, Text, FlatList, StyleSheet, Image} from 'react-native';
-import {Card} from 'react-native-elements';
-import {Device, Images} from '@common';
-import {Button} from 'react-native-elements';
+import { View, Text, FlatList, StyleSheet, Image } from 'react-native';
+import { Card } from 'react-native-elements';
+import { Device, Images } from '@common';
+import { Button } from 'react-native-elements';
 import PriceTextView from './PriceTextView';
 import ListContentPlan from './ListContentPlan';
 import PropTypes from 'prop-types';
+import { LoadingView } from '@compoents';
 
 const ListPlansCompents = (props) => {
-  const {listPlans} = props;
-  const itemRender = ({item}) => {
+  const { listPlans } = props;
+  const itemRender = ({ item }) => {
+    const { name, price, description,featured=[],icon } = item;
+    console.log('icon:',icon);
+    const listContent=featured.map((e)=>{
+      return e.featured_item;
+    })
+
     return (
-      <View style={{width: (Device.getWithScreen() / 100) * 80}}>
+      <View style={{ width: (Device.getWithScreen() / 100) * 80 }}>
         <Card containerStyle={styles.card}>
           <View style={styles.header}>
-            <Image style={styles.iconPlan} source={Images.IconPlanFree} />
-            <Text style={styles.textNamePlan}> Free Plan </Text>
-            <PriceTextView />
-            <Text style={styles.subPlan}> Crafted for a Great Start </Text>
+            <Image style={styles.iconPlan} resizeMode={'cover'} source={{uri:icon}} />
+            <Text style={styles.textNamePlan}> {name} </Text>
+            <PriceTextView price={price} />
+            <Text style={styles.subPlan}> {description} </Text>
           </View>
-          <ListContentPlan />
-          <View style={{padding: 5}}>
+          <ListContentPlan data={listContent} />
+          <View style={{ padding: 5 }}>
             <Button
-              buttonStyle={{backgroundColor: '#ff023e', fontWeight: 'bold'}}
+              buttonStyle={{ backgroundColor: '#ff023e', fontWeight: 'bold' }}
               large
-              rightIcon={{name: 'login'}}
+              rightIcon={{ name: 'login' }}
               title="CHOOSE PLAN"
             />
           </View>
@@ -34,6 +41,7 @@ const ListPlansCompents = (props) => {
   };
   return (
     <View>
+      {/* <LoadingView></LoadingView> */}
       <FlatList horizontal={true} data={listPlans} renderItem={itemRender} />
     </View>
   );
@@ -62,15 +70,16 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 20,
-    marginVertical: 10,
+    marginVertical: 5,
   },
   iconPlan: {
-    height: 50,
+    height: 40,
+    width:40,
   },
   subPlan: {
     color: '#fff',
     fontWeight: '600',
-    marginVertical: 10,
+    marginVertical: 5,
     fontSize: 15,
   },
 });

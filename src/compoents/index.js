@@ -9,6 +9,7 @@ import SignupForm from './SignUp';
 import AppBarDraw from './Appbar';
 import AddTickets from './AddTickets';
 import ViewTestSaga from './ViewTestSaga';
+import LoadingView from './LoadingView';
 import * as MySubscriptionView from './MySubscriptionCompoent';
 import * as PaymentCompoent from './PaymentCompoent';
 export {
@@ -24,5 +25,6 @@ export {
   MySubscriptionView,
   PaymentCompoent,
   AddTickets,
+  LoadingView,
   ListTickets,
 };

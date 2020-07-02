@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, View,ScrollView} from 'react-native';
 import BaseScreen from '../../drawer/BaseScreen';
 import {AppBarDraw, MySubscriptionView} from '@compoents';
 export default (props) => {
@@ -7,11 +7,11 @@ export default (props) => {
     <>
       <AppBarDraw title="My Subscription" {...props} />
       <View style={{flex: 1}}>
-        <View>
+        <ScrollView>
           <MySubscriptionView.TopView />
           <MySubscriptionView.SubscriptionTotalsView />
           <MySubscriptionView.BillingAddressView />
-        </View>
+        </ScrollView>
       </View>
     </>
   );

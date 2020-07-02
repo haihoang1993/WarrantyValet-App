@@ -7,22 +7,22 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import {Card} from 'react-native-elements';
-import {EventApp} from '@helpers';
-import {ScreensName} from '@screens';
+import { Card } from 'react-native-elements';
+import { EventApp } from '@helpers';
+import { ScreensName } from '@screens';
 const ListProducts = (props) => {
-  const itemR = ({item}) => {
+  const itemR = ({ item }) => {
     return (
       <TouchableOpacity
         onPress={() => {
           EventApp.EmitToScreen(ScreensName.DetailProuctScreen, {});
         }}>
-        <View style={{flex: 1}}>
+        <View style={{ flex: 1 }}>
           <Card containerStyle={styles.styleCard}>
             <View>
               <View style={[styles.styleViewRow]}>
                 <Text style={styles.title}>Tickets Test</Text>
-                <Text style={{color: '#ff7154'}}> Status: Open</Text>
+                <Text style={{ color: '#ff1414',fontWeight:'650' }}> Status: Open</Text>
               </View>
             </View>
             <View style={styles.styleViewRow}>
@@ -35,7 +35,7 @@ const ListProducts = (props) => {
     );
   };
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <FlatList renderItem={itemR} data={[1, 2, 4]} />
     </View>
   );
@@ -43,20 +43,24 @@ const ListProducts = (props) => {
 
 const styles = StyleSheet.create({
   styleCard: {
-    padding: 5,
+    paddingHorizontal: 7,
     borderRadius: 10,
-    minHeight: 80,
     justifyContent: 'center',
+    paddingVertical:10
   },
-  styleViewRow: {flexDirection: 'row', justifyContent: 'space-between'},
+  styleViewRow: { 
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems:'center'
+  },
   title: {
     fontSize: 23,
     color: '#2564d9',
-    fontWeight: '500',
+    fontWeight: '700',
   },
   price: {
     fontSize: 17,
-    fontWeight: '700',
+    fontWeight: '600',
   },
 });
 

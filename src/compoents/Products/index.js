@@ -24,7 +24,7 @@ const ListProducts = (props) => {
                 <Text style={styles.title}> New Product Title</Text>
               </View>
             </View>
-            <View style={styles.styleViewRow}>
+            <View style={[styles.styleViewRow,{marginTop:3}]}>
               <Text style={styles.price}> Price: $0.00</Text>
               <Text> May 12, 2020 </Text>
             </View>
@@ -50,11 +50,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 23,
     color: '#2564d9',
-    fontWeight: '500',
+    fontWeight: '700',
   },
   price: {
     fontSize: 17,
-    fontWeight: '600',
+    fontWeight: 'bold',
   },
 });
 

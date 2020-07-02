@@ -6,21 +6,24 @@ export default (props) => {
   return (
     <View style={stylesPrice.viewWrap}>
       <Text style={stylesPrice.textSub}>$</Text>
-      <Text style={stylesPrice.textPrice}>{price}</Text>
-      <Text style={[stylesPrice.textSub, {alignSelf: 'flex-end'}]}>/month</Text>
+      <View style={{margin:0,padding:0,height:'auto'}}><Text style={stylesPrice.textPrice}>{price}</Text></View> 
+      <Text style={[stylesPrice.textSub, {alignSelf: 'flex-end',marginBottom:5}]}>/month</Text>
     </View>
   );
 };
 const stylesPrice = StyleSheet.create({
   viewWrap: {
     flexDirection: 'row',
+    padding:0,
   },
   textPrice: {
     color: '#fff',
-    fontWeight: '900',
-    fontSize: 45,
+    fontSize: 40,
+    fontWeight:"bold",
+    margin:0,
   },
   textSub: {
+    marginTop:5,
     color: '#fff',
     fontSize: 20,
   },

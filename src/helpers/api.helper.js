@@ -8,6 +8,14 @@ const Login=async (obj={})=> {
     return res;
 }
 
+const GetListPlan=async ()=>{
+    const url=URL_API_BASE+'list-plan';
+    // const url=URL_API_BASE+'list-plan';
+    const res=await ApiBase.GetRequest(url);
+    return res;
+}
+
 export {
-    Login
+    Login,
+    GetListPlan
 }

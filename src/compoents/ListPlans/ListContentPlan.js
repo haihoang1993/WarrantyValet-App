@@ -1,14 +1,15 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 export default (props) => {
+  const {data}=props;
   return (
     <View>
       <FlatList
-        data={[1, 2, 5, 1, 3, 4, 5, 6]}
+        data={data}
         renderItem={({ item }) => {
           return (
             <View style={styles.itemList}>
-              <Text style={{ fontSize: 18 }}>Content Plan</Text>
+              <Text style={{ fontSize: 16,fontWeight:'900' }}>{item}</Text>
             </View>
           );
         }}
@@ -21,8 +22,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     borderBottomColor: '#d4d4d4',
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.5,
     marginHorizontal: 15,
-    marginVertical: 5,
+    marginVertical: 10,
   },
 });

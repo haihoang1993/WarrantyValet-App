@@ -27,7 +27,7 @@ export default (props) => {
     setLoading(true)
     try {
       const res = await ApiApp.Login(data);
-      const { data: { rs: { token } } } = res;
+      const { data: { data: { token } } } = res;
       console.log('login app:', token);
       await StorageDB.setIsLogin(true);
       await StorageDB.setUserLogin({ ...data, ...{ token: token } });
