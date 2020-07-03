@@ -10,8 +10,14 @@ import {
 import { Card } from 'react-native-elements';
 import { EventApp } from '@helpers';
 import { ScreensName } from '@screens';
+import PropTypes from 'prop-types';
+
 const ListProducts = (props) => {
+  const { data } = props;
+
   const itemR = ({ item }) => {
+    const { title } = item;
+
     return (
       <TouchableOpacity
         onPress={() => {
@@ -20,13 +26,19 @@ const ListProducts = (props) => {
         <View style={{ flex: 1 }}>
           <Card containerStyle={styles.styleCard}>
             <View>
-              <View style={[styles.styleViewRow]}>
-                <Text style={styles.title}>Tickets Test</Text>
-                <Text style={{ color: '#ff1414',fontWeight:'650' }}> Status: Open</Text>
+              <View style={[styles.styleViewRow, { marginBottom: 5, alignItems: 'center' }]}>
+                <Text style={styles.title}>{title}</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <Text style={styles.priceSub}> Status:</Text>
+                  <Text style={{ color: '#ff1414', fontWeight: '600' }}>Open</Text>
+                </View>
               </View>
             </View>
             <View style={styles.styleViewRow}>
-              <Text style={styles.price}> Product: Test</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={styles.priceSub}> Product:</Text>
+                <Text style={styles.price}>Test</Text>
+              </View>
               <Text> May 12, 2020 </Text>
             </View>
           </Card>
@@ -36,22 +48,27 @@ const ListProducts = (props) => {
   };
   return (
     <View style={{ flex: 1 }}>
-      <FlatList renderItem={itemR} data={[1, 2, 4]} />
+      <FlatList renderItem={itemR} data={data} />
     </View>
   );
 };
+
+ListProducts.PropTypes = {
+  data: PropTypes.array,
+};
+
 
 const styles = StyleSheet.create({
   styleCard: {
     paddingHorizontal: 7,
     borderRadius: 10,
-    justifyContent: 'center',
-    paddingVertical:10
+    paddingVertical: 5,
   },
-  styleViewRow: { 
+  styleViewRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems:'center'
+    alignItems: 'center',
+    marginBottom: 5,
   },
   title: {
     fontSize: 23,
@@ -61,6 +78,11 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 17,
     fontWeight: '600',
+    color: '#000'
+
+  },
+  priceSub: {
+    fontSize: 14,
   },
 });
 

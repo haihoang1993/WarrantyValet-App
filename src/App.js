@@ -26,13 +26,13 @@ let store = createStore(allReducers, applyMiddleware(sagaMiddleware));
 // let store = createStore(allReducers);
 
 const App = () => {
-  // SplashScreen.show()
+  SplashScreen.hide();
   const [initPage, setInitPage] = useState(null);
 
   useEffect(() => {
     async function getData() {
       const isLogin = await StorageDB.isLogin();
-      SplashScreen.hide();
+      // SplashScreen.hide();
       setInitPage(isLogin ? ScreensName.MainScreen : ScreensName.PrewScreen);
     }
     getData();

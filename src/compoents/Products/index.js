@@ -7,26 +7,34 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import {Card} from 'react-native-elements';
-import {EventApp} from '@helpers';
-import {ScreensName} from '@screens';
+import { Card } from 'react-native-elements';
+import { EventApp } from '@helpers';
+import { ScreensName } from '@screens';
+import PropTypes from 'prop-types';
+
 const ListProducts = (props) => {
-  const itemR = ({item}) => {
+  const { data } = props;
+  console.log('ListProducts', data);
+  const itemR = ({ item }) => {
+    const { p_title, p_price_format, p_created_date } = item;
     return (
       <TouchableOpacity
         onPress={() => {
           EventApp.EmitToScreen(ScreensName.DetailProuctScreen, {});
         }}>
-        <View style={{flex: 1}}>
+        <View style={{ flex: 1 }}>
           <Card containerStyle={styles.styleCard}>
             <View>
               <View style={styles.styleViewRow}>
-                <Text style={styles.title}> New Product Title</Text>
+                <Text style={styles.title}>{p_title}</Text>
               </View>
             </View>
-            <View style={[styles.styleViewRow,{marginTop:3}]}>
-              <Text style={styles.price}> Price: $0.00</Text>
-              <Text> May 12, 2020 </Text>
+            <View style={[styles.styleViewRow, { marginTop:10 }]}>
+              <View style={{ flexDirection: 'row' }}>
+                <Text style={styles.priceSub}> Price:</Text>
+                <Text style={styles.price}> {p_price_format}</Text>
+              </View>
+              <Text> {p_created_date}</Text>
             </View>
           </Card>
         </View>
@@ -34,19 +42,24 @@ const ListProducts = (props) => {
     );
   };
   return (
-    <View style={{flex: 1}}>
-      <FlatList renderItem={itemR} data={[1, 2, 4]} />
+    <View style={{ flex: 1 }}>
+      <FlatList renderItem={itemR} data={data} />
     </View>
   );
+};
+
+
+ListProducts.PropTypes = {
+  data: PropTypes.array,
 };
 
 const styles = StyleSheet.create({
   styleCard: {
     padding: 5,
     borderRadius: 10,
-    paddingVertical: 15,
+    justifyContent: 'space-around'
   },
-  styleViewRow: {flexDirection: 'row', justifyContent: 'space-between'},
+  styleViewRow: { flexDirection: 'row', justifyContent: 'space-between' },
   title: {
     fontSize: 23,
     color: '#2564d9',
@@ -55,6 +68,10 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 17,
     fontWeight: 'bold',
+    color: '#12B387'
+  },
+  priceSub: {
+    fontSize: 17,
   },
 });
 

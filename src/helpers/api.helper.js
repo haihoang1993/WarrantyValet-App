@@ -15,7 +15,21 @@ const GetListPlan=async ()=>{
     return res;
 }
 
+const GetProducts=async (token)=>{
+    const url=URL_API_BASE+'list-product';
+    const res=await ApiBase.GetRequest(url,null,token);
+    return res;
+}
+
+const GetTickets=async (token)=>{
+    const url=URL_API_BASE+'list-tickets';
+    const res=await ApiBase.GetRequest(url,null,token);
+    return res;
+}
+
 export {
     Login,
-    GetListPlan
+    GetListPlan,
+    GetProducts,
+    GetTickets
 }

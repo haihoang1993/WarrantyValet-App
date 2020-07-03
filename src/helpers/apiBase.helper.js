@@ -1,21 +1,35 @@
 import { Utils } from '@common';
 
-const GetRequest = async (url, param=null, token = null) => {
-    let headers = { "Content-Type": "application/json" };
+const GetRequest = async (url, param = null, token = null) => {
+    const myHeaders = new Headers();
+    myHeaders.append("token", token);
+
+    let requestOptions = {
+    };
+
     if (token) {
-        headers["Authorization"] = `Bearer ${token}`;
+        requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
     }
+    console.log('options:', requestOptions);
     let result = {}
     // const urlRequest=url + ((param)?('?' + Utils.ObjToQueryStringGet(param)):'');
-    const urlRequest=url;
+    const urlRequest = url;
     console.log("RequestGetBaseApi:", urlRequest);
+
     try {
-        let res = await fetch(urlRequest, { headers: headers });
+        let res = await fetch(urlRequest, requestOptions);
         console.log(res);
+
         result = { ...result, ...{ status: res.status } }
+
         const dataRes = await res.json();
-        const {data}=dataRes;
+        const { data } = dataRes;
         result = { ...result, ...{ data: data ? data : null } }
+
     } catch (error) {
         result = { ...result, ...{ status: 501, err: error.toString() } }
     }

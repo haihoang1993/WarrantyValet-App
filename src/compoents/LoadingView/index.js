@@ -13,7 +13,7 @@ const Loading = props => {
 };
 
 Loading.defaultProps = {
-    size: 36,
+    size: 70,
     color: '#3252a8',
     containerStyle: {
         position: 'absolute',
