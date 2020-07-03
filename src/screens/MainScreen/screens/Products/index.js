@@ -27,7 +27,7 @@ export default function ProductsScreen(props) {
     else if (type == Type_Load.LOAD_REFFES)
       setRefreshing(true);
     const user = await StorageDB.getUserLogin();
-    
+
     try {
       const res = await ApiApp.GetProducts(user.token);
       console.log('product:', res);
@@ -54,8 +54,7 @@ export default function ProductsScreen(props) {
 
   return (
     <>
-      <AppBarDraw title="My Subscription" {...props} />
-
+      <AppBarDraw title="Products" {...props} />
       <View
         style={{
           flex: 1,

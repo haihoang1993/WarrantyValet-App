@@ -15,8 +15,8 @@ import PropTypes from 'prop-types';
 const ListProducts = (props) => {
   const { data } = props;
 
-  const itemR = ({ item }) => {
-    const { title } = item;
+  const ItemList = ({ item }) => {
+    const { title, date, status } = item;
 
     return (
       <TouchableOpacity
@@ -39,7 +39,7 @@ const ListProducts = (props) => {
                 <Text style={styles.priceSub}> Product:</Text>
                 <Text style={styles.price}>Test</Text>
               </View>
-              <Text> May 12, 2020 </Text>
+              <Text> {date} </Text>
             </View>
           </Card>
         </View>
@@ -48,7 +48,7 @@ const ListProducts = (props) => {
   };
   return (
     <View style={{ flex: 1 }}>
-      <FlatList renderItem={itemR} data={data} />
+      <FlatList renderItem={ItemList} data={data} />
     </View>
   );
 };

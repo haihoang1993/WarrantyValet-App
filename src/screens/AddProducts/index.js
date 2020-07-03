@@ -1,29 +1,31 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
-import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
-import BaseScreen from '../BaseScreen';
-import {AddProducts as AddProductsView} from '@compoents';
+import React, { useLayoutEffect } from 'react';
+import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
+import { AddProducts as AddProductsView } from '@compoents';
 
-class AddProducts extends BaseScreen {
-  constructor(props) {
-    super(props);
-  }
+const AddProducts = (props) => {
+  const { navigation }= props;
 
-  render() {
-    return (
-      <SafeAreaView style={{flex: 1}}>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            padding: 5,
-          }}>
-          <AddProductsView />
-        </View>
-      </SafeAreaView>
-    );
-  }
+  useLayoutEffect(() => {
+    const title = 'Add New Product';
+    navigation.setOptions({
+      title: title,
+    });
+  }, [navigation]);
+
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          padding: 5,
+        }}>
+        <AddProductsView />
+      </View>
+    </SafeAreaView>
+  );
 }
 
 export default AddProducts;
