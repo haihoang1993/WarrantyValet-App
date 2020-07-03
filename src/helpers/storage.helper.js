@@ -1,7 +1,7 @@
-import {AsyncStorage} from 'react-native';
+import { AsyncStorage } from 'react-native';
 const StorageKey = {
-    IS_LOGIN:'isLogin',
-    USER_LOGIN:'user_login',
+    IS_LOGIN: 'isLogin',
+    USER_LOGIN: 'user_login',
 }
 const StorageDB = {
     isLogin: async () => {
@@ -29,11 +29,11 @@ const StorageDB = {
             return -1
         }
     },
-    setUserLogin: async (user=null) => {
+    setUserLogin: async (user = null) => {
         try {
             // const value = (isLogin) ? 1 : -1
             console.log("set value login:", user)
-            if (user==null) {
+            if (user == null) {
                 await AsyncStorage.setItem(StorageKey.USER_LOGIN, '');
             } else {
                 await AsyncStorage.setItem(StorageKey.USER_LOGIN, JSON.stringify(user));

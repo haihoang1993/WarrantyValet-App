@@ -1,15 +1,17 @@
 import React from 'react';
-import {Text, View} from 'react-native';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import { Text, View } from 'react-native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import DrawerContent from '../drawer/DrawerContent';
 const Drawer = createDrawerNavigator();
 import * as Screens from '../screens';
 
 const RootNavigator = (props) => {
-  const {navigation} = props;
+  const { navigation } = props;
+
   const listScreen = Object.entries(Screens.ListScreens).map((e) => {
-    return {...e[1]};
+    return { ...e[1] };
   });
+
   console.log('list screen:', listScreen);
   return (
     <Drawer.Navigator
