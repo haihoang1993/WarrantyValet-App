@@ -4,6 +4,8 @@ import { ListTickets, LoadingView, AppBarDraw } from '@compoents';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { EventApp, StorageDB, ApiApp } from '@helpers';
+import { ProductReduxAll } from '@redux';
+import { connect } from 'react-redux';
 
 const Type_Load = {
   LOADING: 1,
@@ -12,7 +14,7 @@ const Type_Load = {
 }
 
 
-export default TicketsScreen = (props) => {
+const TicketsScreen = (props) => {
 
   const [isLoaing, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
@@ -78,3 +80,16 @@ export default TicketsScreen = (props) => {
     </>
   );
 }
+
+
+
+const TicketsContainer = connect(
+  (state) => {
+    return {
+      listProucts: state.ProductsReducer,
+    };
+  },
+  null,
+)(TicketsScreen);
+
+export default TicketsContainer;

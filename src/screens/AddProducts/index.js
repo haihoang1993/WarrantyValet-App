@@ -2,6 +2,8 @@
 import React, { useLayoutEffect } from 'react';
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
 import { AddProducts as AddProductsView } from '@compoents';
+import { ProductReduxAll } from '@redux';
+import { connect } from 'react-redux';
 
 const AddProducts = (props) => {
   const { navigation }= props;
@@ -27,5 +29,6 @@ const AddProducts = (props) => {
     </SafeAreaView>
   );
 }
+
 
 export default AddProducts;
