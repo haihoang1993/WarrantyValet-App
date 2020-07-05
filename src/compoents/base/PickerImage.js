@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Text,
   View,
@@ -9,17 +9,20 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ImagePicker from 'react-native-image-picker';
-import {Button} from 'react-native-elements';
+import { Button } from 'react-native-elements';
 
 export default (props) => {
-  const {title = '', numPhotos = 1} = props;
+  const { title = '', numPhotos = 1 } = props;
   const [soucre, setSoucre] = useState(null);
   const [listImages, setListImages] = useState([]);
 
   const pickImg = () => {
     const options = {
+      maxWidth:1000,
+      maxHeight:1000,
+      quality:0.9,
       title: 'Select Avatar',
-      customButtons: [{name: 'fb', title: 'Choose Photo from Facebook'}],
+      customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
       storageOptions: {
         skipBackup: true,
         path: 'images',
@@ -31,7 +34,7 @@ export default (props) => {
      * The second arg is the callback which sends object: response (more info in the API Reference)
      */
     ImagePicker.showImagePicker(options, (response) => {
-      console.log('Response = ', response);
+      console.log('Response showImagePicker :', response);
 
       if (response.didCancel) {
         console.log('User cancelled image picker');
@@ -40,8 +43,9 @@ export default (props) => {
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       } else {
+
         if (numPhotos === 1) {
-          const sourceImport = {uri: response.uri};
+          const sourceImport = { uri: response.uri };
           setSoucre(sourceImport);
         } else {
           // listImages.push(response.uri);
@@ -55,7 +59,7 @@ export default (props) => {
   const iconRemove = (index = -1) => {
     return (
       <TouchableOpacity
-        style={{position: 'absolute', right: 0}}
+        style={{ position: 'absolute', right: 0 }}
         onPress={() => {
           if (index !== -1) {
             listImages.pop(index);
@@ -73,17 +77,17 @@ export default (props) => {
       <View>
         <Text style={styles.textTile}>{title}</Text>
       </View>
-      <View style={{flexDirection: numPhotos > 1 ? 'column' : 'row'}}>
+      <View style={{ flexDirection: numPhotos > 1 ? 'column' : 'row' }}>
         {console.log('list render:', listImages)}
         {listImages.length > 0 && numPhotos > 1 && (
           <FlatList
             horizontal={true}
             data={listImages}
-            renderItem={({item, index}) => {
+            renderItem={({ item, index }) => {
               console.log('item select:', item);
               const renderView = (
                 <View style={styles.viewImage}>
-                  <Image style={styles.image} source={{uri: item}} />
+                  <Image style={styles.image} source={{ uri: item }} />
                   {iconRemove(index)}
                 </View>
               );

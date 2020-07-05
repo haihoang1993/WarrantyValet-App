@@ -1,9 +1,10 @@
-import { SET_VALUE } from './actionTypes';
+import { SET_PRODUCT } from './actionTypes';
 
 const ListProductsReducers = (listPlans = [], action) => {
   switch (action.type) {
-    case SET_VALUE:
-      return [...listPlans, ...action.value];
+    case SET_PRODUCT:
+      // return [...listPlans, ...action.value];
+      return [...action.value];
     default:
       return listPlans;
   }

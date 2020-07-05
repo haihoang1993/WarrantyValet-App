@@ -6,6 +6,8 @@ import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { EventApp, StorageDB, ApiApp } from '@helpers';
 const axios = require('axios');
+import {  ProductReduxAll } from '@redux';
+import { connect } from 'react-redux';
 
 const Type_Load = {
   LOADING: 1,
@@ -13,12 +15,13 @@ const Type_Load = {
   LOAD_REFFES: 3,
 }
 
-export default function ProductsScreen(props) {
-
+function ProductsScreen(props) {
+  console.log('ProductsScreen:',props);
   const [isLoaing, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
 
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
+  const data=props.listProucts;
 
   const getListProducts = async (type = Type_Load.LOADING) => {
 
@@ -32,8 +35,8 @@ export default function ProductsScreen(props) {
       const res = await ApiApp.GetProducts(user.token);
       console.log('product:', res);
       const { data: { products } } = res;
-      setData(products);
-
+      // setData(products);
+      props.setListProucts(products);
     } catch (error) {
 
       console.log('error product:', error);
@@ -80,3 +83,26 @@ export default function ProductsScreen(props) {
     </>
   );
 }
+
+
+const mapStateToProps = (state) => {
+  return {
+    listProucts: state.ProductsReducer,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+   setListProucts:(listPans)=>{
+     dispatch(ProductReduxAll.ActionsProduct.setListProducts(listPans))
+   }
+  };
+};
+
+
+const ProductContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ProductsScreen);
+
+export default ProductContainer;

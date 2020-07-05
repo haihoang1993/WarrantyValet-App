@@ -1,9 +1,12 @@
 import {combineReducers} from 'redux';
 import counterReducers from './CounterReducers';
-import listReducers from '../Plans/PlansReducer';
+import {PlansReducer} from '../Plans';
+import {ProductsReducer} from '../Products';
 
 const allReducers = combineReducers({
   counterReducers,
-  listReducers,
+  PlansReducer,
+  ProductsReducer
 });
+
 export default allReducers;
