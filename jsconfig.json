@@ -21,6 +21,9 @@
       "@images":[
         "images"
       ],
+      "@redux":[
+        "redux"
+      ]
     }
   },
   "exclude": [
