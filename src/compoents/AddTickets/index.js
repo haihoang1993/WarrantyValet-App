@@ -8,30 +8,26 @@ import DropDownPicker from 'react-native-dropdown-picker';
 import PropTypes from 'prop-types';
 
 export default AddTickerCompents = (props) => {
-  const { listProduct } = props;
+  const { listProduct, isLoading = false, onSubmit } = props;
   const { register, setValue, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => Alert.alert('Form Data', JSON.stringify(data));
-  useEffect(() => {
-    register({ name: 'username' }, { required: true });
-  }, [register]);
 
-  let data = [
-    {
-      value: 'Banana',
-    },
-    {
-      value: 'Mango',
-    },
-    {
-      value: 'Pear',
-    },
-  ];
+  const submit = (data) => {
+    // Alert.alert('Form Data', JSON.stringify(data))
+    onSubmit(data);
+  };
+
+  useEffect(() => {
+    register({ name: 't_title' }, { required: false });
+    register({ name: 't_product_id' }, { required: false });
+    register({ name: 't_content' }, { required: false });
+    register({ name: 'photos' }, { required: false });
+  }, [register]);
 
   return (
     <View>
       <ScrollView>
         <TextInputView
-          onChangeText={(text) => setValue('username', text, true)}
+          onChangeText={(text) => setValue('t_title', text, true)}
           title="Ticket Title"
         />
         <DropDownPicker
@@ -42,19 +38,28 @@ export default AddTickerCompents = (props) => {
           })}
           defaultIndex={0}
           containerStyle={{ height: 50, marginVertical: 10 }}
-          onChangeItem={item => console.log(item.label, item.value)}
+          onChangeItem={item => {
+            console.log(item.label, item.value);
+            setValue('t_product_id', item.value);
+          }}
         />
-        <PickerImage numPhotos={2} title="Photos" />
+
         <TextInputView
           multiline={true}
           numberOfLines={4}
-          onChangeText={(text) => setValue('username', text, true)}
+          onChangeText={(text) => setValue('t_content', text, true)}
           title="Content"
         />
+
+        <PickerImage onChangeData={(data) => {
+            setValue('photos',data);
+        }} numPhotos={2} title="Photos" />
         <Button
+          loading={isLoading}
           large
           rightIcon={{ name: 'login' }}
-          onPress={handleSubmit(onSubmit)}
+          onPress={handleSubmit(submit)
+          }
           title="Add"
         />
       </ScrollView>

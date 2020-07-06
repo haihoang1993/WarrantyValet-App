@@ -2,7 +2,6 @@ import React from 'react';
 import {
   View,
   Text,
-  FlatList,
   StyleSheet,
   Image,
   TouchableOpacity,
@@ -11,25 +10,34 @@ import { Card } from 'react-native-elements';
 import { EventApp } from '@helpers';
 import { ScreensName } from '@screens';
 import PropTypes from 'prop-types';
+import { SwipeListView } from 'react-native-swipe-list-view';
 
 const ListProducts = (props) => {
-  const { data } = props;
+
+  const { data, removeItem } = props;
   console.log('ListProducts', data);
-  const itemR = ({ item }) => {
+
+  const renderItem = ({ item, position }) => {
     const { p_title, p_price_format, p_created_date } = item;
     return (
       <TouchableOpacity
+        onLongPress={
+          () => {
+            if (removeItem)
+              removeItem(item, position)
+          }
+        }
         onPress={() => {
           EventApp.EmitToScreen(ScreensName.DetailProuctScreen, {});
         }}>
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, }}>
           <Card containerStyle={styles.styleCard}>
             <View>
               <View style={styles.styleViewRow}>
                 <Text style={styles.title}>{p_title}</Text>
               </View>
             </View>
-            <View style={[styles.styleViewRow, { marginTop:10 }]}>
+            <View style={[styles.styleViewRow, { marginTop: 10 }]}>
               <View style={{ flexDirection: 'row' }}>
                 <Text style={styles.priceSub}> Price:</Text>
                 <Text style={styles.price}> {p_price_format}</Text>
@@ -41,9 +49,29 @@ const ListProducts = (props) => {
       </TouchableOpacity>
     );
   };
+
+  const deleteRow = (rowMap, { item, index }) => {
+    console.log('deleteRow:', index);
+    if (removeItem)
+      removeItem(item, index)
+  }
+
   return (
     <View style={{ flex: 1 }}>
-      <FlatList renderItem={itemR} data={data} />
+      <SwipeListView
+        renderHiddenItem={(data, rowMap) => (
+          <View style={styles.rowBack}>
+            <TouchableOpacity
+              style={[styles.backRightBtn, styles.backRightBtnRight]}
+              onPress={() => deleteRow(rowMap, data)}
+            >
+              <Text style={styles.backTextWhite}>Delete</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+        leftOpenValue={0}
+        rightOpenValue={-75}
+        style={{ flex: 1 }} renderItem={renderItem} data={data} />
     </View>
   );
 };
@@ -72,6 +100,31 @@ const styles = StyleSheet.create({
   },
   priceSub: {
     fontSize: 17,
+  },
+  rowBack: {
+    alignItems: 'center',
+    backgroundColor: '#DDD',
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingLeft: 15,
+
+  },
+  backRightBtn: {
+    alignItems: 'center',
+    bottom: 0,
+    justifyContent: 'center',
+    position: 'absolute',
+    top: 0,
+    width: 75,
+  },
+  backRightBtnLeft: {
+    // backgroundColor: 'blue',
+    right: 75,
+  },
+  backRightBtnRight: {
+    // backgroundColor: 'red',
+    right: 0,
   },
 });
 

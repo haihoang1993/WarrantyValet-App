@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, ScrollView, RefreshControl } from 'react-native';
+import { Text, View, ScrollView, RefreshControl, Alert } from 'react-native';
 import BaseScreen from '../../drawer/BaseScreen';
 import { ListProducts, AppBarDraw, LoadingView } from '@compoents';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { EventApp, StorageDB, ApiApp } from '@helpers';
 const axios = require('axios');
-import {  ProductReduxAll } from '@redux';
+import { ProductReduxAll } from '@redux';
 import { connect } from 'react-redux';
 
 const Type_Load = {
@@ -16,22 +16,25 @@ const Type_Load = {
 }
 
 function ProductsScreen(props) {
-  console.log('ProductsScreen:',props);
+  console.log('ProductsScreen:', props);
   const [isLoaing, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
 
   // const [data, setData] = useState([]);
-  const data=props.listProucts;
+  const data = props.listProucts;
 
   const getListProducts = async (type = Type_Load.LOADING) => {
 
-    if (type == Type_Load.LOADING)
+    if (type == Type_Load.LOADING) {
       setLoading(true);
-    else if (type == Type_Load.LOAD_REFFES)
+    }
+    else if (type == Type_Load.LOAD_REFFES) {
       setRefreshing(true);
+    }
     const user = await StorageDB.getUserLogin();
 
     try {
+
       const res = await ApiApp.GetProducts(user.token);
       console.log('product:', res);
       const { data: { products } } = res;
@@ -44,6 +47,22 @@ function ProductsScreen(props) {
       setLoading(false);
       setRefreshing(false);
     }
+  }
+
+  const removeProduct = (item, pos) => {
+    Alert.alert(
+      'Alert',
+      'Are you sure you want to delete this product?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel'
+        },
+        { text: 'OK', onPress: () => console.log('OK Pressed') }
+      ],
+      { cancelable: false }
+    );
   }
 
   const onRefresh = () => {
@@ -70,7 +89,7 @@ function ProductsScreen(props) {
               tintColor="white"
             />
           }>
-          {(!isLoaing) && (<ListProducts data={data} />)}
+          {(!isLoaing) && (<ListProducts removeItem={removeProduct} data={data} />)}
         </ScrollView>
         <ActionButton
           onPress={() => {
@@ -93,9 +112,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-   setListProucts:(listPans)=>{
-     dispatch(ProductReduxAll.ActionsProduct.setListProducts(listPans))
-   }
+    setListProucts: (listPans) => {
+      dispatch(ProductReduxAll.ActionsProduct.setListProducts(listPans))
+    }
   };
 };
 

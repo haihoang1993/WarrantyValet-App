@@ -37,18 +37,28 @@ const GetRequest = async (url, param = null, token = null) => {
     return result;
 }
 
-const PostRequest = async (url, body, header = null) => {
+const PostRequest = async (url, body, token) => {
     console.log("RequestPostBaseApi:", url);
     let result = {};
+    const myHeaders = new Headers();
+    // Accept: 'application/json',
+    // 'Content-Type': 'application/json',
+    myHeaders.append("Accept", 'application/json');
+    myHeaders.append('Content-Type', 'application/json');
+
+    let requestOptions = {
+    };
+
+    if (token) {
+        myHeaders.append("token", token);
+    }
+    requestOptions = {
+        headers: myHeaders,
+    };
+    const options = { ...requestOptions, ...{ method: 'POST', body: JSON.stringify(body), redirect: 'follow' } };
+    console.log('options:', options);
     try {
-        const res = await fetch(url, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(body),
-        })
+        const res = await fetch(url, options);
         console.log('post:', res);
         result = { ...result, ...{ status: res.status } }
         const data = await res.json();

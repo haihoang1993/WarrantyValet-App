@@ -11,9 +11,9 @@ import { LoadingView } from '@compoents';
 const ListPlansCompents = (props) => {
   const { listPlans } = props;
   const itemRender = ({ item }) => {
-    const { name, price, description,featured=[],icon } = item;
-    console.log('icon:',icon);
-    const listContent=featured.map((e)=>{
+    const { name, price, description, featured = [], icon } = item;
+    console.log('icon:', icon);
+    const listContent = featured.map((e) => {
       return e.featured_item;
     })
 
@@ -21,7 +21,7 @@ const ListPlansCompents = (props) => {
       <View style={{ width: (Device.getWithScreen() / 100) * 80 }}>
         <Card containerStyle={styles.card}>
           <View style={styles.header}>
-            <Image style={styles.iconPlan} resizeMode={'cover'} source={{uri:icon}} />
+            <Image style={styles.iconPlan} resizeMode={'cover'} source={{ uri: icon }} />
             <Text style={styles.textNamePlan}> {name} </Text>
             <PriceTextView price={price} />
             <Text style={styles.subPlan}> {description} </Text>
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   },
   iconPlan: {
     height: 40,
-    width:40,
+    width: 40,
   },
   subPlan: {
     color: '#fff',

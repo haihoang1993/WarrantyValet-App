@@ -1,6 +1,6 @@
 import React from 'react';
-import {Text, View, TextInput, StyleSheet, FlatList} from 'react-native';
-import {Button} from 'react-native-elements';
+import { Text, View, TextInput, StyleSheet, FlatList } from 'react-native';
+import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const data = [
@@ -20,7 +20,7 @@ const data = [
 
 export default (props) => {
   return (
-    <View style={{marginTop: 15}}>
+    <View style={{ marginTop: 15 }}>
       <Text
         style={{
           marginHorizontal: 10,
@@ -30,18 +30,18 @@ export default (props) => {
         Billing address
       </Text>
       <View
-        style={{marginHorizontal: 10, borderColor: '#000', borderWidth: 0.4}}>
-        <Text style={{fontWeight: 'bold', fontSize: 17}}>
+        style={{ marginHorizontal: 10, borderColor: '#000', borderWidth: 0.4 }}>
+        <Text style={{ fontWeight: 'bold', fontSize: 17 }}>
           Cong Nguyen {'\n'}
           54 Hereford Avenue {'\n'}
           South Australia South Australia 5259 {'\n'}
           Australia
         </Text>
-        <View style={{flexDirection: 'row'}}>
+        <View style={{ flexDirection: 'row' }}>
           <Icon name="phone" />
           <Text>(08) 8287 4401</Text>
         </View>
-        <View style={{flexDirection: 'row'}}>
+        <View style={{ flexDirection: 'row' }}>
           <Icon name="envelope" />
           <Text>Test@gmail.com</Text>
         </View>
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#000',
     borderBottomWidth: 0.5,
   },
-  textButton: {color: 'black', fontWeight: 'bold'},
+  textButton: { color: 'black', fontWeight: 'bold' },
   button: {
     backgroundColor: '#d1d1d1',
   },

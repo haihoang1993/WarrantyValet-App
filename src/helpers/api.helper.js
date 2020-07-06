@@ -27,9 +27,16 @@ const GetTickets=async (token)=>{
     return res;
 }
 
+const AddNewTicket=async (data,token)=>{
+    const url=URL_API_BASE+'add-ticket';
+    const res=await ApiBase.PostRequest(url,data,token);
+    return res;
+}
+
 export {
     Login,
     GetListPlan,
     GetProducts,
-    GetTickets
+    GetTickets,
+    AddNewTicket,
 }

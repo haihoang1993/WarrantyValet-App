@@ -12,15 +12,15 @@ import ImagePicker from 'react-native-image-picker';
 import { Button } from 'react-native-elements';
 
 export default (props) => {
-  const { title = '', numPhotos = 1 } = props;
+  const { title = '', numPhotos = 1, onChangeData=null } = props;
   const [soucre, setSoucre] = useState(null);
   const [listImages, setListImages] = useState([]);
 
   const pickImg = () => {
     const options = {
-      maxWidth:1000,
-      maxHeight:1000,
-      quality:0.9,
+      maxWidth: 1000,
+      maxHeight: 1000,
+      quality: 0.9,
       title: 'Select Avatar',
       customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
       storageOptions: {
@@ -44,13 +44,17 @@ export default (props) => {
         console.log('User tapped custom button: ', response.customButton);
       } else {
 
+        const { data, type, uri, name } = response;
         if (numPhotos === 1) {
           const sourceImport = { uri: response.uri };
           setSoucre(sourceImport);
         } else {
           // listImages.push(response.uri);
           console.log('list images:', listImages);
-          setListImages([...listImages, ...[response.uri]]);
+          listImages.push({ data, type, uri, name })
+          setListImages([...listImages,...[]]);
+          if(onChangeData)
+              onChangeData(listImages);
         }
       }
     });
@@ -85,9 +89,10 @@ export default (props) => {
             data={listImages}
             renderItem={({ item, index }) => {
               console.log('item select:', item);
+              const { uri } = item;
               const renderView = (
                 <View style={styles.viewImage}>
-                  <Image style={styles.image} source={{ uri: item }} />
+                  <Image style={styles.image} source={{ uri: uri }} />
                   {iconRemove(index)}
                 </View>
               );

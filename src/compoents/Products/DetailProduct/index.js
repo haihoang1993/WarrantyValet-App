@@ -1,20 +1,20 @@
-import React, {useEffect, useState} from 'react';
-import {View, Alert, ScrollView, StyleSheet, Text} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Alert, ScrollView, StyleSheet, Text } from 'react-native';
 import TextInputView from '../../base/TextInputView';
 import PickerImage from '../../base/PickerImage';
 import PickDate from '../../base/PickDate';
-import {useForm} from 'react-hook-form';
-import {Button, CheckBox} from 'react-native-elements';
+import { useForm } from 'react-hook-form';
+import { Button, CheckBox } from 'react-native-elements';
 
 export default (props) => {
-  const {register, setValue, handleSubmit, errors} = useForm();
+  const { register, setValue, handleSubmit, errors } = useForm();
   const onSubmit = (data) => Alert.alert('Form Data', JSON.stringify(data));
   const [isChecked, setChecked] = useState(true);
   useEffect(() => {
-    register({name: 'username'}, {required: true});
+    register({ name: 'username' }, { required: true });
   }, [register]);
   return (
-    <View style={{marginHorizontal: 10}}>
+    <View style={{ marginHorizontal: 10 }}>
       <ScrollView>
         <TextInputView
           onChangeText={(text) => setValue('username', text, true)}
@@ -50,7 +50,7 @@ export default (props) => {
         </View>
         <Button
           large
-          rightIcon={{name: 'login'}}
+          rightIcon={{ name: 'login' }}
           onPress={handleSubmit(onSubmit)}
           title="Add"
         />
