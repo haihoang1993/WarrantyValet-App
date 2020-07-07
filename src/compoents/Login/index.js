@@ -4,7 +4,7 @@ import TextInputView from '../base/TextInputView';
 import { useForm } from 'react-hook-form';
 import { Button } from 'react-native-elements';
 import { ScreensName } from '@screens';
-import { ApiApp, StorageDB } from '@helpers';
+import { ApiHepler, StorageDB } from '@helpers';
 
 export default (props) => {
 
@@ -26,7 +26,7 @@ export default (props) => {
   const login = async (data) => {
     setLoading(true)
     try {
-      const res = await ApiApp.Login(data);
+      const res = await ApiHepler.Login(data);
       const { data: { data: { token } } } = res;
       console.log('login app:', token);
       await StorageDB.setIsLogin(true);

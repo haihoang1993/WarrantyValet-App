@@ -5,7 +5,7 @@ import BaseScreen from '../BaseScreen';
 import { AddTickets as AddProductsView } from '@compoents';
 import { ProductReduxAll } from '@redux';
 import { connect } from 'react-redux';
-import { StorageDB, ApiApp } from '@helpers';
+import { StorageDB, ApiHepler } from '@helpers';
 import Toast from 'react-native-simple-toast';
 
 const validateObj = (obj, keys = []) => {
@@ -44,7 +44,7 @@ const AddTicketsScreen = (props) => {
     if (user) {
       const { token } = user;
       try {
-        const res = await ApiApp.AddNewTicket(newData, token);
+        const res = await ApiHepler.AddNewTicket(newData, token);
         console.log('add res:', res);
         const toastContent='Created ticket successful!';
         Toast.show(toastContent,3);

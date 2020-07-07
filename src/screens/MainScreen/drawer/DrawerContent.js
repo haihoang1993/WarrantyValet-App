@@ -9,7 +9,7 @@ import {
   Paragraph,
   Drawer,
 } from 'react-native-paper';
-import { EventApp } from '@helpers';
+import { EventHelper } from '@helpers';
 import { Button } from 'react-native-elements';
 
 export default function DrawerContent(props) {
@@ -25,7 +25,7 @@ export default function DrawerContent(props) {
           onPress: () => console.log("Cancel Pressed"),
           style: "cancel"
         },
-        { text: "OK", onPress: () => EventApp.EmitToScreen('logout',{}) }
+        { text: "OK", onPress: () => EventHelper.EmitToScreen('logout',{}) }
       ],
       { cancelable: false }
     );

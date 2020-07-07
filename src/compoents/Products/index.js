@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Card } from 'react-native-elements';
-import { EventApp } from '@helpers';
+import { EventHelper } from '@helpers';
 import { ScreensName } from '@screens';
 import PropTypes from 'prop-types';
 import { SwipeListView } from 'react-native-swipe-list-view';
@@ -28,7 +28,7 @@ const ListProducts = (props) => {
           }
         }
         onPress={() => {
-          EventApp.EmitToScreen(ScreensName.DetailProuctScreen, {});
+          EventHelper.EmitToScreen(ScreensName.DetailProuctScreen, {});
         }}>
         <View style={{ flex: 1, }}>
           <Card containerStyle={styles.styleCard}>

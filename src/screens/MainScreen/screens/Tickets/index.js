@@ -3,7 +3,7 @@ import { Text, View, ScrollView, RefreshControl } from 'react-native';
 import { ListTickets, LoadingView, AppBarDraw } from '@compoents';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { EventApp, StorageDB, ApiApp } from '@helpers';
+import { EventHelper, StorageDB, ApiHepler } from '@helpers';
 import { ProductReduxAll } from '@redux';
 import { connect } from 'react-redux';
 
@@ -30,7 +30,7 @@ const TicketsScreen = (props) => {
     const user = await StorageDB.getUserLogin();
 
     try {
-      const res = await ApiApp.GetTickets(user.token);
+      const res = await ApiHepler.GetTickets(user.token);
       console.log('TicketsScreen:', res);
       const { data: { tickets } } = res;
       setData(tickets);
@@ -72,7 +72,7 @@ const TicketsScreen = (props) => {
         {(isLoaing) && (<LoadingView />)}
         <ActionButton
           onPress={() => {
-            EventApp.EmitToScreen('AddTicketsScreen', {});
+            EventHelper.EmitToScreen('AddTicketsScreen', {});
           }}
           buttonColor="rgba(231,76,60,1)"
         />

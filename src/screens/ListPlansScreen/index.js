@@ -4,7 +4,7 @@ import BaseScreen from '../BaseScreen';
 import { ListPlans, LoadingView } from '@compoents';
 import { Button } from 'react-native-elements';
 import { ScreensName } from '@screens';
-import { ApiApp } from '@helpers';
+import { ApiHepler } from '@helpers';
 import {  PlanReduxAll } from '@redux';
 import { connect } from 'react-redux';
 
@@ -18,7 +18,7 @@ const ListPlansScreen = (props) => {
     const getData=async ()=>{
       setLoading(true);
         try {
-            const res=await ApiApp.GetListPlan();
+            const res=await ApiHepler.GetListPlan();
             console.log('get list plan:',res);
             setPlans(res.data);
             setLoading(false);

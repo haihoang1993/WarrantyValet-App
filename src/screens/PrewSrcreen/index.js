@@ -5,7 +5,7 @@ import { ListPlans, LoadingView } from '@compoents';
 import { connect } from 'react-redux';
 import { Button } from 'react-native-elements';
 import { ScreensName } from '@screens';
-import { ApiApp } from '@helpers';
+import { ApiHepler } from '@helpers';
 import { Device, Images } from '@common';
 
 const ListPlansScreen = (props) => {

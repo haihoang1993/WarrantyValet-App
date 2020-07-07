@@ -4,7 +4,7 @@ import BaseScreen from '../../drawer/BaseScreen';
 import { ListProducts, AppBarDraw, LoadingView } from '@compoents';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { EventApp, StorageDB, ApiApp } from '@helpers';
+import { EventHelper, StorageDB, ApiHepler } from '@helpers';
 const axios = require('axios');
 import { ProductReduxAll } from '@redux';
 import { connect } from 'react-redux';
@@ -35,7 +35,7 @@ function ProductsScreen(props) {
 
     try {
 
-      const res = await ApiApp.GetProducts(user.token);
+      const res = await ApiHepler.GetProducts(user.token);
       console.log('product:', res);
       const { data: { products } } = res;
       // setData(products);
@@ -93,7 +93,7 @@ function ProductsScreen(props) {
         </ScrollView>
         <ActionButton
           onPress={() => {
-            EventApp.EmitToScreen('AddProducts', {});
+            EventHelper.EmitToScreen('AddProducts', {});
           }}
           buttonColor="rgba(231,76,60,1)"
         />
