@@ -2,9 +2,9 @@
 import React from 'react';
 import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
 import BaseScreen from '../BaseScreen';
-import {DetailProduct as AddProductsView} from '@compoents';
+import {DetailTicket} from '@compoents';
 
-function AddProducts (props){
+function DetailTicketsScreen (props){
     return (
       <SafeAreaView style={{flex: 1}}>
         <View
@@ -13,11 +13,13 @@ function AddProducts (props){
             flexDirection: 'column',
             justifyContent: 'space-between',
             padding: 5,
+            paddingHorizontal:10
           }}>
-          <AddProductsView />
+          <DetailTicket {...props}>
+          </DetailTicket>
         </View>
       </SafeAreaView>
     );
 }
 
-export default AddProducts;
+export default DetailTicketsScreen;

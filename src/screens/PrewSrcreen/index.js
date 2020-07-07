@@ -9,7 +9,6 @@ import { ApiHepler } from '@helpers';
 import { Device, Images } from '@common';
 
 const ListPlansScreen = (props) => {
-  console.log('ListPlansScreen:', props);
   const { navigation } = props;
   const [loading, setLoading] = useState(false);
   const [listPlans, setPlans] = useState([]);

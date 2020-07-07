@@ -1,7 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useLayoutEffect } from 'react';
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
-import { AddProducts as AddProductsView } from '@compoents';
+import { AddProducts as AddProductsView,IconBackHeader} from '@compoents';
+
 import { ProductReduxAll } from '@redux';
 import { connect } from 'react-redux';
 
@@ -12,6 +13,7 @@ const AddProducts = (props) => {
     const title = 'Add New Product';
     navigation.setOptions({
       title: title,
+      headerLeft: () => <IconBackHeader {...props} />,
     });
   }, [navigation]);
 

@@ -7,10 +7,12 @@ import LoginForm from './Login';
 import DetailProduct from './Products/DetailProduct';
 import SignupForm from './SignUp';
 import AppBarDraw from './Appbar';
+import IconBackHeader from './Appbar/IconBackHeader';
 import AddTickets from './AddTickets';
 import ViewTestSaga from './ViewTestSaga';
 import LoadingView from './LoadingView';
 import * as MySubscriptionView from './MySubscriptionCompoent';
+import DetailTicket from './Tickets/DetailTicket';
 import * as PaymentCompoent from './PaymentCompoent';
 export {
   ViewTest,
@@ -27,4 +29,6 @@ export {
   AddTickets,
   LoadingView,
   ListTickets,
+  DetailTicket,
+  IconBackHeader,
 };

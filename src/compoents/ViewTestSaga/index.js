@@ -4,7 +4,6 @@ import {PricingCard} from 'react-native-elements';
 import {Device} from '@common';
 
 export default (props) => {
-  console.log('props:', props);
   return (
     <View>
       <Button

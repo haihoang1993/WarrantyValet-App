@@ -12,7 +12,6 @@ const ListPlansCompents = (props) => {
   const { listPlans } = props;
   const itemRender = ({ item }) => {
     const { name, price, description, featured = [], icon } = item;
-    console.log('icon:', icon);
     const listContent = featured.map((e) => {
       return e.featured_item;
     })

@@ -28,14 +28,12 @@ export default (props) => {
     try {
       const res = await ApiHepler.Login(data);
       const { data: { data: { token } } } = res;
-      console.log('login app:', token);
       await StorageDB.setIsLogin(true);
       await StorageDB.setUserLogin({ ...data, ...{ token: token } });
       setLoading(false);
       navigation.replace(ScreensName.MainScreen);
     } catch (error) {
       setLoading(false);
-      console.log('login app error:', error);
     };
   }
 

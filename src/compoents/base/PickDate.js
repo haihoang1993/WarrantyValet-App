@@ -17,7 +17,6 @@ export default (props) => {
   const [mode, setMode] = useState('date');
 
   const onChange = (event, selectedDate) => {
-    console.log('pick date onChange:', selectedDate);
     // const currentDate = selectedDate || date;
     // setShow(Platform.OS === 'ios');
     // setDate(currentDate);

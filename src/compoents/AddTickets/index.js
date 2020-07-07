@@ -39,7 +39,6 @@ export default AddTickerCompents = (props) => {
           defaultIndex={0}
           containerStyle={{ height: 50, marginVertical: 10 }}
           onChangeItem={item => {
-            console.log(item.label, item.value);
             setValue('t_product_id', item.value);
           }}
         />

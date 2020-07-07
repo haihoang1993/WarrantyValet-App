@@ -36,13 +36,11 @@ function ProductsScreen(props) {
     try {
 
       const res = await ApiHepler.GetProducts(user.token);
-      console.log('product:', res);
       const { data: { products } } = res;
       // setData(products);
       props.setListProucts(products);
     } catch (error) {
 
-      console.log('error product:', error);
     } finally {
       setLoading(false);
       setRefreshing(false);

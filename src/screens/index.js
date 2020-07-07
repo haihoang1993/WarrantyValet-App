@@ -7,6 +7,7 @@ import AddProducts from './AddProducts';
 import AddTicketsScreen from './AddTicketsScreen';
 import SignUpScreen from './SignUpScreen';
 import DetailProductScreen from './DetailProductScreen';
+import DetailTicketsScreen from './DetailTicketsScreen';
 import PrewSrcreen from './PrewSrcreen';
 
 export {
@@ -20,5 +21,6 @@ export {
   SignUpScreen,
   DetailProductScreen,
   AddTicketsScreen,
-  PrewSrcreen
+  PrewSrcreen,
+  DetailTicketsScreen,
 };

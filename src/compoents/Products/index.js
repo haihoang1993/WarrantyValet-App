@@ -15,8 +15,7 @@ import { SwipeListView } from 'react-native-swipe-list-view';
 const ListProducts = (props) => {
 
   const { data, removeItem } = props;
-  console.log('ListProducts', data);
-
+  
   const renderItem = ({ item, position }) => {
     const { p_title, p_price_format, p_created_date } = item;
     return (
@@ -51,7 +50,6 @@ const ListProducts = (props) => {
   };
 
   const deleteRow = (rowMap, { item, index }) => {
-    console.log('deleteRow:', index);
     if (removeItem)
       removeItem(item, index)
   }

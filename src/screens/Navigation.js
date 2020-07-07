@@ -3,10 +3,10 @@
 // In App.js in a new project
 
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text,StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { ListPlansScreen, 
+import { ListPlansScreen, DetailTicketsScreen,
   DetailProductScreen, AddTicketsScreen, 
   TestReduxSaga, SignUpScreen, MainScreen, LoginScreen, AddProducts, PrewSrcreen } from '@screens';
 import { useTheme } from 'react-native-paper';
@@ -19,6 +19,7 @@ const Screens = {
   LoginScreen: 'LoginScreen',
   SignUpScreen: 'SignUpScren',
   DetailProuctScreen: 'DetailProductScreen',
+  DetailTicketScreen: 'DetailTicketScreen',
   AddTicketsScreen: 'AddTicketsScreen',
   PrewScreen: 'PrewScreen',
 };
@@ -43,13 +44,14 @@ function NavApp(props) {
           elevation: 0,
         },
         headerTintColor: 'white',
-        // headerTitleStyle: styles.titleHeader,
+        headerTitleStyle: styles.titleHeader
       }}>
       <Stack.Screen options={{ headerShown: false }} name={Screens.PrewScreen} component={PrewSrcreen} />
       <Stack.Screen options={header('PLANS & PRICING')} name={Screens.ListPlanScreen} component={ListPlansScreen} />
       <Stack.Screen options={header('Login')} name={Screens.LoginScreen} component={LoginScreen} />
       <Stack.Screen options={header('Register')} name={Screens.SignUpScreen} component={SignUpScreen} />
       <Stack.Screen options={{ headerShown: false }} name={Screens.MainScreen} component={MainScreen} />
+      <Stack.Screen options={{ headerShown: false }} name={Screens.DetailTicketScreen} component={DetailTicketsScreen} />
       <Stack.Screen options={header('Add New Tickets')} name={Screens.AddTicketsScreen} component={AddTicketsScreen} />
       <Stack.Screen options={header('Add New Product')} name={Screens.AddProductsScreen} component={AddProducts} />
       <Stack.Screen options={header('Product')} name={Screens.DetailProuctScreen} component={DetailProductScreen} />
@@ -76,3 +78,12 @@ export {
   Screens
 }
 export default NavApp;
+
+const styles = StyleSheet.create({
+  titleHeader: {
+      fontSize: 20,
+      fontWeight: '500',
+      color: 'white',
+      textAlign: 'center',
+  },
+});

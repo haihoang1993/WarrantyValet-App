@@ -21,7 +21,7 @@ const ListProducts = (props) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          EventHelper.EmitToScreen(ScreensName.DetailProuctScreen, {});
+          EventHelper.EmitToScreen(ScreensName.DetailTicketScreen, item);
         }}>
         <View style={{ flex: 1 }}>
           <Card containerStyle={styles.styleCard}>
