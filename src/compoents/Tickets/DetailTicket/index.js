@@ -44,13 +44,13 @@ export default DetailTickets = (props) => {
                     <View>
                         <Text style={{ fontSize: 20, marginTop: 10 }}> {comment_content}</Text>
                     </View>
-                    {photos.length>0 && ( <ImagesView data={photos} />)}
+                    {photos.length > 0 && (<ImagesView data={photos} />)}
                 </Card>
             </View>
         )
     }
     return (
-        <View>
+        <View style={styles.wrap}>
             {/* <View>
                 <TouchableOpacity onPress={onBack}>
                     <Icon size={30} style={{ fontWeight: '800' }} name="angle-left" />
@@ -71,6 +71,21 @@ export default DetailTickets = (props) => {
     )
 }
 const styles = StyleSheet.create({
+    wrap: {
+        margin: 5,
+        padding: 5,
+        marginHorizontal: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 4,
+            height: 4
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 100,
+        borderRadius: 10,
+        backgroundColor: 'white'
+    },
     styleCard: {
         borderRadius: 10,
         marginHorizontal: 5,
@@ -93,6 +108,7 @@ const styles = StyleSheet.create({
     header: {
         backgroundColor: 'white',
         paddingHorizontal: 5,
+
     },
     viewItemReply: {
         margin: 0

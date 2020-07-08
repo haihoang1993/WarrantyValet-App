@@ -28,6 +28,17 @@ const GetTickets = async (token) => {
     return res;
 }
 
+const AddReplyTicket = async (data) => {
+    let newToken = null;
+    if (!newToken) {
+        const user = await Storage.getUserLogin();
+        newToken = user.token;
+    }
+    const url = URL_API_BASE + 'add-reply-ticket';
+    const res = await ApiBase.PostRequest(url, data, newToken);
+    return res;
+}
+
 const GetReplysTicket = async (idTicktet, token = null) => {
     // https://valetwarranty.com/wp-json/wv/v1/list-reply-ticket
     let newToken = token;
@@ -47,6 +58,8 @@ const AddNewTicket = async (data, token) => {
     return res;
 }
 
+  
+
 export {
     Login,
     GetListPlan,
@@ -54,4 +67,5 @@ export {
     GetTickets,
     AddNewTicket,
     GetReplysTicket,
+    AddReplyTicket,
 }

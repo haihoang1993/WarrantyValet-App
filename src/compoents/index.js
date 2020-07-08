@@ -14,6 +14,7 @@ import LoadingView from './LoadingView';
 import * as MySubscriptionView from './MySubscriptionCompoent';
 import DetailTicket from './Tickets/DetailTicket';
 import * as PaymentCompoent from './PaymentCompoent';
+import * as BaseView from './base';
 export {
   ViewTest,
   ListPlans,
@@ -31,4 +32,5 @@ export {
   ListTickets,
   DetailTicket,
   IconBackHeader,
+  BaseView
 };

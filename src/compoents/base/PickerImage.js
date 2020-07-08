@@ -10,9 +10,9 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ImagePicker from 'react-native-image-picker';
 import { Button } from 'react-native-elements';
-
+import { Utils } from '@common';
 export default (props) => {
-  const { title = '', numPhotos = 1, onChangeData=null } = props;
+  const { title = '', numPhotos = 1, onChangeData = null } = props;
   const [soucre, setSoucre] = useState(null);
   const [listImages, setListImages] = useState([]);
 
@@ -51,10 +51,11 @@ export default (props) => {
         } else {
           // listImages.push(response.uri);
           console.log('list images:', listImages);
-          listImages.push({ data, type, uri, name })
-          setListImages([...listImages,...[]]);
-          if(onChangeData)
-              onChangeData(listImages);
+          const obj=Utils.formatPhoto({ data, type, uri, name })
+          listImages.push(obj)
+          setListImages([...listImages, ...[]]);
+          if (onChangeData)
+            onChangeData(listImages);
         }
       }
     });
@@ -68,6 +69,8 @@ export default (props) => {
           if (index !== -1) {
             listImages.pop(index);
             setListImages([...listImages]);
+            if (onChangeData)
+              onChangeData(listImages);
           } else {
             setSoucre(null);
           }

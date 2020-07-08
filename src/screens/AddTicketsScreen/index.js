@@ -1,9 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useState } from 'react';
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
-import BaseScreen from '../BaseScreen';
 import { AddTickets as AddProductsView } from '@compoents';
-import { ProductReduxAll } from '@redux';
 import { connect } from 'react-redux';
 import { StorageDB, ApiHepler } from '@helpers';
 import Toast from 'react-native-simple-toast';
@@ -46,8 +44,8 @@ const AddTicketsScreen = (props) => {
       try {
         const res = await ApiHepler.AddNewTicket(newData, token);
         console.log('add res:', res);
-        const toastContent='Created ticket successful!';
-        Toast.show(toastContent,3);
+        const toastContent = 'Created ticket successful!';
+        Toast.show(toastContent, 3);
         navigation.pop(1)
       } catch (error) {
         console.log('add res error:', error)
