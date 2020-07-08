@@ -11,6 +11,7 @@ function DetailTicketsScreen(props) {
   const { navigation, route: { params: ticket } } = props;
   const [listReply, setListReplys] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
+  const [loadingButton, setLoadingButton] = useState(false);
   const [datFrorm, setDataForm] = useState({ t_id: ticket.p_id });
 
   useLayoutEffect(() => {
@@ -37,6 +38,18 @@ function DetailTicketsScreen(props) {
     }
   }
 
+  const onSendReply = async () => {
+    console.log('getdat');
+    setLoadingButton(true);
+    try {
+      const res = await ApiHepler.AddReplyTicket(datFrorm)
+      console.log('getdat reply', res);
+      setLoadingButton(false);
+    } catch (error) {
+      setLoadingButton(false);
+    }
+  }
+
   const renderModal = () => {
     return (
       <Modal
@@ -47,7 +60,6 @@ function DetailTicketsScreen(props) {
           // Alert.alert("Modal has been closed.");
         }}
       >
-
         <View style={styles.modalContainer}>
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
@@ -57,12 +69,14 @@ function DetailTicketsScreen(props) {
                 }} multiline={true} />
               </View>
               <BaseView.PickerImage onChangeData={(data) => {
-                    console.log('image:',data)
+                console.log('image:', data);
+                setDataForm({ ...datFrorm, ...{ photos: data } })
               }} numPhotos={2} title="Photos" />
               <View style={{ flexDirection: 'row', width: '100%' }}>
                 <View style={{ flex: 0.5, marginRight: 3 }}>
-                  <Button onPress={() => {
-                    console.log('reply:', datFrorm);
+                  <Button loading={loadingButton} onPress={() => {
+                    // console.log('reply:', datFrorm);
+                    onSendReply();
                   }} title="Reply" />
                 </View>
                 <View style={{ flex: 0.5, marginRight: 3 }}>
