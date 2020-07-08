@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useLayoutEffect, useEffect, useState } from 'react';
 import { View, Modal, Text, SafeAreaView, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { DetailTicket, IconBackHeader, BaseView } from '@compoents';
+import { DetailTicket, IconBackHeader, BaseView,LoadingView } from '@compoents';
 import { ApiHepler } from '@helpers';
 import { Button } from 'react-native-elements';
 import { Utils } from '@common';
@@ -12,6 +12,7 @@ function DetailTicketsScreen(props) {
   const [listReply, setListReplys] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [loadingButton, setLoadingButton] = useState(false);
+  const [isLoaing, setIsLoaing] = useState(false);
   const [datFrorm, setDataForm] = useState({ t_id: ticket.p_id });
 
   useLayoutEffect(() => {
@@ -28,13 +29,15 @@ function DetailTicketsScreen(props) {
 
   const getData = async () => {
     console.log('getdat');
+    setIsLoaing(true)
     try {
       const res = await ApiHepler.GetReplysTicket(ticket.p_id);
       const { data: { reply } } = res;
       setListReplys(reply);
       console.log('getdat reply', res);
+      setIsLoaing(false)
     } catch (error) {
-
+      setIsLoaing(false)
     }
   }
 
@@ -106,6 +109,7 @@ function DetailTicketsScreen(props) {
           <ScrollView>
             <DetailTicket listReply={listReply} ticket={ticket} />
           </ScrollView>
+         
           <View style={styles.viewReply}>
             <View style={styles.textReply}>
               <TouchableOpacity onPress={() => {
@@ -115,6 +119,7 @@ function DetailTicketsScreen(props) {
               </TouchableOpacity>
             </View>
           </View>
+          {(isLoaing) && (<LoadingView />)}
         </View>
       </View>
     </SafeAreaView>
