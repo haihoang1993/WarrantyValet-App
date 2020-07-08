@@ -1,6 +1,8 @@
 import { Utils } from '@common';
 
 const GetRequest = async (url, param = null, token = null) => {
+    console.log('GetRequest token',token)
+
     const myHeaders = new Headers();
     myHeaders.append("token", token);
 
@@ -15,9 +17,10 @@ const GetRequest = async (url, param = null, token = null) => {
         };
     }
     let result = {}
-    // const urlRequest=url + ((param)?('?' + Utils.ObjToQueryStringGet(param)):'');
-    const urlRequest = url;
 
+    const urlRequest=url + ((param)?('?' + Utils.ObjToQueryStringGet(param)):'');
+    // const urlRequest = url;
+    console.log('GetRequest',urlRequest)
     try {
         let res = await fetch(urlRequest, requestOptions);
 

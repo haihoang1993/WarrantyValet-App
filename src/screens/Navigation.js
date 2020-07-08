@@ -51,9 +51,9 @@ function NavApp(props) {
       <Stack.Screen options={header('Login')} name={Screens.LoginScreen} component={LoginScreen} />
       <Stack.Screen options={header('Register')} name={Screens.SignUpScreen} component={SignUpScreen} />
       <Stack.Screen options={{ headerShown: false }} name={Screens.MainScreen} component={MainScreen} />
-      <Stack.Screen options={{ headerShown: false }} name={Screens.DetailTicketScreen} component={DetailTicketsScreen} />
+      <Stack.Screen name={Screens.DetailTicketScreen} component={DetailTicketsScreen} />
       <Stack.Screen options={header('Add New Tickets')} name={Screens.AddTicketsScreen} component={AddTicketsScreen} />
-      <Stack.Screen options={header('Add New Product')} name={Screens.AddProductsScreen} component={AddProducts} />
+      <Stack.Screen name={Screens.AddProductsScreen} component={AddProducts} />
       <Stack.Screen options={header('Product')} name={Screens.DetailProuctScreen} component={DetailProductScreen} />
     </Stack.Navigator>
   );

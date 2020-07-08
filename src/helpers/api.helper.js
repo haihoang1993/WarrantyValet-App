@@ -1,35 +1,49 @@
 import * as ApiBase from './apiBase.helper';
+import Storage from './storage.helper';
 
-const URL_API_BASE='https://valetwarranty.com/wp-json/wv/v1/';
+const URL_API_BASE = 'https://valetwarranty.com/wp-json/wv/v1/';
 
-const Login=async (obj={})=> {
-    const url=URL_API_BASE+'login';
-    const res=await ApiBase.PostRequest(url,obj);
+const Login = async (obj = {}) => {
+    const url = URL_API_BASE + 'login';
+    const res = await ApiBase.PostRequest(url, obj);
     return res;
 }
 
-const GetListPlan=async ()=>{
-    const url=URL_API_BASE+'list-plan';
+const GetListPlan = async () => {
+    const url = URL_API_BASE + 'list-plan';
     // const url=URL_API_BASE+'list-plan';
-    const res=await ApiBase.GetRequest(url);
+    const res = await ApiBase.GetRequest(url);
     return res;
 }
 
-const GetProducts=async (token)=>{
-    const url=URL_API_BASE+'list-product';
-    const res=await ApiBase.GetRequest(url,null,token);
+const GetProducts = async (token) => {
+    const url = URL_API_BASE + 'list-product';
+    const res = await ApiBase.GetRequest(url, null, token);
     return res;
 }
 
-const GetTickets=async (token)=>{
-    const url=URL_API_BASE+'list-tickets';
-    const res=await ApiBase.GetRequest(url,null,token);
+const GetTickets = async (token) => {
+    const url = URL_API_BASE + 'list-tickets';
+    const res = await ApiBase.GetRequest(url, null, token);
     return res;
 }
 
-const AddNewTicket=async (data,token)=>{
-    const url=URL_API_BASE+'add-ticket';
-    const res=await ApiBase.PostRequest(url,data,token);
+const GetReplysTicket = async (idTicktet, token = null) => {
+    // https://valetwarranty.com/wp-json/wv/v1/list-reply-ticket
+    let newToken = token;
+    if (!token) {
+        const user = await Storage.getUserLogin();
+        newToken = user.token;
+    }
+    console.log('token:', newToken);
+    const url = URL_API_BASE + 'list-reply-ticket';
+    const res = await ApiBase.GetRequest(url, { p_id: idTicktet }, newToken);
+    return res;
+}
+
+const AddNewTicket = async (data, token) => {
+    const url = URL_API_BASE + 'add-ticket';
+    const res = await ApiBase.PostRequest(url, data, token);
     return res;
 }
 
@@ -39,4 +53,5 @@ export {
     GetProducts,
     GetTickets,
     AddNewTicket,
+    GetReplysTicket,
 }
