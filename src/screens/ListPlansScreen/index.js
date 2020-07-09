@@ -1,16 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
-import BaseScreen from '../BaseScreen';
 import { ListPlans, LoadingView } from '@compoents';
-import { Button } from 'react-native-elements';
-import { ScreensName } from '@screens';
 import { ApiHepler } from '@helpers';
 import {  PlanReduxAll } from '@redux';
 import { connect } from 'react-redux';
 
 const ListPlansScreen = (props) => {
   console.log('ListPlansScreen:', props);
-  const { navigation } = props;
+  const { navigation,setListPlans } = props;
   const [loading,setLoading]=useState(false);
   const [listPlans,setPlans]=useState([]);
 
@@ -20,7 +17,9 @@ const ListPlansScreen = (props) => {
         try {
             const res=await ApiHepler.GetListPlan();
             console.log('get list plan:',res);
-            setPlans(res.data);
+            const {data=[]}=res ;
+            console.log('get list plan:',data);
+            setPlans(data);
             setLoading(false);
         } catch (error) {
           setLoading(false);
@@ -70,7 +69,7 @@ const ListPlansScreen = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    listPlans: state.PlansReducer,
+    listPlansS: state.PlansReducer,
   };
 };
 

@@ -1,10 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useLayoutEffect, useEffect, useState } from 'react';
 import { View, Modal, Text, SafeAreaView, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { DetailTicket, IconBackHeader, BaseView,LoadingView } from '@compoents';
+import { DetailTicket, IconBackHeader, BaseView, LoadingView } from '@compoents';
 import { ApiHepler } from '@helpers';
 import { Button } from 'react-native-elements';
-import { Utils } from '@common';
 
 function DetailTicketsScreen(props) {
   // const { navigation } = props;
@@ -109,7 +108,6 @@ function DetailTicketsScreen(props) {
           <ScrollView>
             <DetailTicket listReply={listReply} ticket={ticket} />
           </ScrollView>
-         
           <View style={styles.viewReply}>
             <View style={styles.textReply}>
               <TouchableOpacity onPress={() => {
@@ -129,6 +127,10 @@ export default DetailTicketsScreen;
 
 
 const styles = StyleSheet.create({
+  checkboxContainer: {
+    flexDirection: 'row',
+    marginBottom: 20,
+  },
   centeredView: {
     flex: 1,
     justifyContent: 'center',
@@ -171,7 +173,8 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5
+    elevation: 5,
+    marginBottom:100,
   },
   openButton: {
     backgroundColor: "#F194FF",

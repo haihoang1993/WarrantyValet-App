@@ -58,7 +58,29 @@ const AddNewTicket = async (data, token) => {
     return res;
 }
 
-  
+const AddProductNew = async (data) => {
+    let newToken = null;
+    console.log('AddProductNew:',data);
+    if (!newToken) {
+        const user = await Storage.getUserLogin();
+        newToken = user.token;
+    }
+    const url = URL_API_BASE + 'add-product';
+    const res = await ApiBase.PostRequest(url, data, newToken);
+    return res;
+}
+
+const DeleteProduct = async (idProduct=-100)=>{
+    let newToken = null;
+    console.log('DeleteProduct:',idProduct);
+    if (!newToken) {
+        const user = await Storage.getUserLogin();
+        newToken = user.token;
+    }
+    const url = URL_API_BASE + 'del-product';
+    const res=await ApiBase.GetRequest(url,{p_id:idProduct},newToken,'DELETE');
+    return res;
+}
 
 export {
     Login,
@@ -68,4 +90,6 @@ export {
     AddNewTicket,
     GetReplysTicket,
     AddReplyTicket,
+    AddProductNew,
+    DeleteProduct,
 }

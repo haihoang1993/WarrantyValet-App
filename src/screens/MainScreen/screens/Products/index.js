@@ -57,7 +57,20 @@ function ProductsScreen(props) {
           onPress: () => console.log('Cancel Pressed'),
           style: 'cancel'
         },
-        { text: 'OK', onPress: () => console.log('OK Pressed') }
+        {
+          text: 'OK', onPress: async () => {
+            try {
+              const { p_id } = item;
+              console.log('remove prouct:', p_id);
+              const res = await ApiHepler.DeleteProduct(p_id);
+              console.log('remove prouct:', res);
+            } catch (error) {
+              console.log('remove prouct error:', error);
+
+            }
+
+          }
+        }
       ],
       { cancelable: false }
     );

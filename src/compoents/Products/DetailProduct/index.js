@@ -7,41 +7,83 @@ import { useForm } from 'react-hook-form';
 import { Button, CheckBox } from 'react-native-elements';
 
 export default (props) => {
+  const { product: { p_title = '', p_purchase_date, p_warranty_expiration 
+    , p_actual_product_photos, p_additional_photos,
+    p_warranty_page_information_photo,
+    p_receipt_photo}
+  } = props;
+
+  console.log('p_receipt_photo:', props);
   const { register, setValue, handleSubmit, errors } = useForm();
   const onSubmit = (data) => Alert.alert('Form Data', JSON.stringify(data));
   const [isChecked, setChecked] = useState(true);
+
   useEffect(() => {
-    register({ name: 'username' }, { required: true });
+    register({ name: 'p_title' }, { required: false });
+    register({ name: 'product_description' }, { required: false });
+    register({ name: 'upc_code' }, { required: false });
+    register({ name: 'price' }, { required: false });
+    register({ name: 'receipt_photos' }, { required: false });
+    register({ name: 'product_photos' }, { required: false });
+    register({ name: 'information_photos' }, { required: false });
+    register({ name: 'actual_product_photos' }, { required: false });
+    register({ name: 'additional_photos' }, { required: false });
+    register({ name: 'purchase_date' }, { required: false });
   }, [register]);
+
   return (
     <View style={{ marginHorizontal: 10 }}>
       <ScrollView>
         <TextInputView
-          onChangeText={(text) => setValue('username', text, true)}
+          onChangeTextForm={(name, text) => {
+            console.log('onChangeTextForm:', name, text);
+            setValue(name, text, true)
+          }}
+          name='p_title'
+          value={p_title}
           title="Product Title"
         />
         <TextInputView
+          onChangeTextForm={(name, text) => {
+            console.log('onChangeTextForm:', name, text);
+            setValue(name, text, true)
+          }}
+          name='product_description'
           multiline={true}
           numberOfLines={4}
-          onChangeText={(text) => setValue('username', text, true)}
           title="Product Description"
         />
         <TextInputView
-          onChangeText={(text) => setValue('username', text, true)}
+          onChangeTextForm={(name, text) => {
+            console.log('onChangeTextForm:', name, text);
+            setValue(name, text, true)
+          }}
+          name="upc_code"
           title="UPC/SKU Code"
         />
         <TextInputView
+          name='price'
           keyboardType="numeric"
-          onChangeText={(text) => setValue('username', text, true)}
-          title="Price"
+          onChangeTextForm={(name, text) => {
+            console.log('onChangeTextForm:', name, text);
+            setValue(name, text, true)
+          }} title="Price"
         />
-        <PickDate title="Purchase Date" />
-        <PickDate title="Warranty Expiration" />
-        <PickerImage title="Receipt Photo" />
-        <PickerImage title="Warranty Page Information Photo" />
-        <PickerImage title="Product Photo" />
-        <PickerImage numPhotos={2} title="Actual Product Photos" />
-        <PickerImage numPhotos={2} title="Additional photos (option)" />
+        <PickDate name='purchase_date' onChangeTextForm={(name, text) => {
+          console.log('onChangeTextForm:', name, text);
+          setValue(name, text, true)
+        }} textTime={p_purchase_date} title="Purchase Date" />
+
+        <PickDate name='warranty_expiration' onChangeTextForm={(name, text) => {
+          console.log('onChangeTextForm:', name, text);
+          setValue(name, text, true)
+        }} textTime={p_warranty_expiration} title="Warranty Expiration" />
+
+        <PickerImage data={p_receipt_photo} title="Receipt Photo" />
+        <PickerImage data={p_warranty_page_information_photo} title="Warranty Page Information Photo" />
+        <PickerImage data={p_actual_product_photos} title="Product Photo" />
+        <PickerImage data={p_actual_product_photos} numPhotos={2} title="Actual Product Photos" />
+        <PickerImage data={p_additional_photos} numPhotos={2} title="Additional photos (option)" />
         <View style={styles.checkboxContainer}>
           <CheckBox
             title="Do you authorize ValetWarranty to submit the product registration & TOS"

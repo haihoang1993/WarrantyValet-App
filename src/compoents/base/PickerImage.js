@@ -11,10 +11,11 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import ImagePicker from 'react-native-image-picker';
 import { Button } from 'react-native-elements';
 import { Utils } from '@common';
+
 export default (props) => {
-  const { title = '', numPhotos = 1, onChangeData = null } = props;
-  const [soucre, setSoucre] = useState(null);
-  const [listImages, setListImages] = useState([]);
+  const { title = '', numPhotos = 1, onChangeData = null, data = [] } = props;
+  console.log('data picker:',data);
+  const [listImages, setListImages] = useState(data);
 
   const pickImg = () => {
     const options = {
@@ -45,18 +46,26 @@ export default (props) => {
       } else {
 
         const { data, type, uri, name } = response;
-        if (numPhotos === 1) {
-          const sourceImport = { uri: response.uri };
-          setSoucre(sourceImport);
-        } else {
-          // listImages.push(response.uri);
-          console.log('list images:', listImages);
-          const obj=Utils.formatPhoto({ data, type, uri, name })
-          listImages.push(obj)
+
+        // listImages.push(response.uri);
+        console.log('list images:', listImages);
+        const obj = Utils.formatPhoto({ data, type, uri, name });
+        if (numPhotos > 1) {
+          listImages.push(obj);
           setListImages([...listImages, ...[]]);
           if (onChangeData)
-            onChangeData(listImages);
+            onChangeData(listImages.length > 0 ? listImages : undefined);
         }
+        else {
+          if (listImages.length > 0) {
+            listImages.pop(1);
+          }
+          listImages.push(obj);
+          setListImages([...listImages, ...[]]);
+          if (onChangeData)
+            onChangeData(listImages.length > 0 ? listImages : undefined);
+        }
+
       }
     });
   };
@@ -64,18 +73,16 @@ export default (props) => {
   const iconRemove = (index = -1) => {
     return (
       <TouchableOpacity
-        style={{ position: 'absolute', right: 0 }}
+        style={{ position: 'absolute', right: 0, backgroundColor: '#fff' }}
         onPress={() => {
-          if (index !== -1) {
-            listImages.pop(index);
-            setListImages([...listImages]);
-            if (onChangeData)
-              onChangeData(listImages);
-          } else {
-            setSoucre(null);
-          }
+          listImages.pop(index);
+          setListImages([...listImages]);
+          if (onChangeData)
+            onChangeData(listImages.length > 0 ? listImages : undefined);
+
+
         }}>
-        <Icon size={25} name="trash-o" />
+        <Icon size={35} name="trash-o" />
       </TouchableOpacity>
     );
   };
@@ -84,31 +91,24 @@ export default (props) => {
       <View>
         <Text style={styles.textTile}>{title}</Text>
       </View>
-      <View style={{ flexDirection: numPhotos > 1 ? 'column' : 'row' }}>
+      <View style={{ flexDirection: 'column' }}>
         {console.log('list render:', listImages)}
-        {listImages.length > 0 && numPhotos > 1 && (
-          <FlatList
-            horizontal={true}
-            data={listImages}
-            renderItem={({ item, index }) => {
-              console.log('item select:', item);
-              const { uri } = item;
-              const renderView = (
-                <View style={styles.viewImage}>
-                  <Image style={styles.image} source={{ uri: uri }} />
-                  {iconRemove(index)}
-                </View>
-              );
-              return renderView;
-            }}
-          />
-        )}
-        {soucre != null && numPhotos === 1 && (
-          <View style={styles.viewImage}>
-            <Image style={styles.image} source={soucre} />
-            {iconRemove()}
-          </View>
-        )}
+
+        <FlatList
+          horizontal={true}
+          data={listImages}
+          renderItem={({ item, index }) => {
+            console.log('item select:', item);
+            const { uri, photo_url } = item;
+            const renderView = (
+              <View style={styles.viewImage}>
+                <Image style={styles.image} source={{uri: (uri) ? uri : photo_url }} />
+                {iconRemove(index)}
+              </View>
+            );
+            return renderView;
+          }}
+        />
         <View
           style={[numPhotos > 0 ? styles.viewButtonLeft : styles.viewButton]}>
           <Button onPress={pickImg} title="Choose Photos" />

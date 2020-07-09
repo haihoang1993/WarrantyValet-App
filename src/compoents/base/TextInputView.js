@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, View, TextInput, StyleSheet } from 'react-native';
 
 export default (props) => {
-  const { title = '', multiline = false, value = null, onChangeText = null } = props;
-  if (value!=null  && onChangeText!=null)
+  const { title = '', multiline = false, value = null, name = null, onChangeText = null, onChangeTextForm } = props;
+  const [valueString, setValueString] = useState(value);
+  if (value != null && onChangeText != null) {
     onChangeText(value);
+  }
   if (multiline) {
     return (
       <View style={styles.wrap}>
@@ -12,6 +14,15 @@ export default (props) => {
         <View styles={styles.inputMutilineContainer}>
           <TextInput
             {...props}
+            onChangeText={(st) => {
+              setValueString(st);
+              if (onChangeTextForm && name) {
+                onChangeTextForm(name, st)
+              }
+              if (onChangeText)
+                onChangeText(st);
+            }}
+            value={valueString}
             style={[styles.textInput, styles.textInputMutiline]}
           />
         </View>
@@ -22,7 +33,16 @@ export default (props) => {
     <View style={styles.wrap}>
       <Text style={styles.textTile}>{title}</Text>
       <View styles={styles.inputContainer}>
-        <TextInput {...props} style={styles.textInput} />
+        <TextInput
+          {...props}
+          onChangeText={(st) => {
+            setValueString(st);
+            if (onChangeTextForm && name) {
+              onChangeTextForm(name, st)
+            }
+            if (onChangeText)
+              onChangeText(st);
+          }} value={valueString} style={styles.textInput} />
       </View>
     </View>
   );

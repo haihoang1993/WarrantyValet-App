@@ -4,12 +4,8 @@ import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
 import BaseScreen from '../BaseScreen';
 import {DetailProduct as AddProductsView} from '@compoents';
 
-class AddProducts extends BaseScreen {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
+const AddProducts =(props)=>{
+  const { navigation, route: { params: product } } = props;
     return (
       <SafeAreaView style={{flex: 1}}>
         <View
@@ -19,11 +15,10 @@ class AddProducts extends BaseScreen {
             justifyContent: 'space-between',
             padding: 5,
           }}>
-          <AddProductsView />
+          <AddProductsView product={product}/>
         </View>
       </SafeAreaView>
     );
-  }
 }
 
 export default AddProducts;

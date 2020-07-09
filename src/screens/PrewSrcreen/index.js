@@ -28,7 +28,7 @@ const ListPlansScreen = (props) => {
         }}>
         <View
           style={{
-            flex:0.4,
+            flex: 0.4,
             width: '100%',
             flexDirection: 'row',
             justifyContent: 'center',
@@ -49,6 +49,8 @@ const ListPlansScreen = (props) => {
                 onPress={() => {
                   navigation.push(ScreensName.LoginScreen);
                 }}
+                titleStyle={{ fontSize: 20, fontWeight: "bold", marginVertical: 5 }}
+
                 rightIcon={{ name: 'login' }}
                 title="LOGIN"
               />
@@ -58,19 +60,23 @@ const ListPlansScreen = (props) => {
                 onPress={() => {
                   navigation.push(ScreensName.SignUpScreen);
                 }}
+                titleStyle={{ fontSize: 20, fontWeight: "bold", marginVertical: 5 }}
+
                 rightIcon={{ name: 'LOGIN' }}
                 title="REGISTER"
               />
             </View>
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 20 }}>
-            <View style={{ flex: 0.5 }}>
+            <View style={{ flex: 0.7 }}>
               <Button
                 onPress={() => {
                   navigation.push(ScreensName.ListPlanScreen);
                 }}
+                titleStyle={{ fontSize: 23, fontWeight: "bold", marginVertical: 10 }}
                 rightIcon={{ name: 'login' }}
                 title="PLANS & PRICING"
+                buttonStyle={{ backgroundColor: "#fa3939", fontWeight: "bold" }}
               />
             </View>
 

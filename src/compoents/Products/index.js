@@ -15,7 +15,7 @@ import { SwipeListView } from 'react-native-swipe-list-view';
 const ListProducts = (props) => {
 
   const { data, removeItem } = props;
-  
+
   const renderItem = ({ item, position }) => {
     const { p_title, p_price_format, p_created_date } = item;
     return (
@@ -27,7 +27,7 @@ const ListProducts = (props) => {
           }
         }
         onPress={() => {
-          EventHelper.EmitToScreen(ScreensName.DetailProuctScreen, {});
+          EventHelper.EmitToScreen(ScreensName.DetailProuctScreen, item);
         }}>
         <View style={{ flex: 1, }}>
           <Card containerStyle={styles.styleCard}>
@@ -101,12 +101,10 @@ const styles = StyleSheet.create({
   },
   rowBack: {
     alignItems: 'center',
-    backgroundColor: '#DDD',
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingLeft: 15,
-
   },
   backRightBtn: {
     alignItems: 'center',

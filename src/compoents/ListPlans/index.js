@@ -10,6 +10,7 @@ import { LoadingView } from '@compoents';
 
 const ListPlansCompents = (props) => {
   const { listPlans } = props;
+  console.log('list plan:',props);
   const itemRender = ({ item }) => {
     const { name, price, description, featured = [], icon } = item;
     const listContent = featured.map((e) => {

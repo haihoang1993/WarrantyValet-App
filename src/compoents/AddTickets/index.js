@@ -53,6 +53,7 @@ export default AddTickerCompents = (props) => {
         <PickerImage onChangeData={(data) => {
             setValue('photos',data);
         }} numPhotos={2} title="Photos" />
+        
         <Button
           loading={isLoading}
           large

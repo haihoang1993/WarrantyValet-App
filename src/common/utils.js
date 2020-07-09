@@ -31,11 +31,13 @@ const ObjToQueryStringGet = (obj) => {
 
 const validateObj = (obj, keys = []) => {
     let check = false;
-    keys.forEach((value) => {
+    for (let i = 0; keys.length > i; i++) {
+        const value = keys[i];
         check = (Reflect.has(obj, value) && obj[value] != undefined && obj[value] != '');
+        console.log(value, check)
         if (!check)
             return check;
-    })
+    }
     return check;
 }
 

@@ -1,7 +1,7 @@
 import { Utils } from '@common';
 
-const GetRequest = async (url, param = null, token = null) => {
-    console.log('GetRequest token',token)
+const GetRequest = async (url, param = null, token = null, method = 'GET') => {
+    console.log(method + ' Request token', token)
 
     const myHeaders = new Headers();
     myHeaders.append("token", token);
@@ -11,16 +11,16 @@ const GetRequest = async (url, param = null, token = null) => {
 
     if (token) {
         requestOptions = {
-            method: 'GET',
+            method: method,
             headers: myHeaders,
             redirect: 'follow'
         };
     }
     let result = {}
 
-    const urlRequest=url + ((param)?('?' + Utils.ObjToQueryStringGet(param)):'');
+    const urlRequest = url + ((param) ? ('?' + Utils.ObjToQueryStringGet(param)) : '');
     // const urlRequest = url;
-    console.log('GetRequest',urlRequest)
+    console.log('GetRequest', urlRequest)
     try {
         let res = await fetch(urlRequest, requestOptions);
 
@@ -38,6 +38,7 @@ const GetRequest = async (url, param = null, token = null) => {
 }
 
 const PostRequest = async (url, body, token) => {
+    console.log('PostRequest:', url, body, token);
     let result = {};
     const myHeaders = new Headers();
     // Accept: 'application/json',

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   View,
@@ -8,18 +8,26 @@ import {
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { TimeHelper } from '@common';
 
 export default (props) => {
-  const {title = '', multiline = false} = props;
-  const [value, setValue] = useState('mm/dd/yyyy');
+  const { textTime = '', onChangeTextForm, name } = props;
+  const time = (textTime == '') ? new Date() : new Date(TimeHelper.formatDate(textTime, 'YYYY-MM-DD'))
+  // const time=TimeHelper.stringToDate(stTime,'YYY/DD/MM').date();
+  console.log('time prase:', time);
+  const { title = '', multiline = false } = props;
+  const [value, setValue] = useState((textTime == '') ? 'YYYY/MM/DD' : TimeHelper.dateToString(time, "YYYY/MM/DD"));
   const [isShowPicker, setShowPicker] = useState(false);
-  const [date, setDate] = useState(new Date(1598051730000));
+  const [date, setDate] = useState(new Date(time));
   const [mode, setMode] = useState('date');
 
   const onChange = (event, selectedDate) => {
-    // const currentDate = selectedDate || date;
+    const currentDate = selectedDate || date;
     // setShow(Platform.OS === 'ios');
-    // setDate(currentDate);
+    setDate(currentDate);
+    setValue(TimeHelper.dateToString(currentDate, "YYYY/MM/DD"))
+    if (onChangeTextForm)
+      onChangeTextForm(name, TimeHelper.dateToString(currentDate, "YYYY-MM-DD"))
   };
 
   return (
