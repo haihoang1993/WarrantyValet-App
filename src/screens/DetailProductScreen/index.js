@@ -1,11 +1,16 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useLayoutEffect} from 'react';
-import {View, Text, SafeAreaView, StyleSheet} from 'react-native';
+import React, { useLayoutEffect ,useState} from 'react';
+import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
 import BaseScreen from '../BaseScreen';
-import {DetailProduct as AddProductsView, IconBackHeader} from '@compoents';
+import { DetailProduct as AddProductsView, IconBackHeader } from '@compoents';
+import { ApiHepler } from '@helpers';
+import Toast from 'react-native-simple-toast';
 
-const AddProducts =(props)=>{
+
+const AddProducts = (props) => {
   const { navigation, route: { params: product } } = props;
+  const { addProduct } = props;
+  const [isLoading, setLoading] = useState(false);
 
   useLayoutEffect(() => {
     const title = 'Product';
@@ -15,19 +20,49 @@ const AddProducts =(props)=>{
     });
   }, [navigation]);
 
-    return (
-      <SafeAreaView style={{flex: 1}}>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            padding: 5,
-          }}>
-          <AddProductsView product={product}/>
-        </View>
-      </SafeAreaView>
-    );
+
+  const onSubmitApi = async (data) => {
+    setLoading(true);
+    try {
+      const res = await ApiHepler.UpdateProduct(data);
+      console.log('add res:', res);
+      const { data: newData } = res;
+      const toastContent = 'Updated Product successful!';
+      Toast.show(toastContent, 3);
+      // console.log('add res: obj', newData.data);
+      // addProduct(newData.data);
+      // navigation.pop(1);
+    } catch (error) {
+      console.log('add res error:', error)
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          padding: 5,
+        }}>
+        <AddProductsView  isLoading={isLoading} onSubmitUpdate={(data) => {
+          // const checkVali = Utils.validateObj(data, ['p_title',
+          //   'receipt_photos',
+          //   'product_photos', 'information_photos', 'actual_product_photos', 'additional_photos'])
+         
+          // console.log('check vali:',checkVali);
+          // if (checkVali) {
+          //   onSubmitApi(data);
+          // }
+          onSubmitApi(data);
+
+        }}  product={product} />
+      </View>
+    </SafeAreaView>
+  );
 }
 
 export default AddProducts;

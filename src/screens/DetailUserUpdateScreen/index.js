@@ -33,10 +33,10 @@ const UserDetailScreen = (props) => {
   const onSubmitApi = async (data) => {
     setLoading(true);
     try {
-      const res = await ApiHepler.AddProductNew(data);
+      const res = await ApiHepler.UpdateProduct(data);
       console.log('add res:', res);
       const { data: newData } = res;
-      const toastContent = 'Created Product successful!';
+      // const toastContent = 'Created Product successful!';
       Toast.show(toastContent, 3);
       console.log('add res: obj', newData.data);
       addProduct(newData.data);
@@ -58,15 +58,17 @@ const UserDetailScreen = (props) => {
           padding: 5,
           paddingHorizontal: 15
         }}>
-        {(user) && (<DetailUpdateUserView user={user} isLoading={isLoading} onSubmit={(data) => {
-          const checkVali = Utils.validateObj(data, ['p_title',
-            'receipt_photos',
-            'product_photos', 'information_photos', 'actual_product_photos', 'additional_photos'])
+        {(user) && (<DetailUpdateUserView user={user} isLoading={isLoading} onSubmitUpdate={(data) => {
+          // const checkVali = Utils.validateObj(data, ['p_title',
+          //   'receipt_photos',
+          //   'product_photos', 'information_photos', 'actual_product_photos', 'additional_photos'])
+         
           // console.log('check vali:',checkVali);
-          if (checkVali) {
-            onSubmitApi(data);
-          }
+          // if (checkVali) {
+          //   onSubmitApi(data);
+          // }
           // onSubmitApi({p_title:'tesst'});
+
         }} />)}
 
       </View>

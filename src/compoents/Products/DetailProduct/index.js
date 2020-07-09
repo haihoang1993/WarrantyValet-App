@@ -7,15 +7,23 @@ import { useForm } from 'react-hook-form';
 import { Button, CheckBox } from 'react-native-elements';
 
 export default (props) => {
-  const { product: { p_title = '', p_purchase_date, p_warranty_expiration 
-    , p_actual_product_photos, p_additional_photos,
+  const { product: { p_title = '',
+    p_product_description, p_upc_code, p_purchase_date,
+    p_warranty_expiration
+    , p_actual_product_photos,
+    p_additional_photos,
+    p_product_photo,
     p_warranty_page_information_photo,
-    p_receipt_photo}
+    p_receipt_photo },
+    onSubmitUpdate, isLoading
   } = props;
 
   console.log('p_receipt_photo:', props);
   const { register, setValue, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => Alert.alert('Form Data', JSON.stringify(data));
+  const onSubmit = (data) => {
+    if (onSubmitUpdate)
+      onSubmitUpdate(data);
+  };
   const [isChecked, setChecked] = useState(true);
 
   useEffect(() => {
@@ -23,12 +31,22 @@ export default (props) => {
     register({ name: 'product_description' }, { required: false });
     register({ name: 'upc_code' }, { required: false });
     register({ name: 'price' }, { required: false });
+    register({ name: 'purchase_date' }, { required: false });
+    register({ name: 'warranty_expiration' }, { required: false });
     register({ name: 'receipt_photos' }, { required: false });
     register({ name: 'product_photos' }, { required: false });
     register({ name: 'information_photos' }, { required: false });
     register({ name: 'actual_product_photos' }, { required: false });
     register({ name: 'additional_photos' }, { required: false });
-    register({ name: 'purchase_date' }, { required: false });
+    setValue('p_title', p_title, true)
+    setValue('product_description', p_product_description, true)
+    setValue('upc_code', p_upc_code, true)
+    setValue('purchase_date', p_purchase_date, true)
+    setValue('warranty_expiration', p_warranty_expiration, true)
+    setValue('receipt_photos', p_receipt_photo);
+    setValue('product_photos', p_product_photo);
+    setValue('information_photos', p_warranty_page_information_photo);
+    setValue('additional_photos', p_additional_photos);
   }, [register]);
 
   return (
@@ -48,6 +66,7 @@ export default (props) => {
             console.log('onChangeTextForm:', name, text);
             setValue(name, text, true)
           }}
+          value={p_product_description}
           name='product_description'
           multiline={true}
           numberOfLines={4}
@@ -81,7 +100,7 @@ export default (props) => {
 
         <PickerImage data={p_receipt_photo} title="Receipt Photo" />
         <PickerImage data={p_warranty_page_information_photo} title="Warranty Page Information Photo" />
-        <PickerImage data={p_actual_product_photos} title="Product Photo" />
+        <PickerImage data={p_product_photo} title="Product Photo" />
         <PickerImage data={p_actual_product_photos} numPhotos={2} title="Actual Product Photos" />
         <PickerImage data={p_additional_photos} numPhotos={2} title="Additional photos (option)" />
         <View style={styles.checkboxContainer}>
@@ -94,7 +113,8 @@ export default (props) => {
           large
           rightIcon={{ name: 'login' }}
           onPress={handleSubmit(onSubmit)}
-          title="Add"
+          loading={isLoading}
+          title="Update"
         />
       </ScrollView>
     </View>

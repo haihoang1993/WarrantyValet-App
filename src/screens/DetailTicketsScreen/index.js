@@ -23,12 +23,12 @@ function DetailTicketsScreen(props) {
   }, [navigation]);
 
   useEffect(() => {
+    setIsLoaing(true)
     getData();
   }, [])
 
   const getData = async () => {
     console.log('getdat');
-    setIsLoaing(true)
     try {
       const res = await ApiHepler.GetReplysTicket(ticket.p_id);
       const { data: { reply } } = res;
@@ -46,7 +46,12 @@ function DetailTicketsScreen(props) {
     try {
       const res = await ApiHepler.AddReplyTicket(datFrorm)
       console.log('getdat reply', res);
+      const { data } = res;
+      getData();
+      // listReply.pop(data);
+      // setListReplys({ ...listReply });
       setLoadingButton(false);
+      setModalVisible(false);
     } catch (error) {
       setLoadingButton(false);
     }
@@ -142,7 +147,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     bottom: 0,
-    height: 50
+    height: 60,
   },
   textReply: {
     backgroundColor: 'white',
@@ -174,7 +179,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    marginBottom:100,
+    marginBottom: 100,
   },
   openButton: {
     backgroundColor: "#F194FF",

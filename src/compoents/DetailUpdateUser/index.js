@@ -19,13 +19,7 @@ export default (props) => {
 
   useEffect(() => {
     register({ name: 'p_title' }, { required: false });
-    register({ name: 'receipt_photos' }, { required: false });
-    register({ name: 'product_photos' }, { required: false });
-    register({ name: 'information_photos' }, { required: false });
-    register({ name: 'actual_product_photos' }, { required: false });
-    register({ name: 'additional_photos' }, { required: false });
-    register({ name: 'authorize_valetwarranty' }, { required: false });
-    setValue('authorize_valetwarranty', false);
+    
   }, [register]);
   return (
     <View>

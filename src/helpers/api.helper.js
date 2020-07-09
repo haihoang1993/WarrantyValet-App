@@ -24,7 +24,7 @@ const GetProducts = async (token) => {
 
 const GetTickets = async (token) => {
     const url = URL_API_BASE + 'list-tickets';
-    const res = await ApiBase.GetRequest(url, null, token);
+    const res = await ApiBase.GetRequest(url, {posts_per_page:15}, token);
     return res;
 }
 
@@ -41,6 +41,17 @@ const AddReplyTicket = async (data) => {
         newToken = user.token;
     }
     const url = URL_API_BASE + 'add-reply-ticket';
+    const res = await ApiBase.PostRequest(url, data, newToken);
+    return res;
+}
+
+const UpdateProduct = async (data) => {
+    let newToken = null;
+    if (!newToken) {
+        const user = await Storage.getUserLogin();
+        newToken = user.token;
+    }
+    const url = URL_API_BASE + 'update-product';
     const res = await ApiBase.PostRequest(url, data, newToken);
     return res;
 }
@@ -98,5 +109,6 @@ export {
     AddReplyTicket,
     AddProductNew,
     DeleteProduct,
-    GetUserInfo
+    GetUserInfo,
+    UpdateProduct
 }

@@ -10,42 +10,53 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ImagesView from '../../base/ImagesView';
 import { IconBackHeader } from '@compoents';
+import { TimeHelper } from '@common';
 import { Avatar, Card } from 'react-native-elements';
 
 export default DetailTickets = (props) => {
     console.log('DetailTickets:', props);
     const { ticket, listReply = [] } = props;
+    const { ticket_content: { post_content } } = ticket;
     // const { navigation, route: { params: ticket } } = props;
     const { photos = [] } = ticket;
 
     const renderItemReply = ({ item }) => {
-        const { comment_author, comment_content, comment_date, photos = [] } = item;
+        const { comment_author, comment_content, comment_date, photos = [], avartar } = item;
+        const date = comment_date;
+        const stDate = TimeHelper.formatDate(date, 'LL');
+        const time = TimeHelper.formatDate(date, 'hh:mm a');
+        // console.log('time:',m)
         return (
             <View style={styles.viewItemReply}>
-                <Card containerStyle={styles.styleCard}>
+                {/* <Card containerStyle={styles.styleCard}> */}
+                <View style={styles.styleCard}>
                     <View style={styles.viewTopItemReply}>
                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                             <Avatar
                                 rounded
                                 size="medium"
                                 source={{
-                                    uri:
-                                        'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+                                    uri: avartar
                                 }}
                             />
-                            <Text style={{ marginHorizontal: 5, fontSize: 17 }}>
-                                {comment_author}
-                            </Text>
+                            <View style={{marginLeft:10,justifyContent:'space-between'}}>
+                                <Text style={{ marginHorizontal: 5, fontSize: 18 ,fontWeight:'bold'}}>
+                                    {comment_author?comment_author:"Admin"}
+                                </Text>
+                                <Text style={{ fontSize: 15, marginTop:3}}>
+                                    {stDate}  at {time}
+                                </Text>
+                            </View>
+
                         </View>
-                        <Text style={{ fontSize: 18, fontWeight: '600' }}>
-                            20-03-2020
-                    </Text>
+
                     </View>
                     <View>
                         <Text style={{ fontSize: 20, marginTop: 10 }}> {comment_content}</Text>
                     </View>
                     {photos.length > 0 && (<ImagesView data={photos} />)}
-                </Card>
+                    {/* </Card> */}
+                </View>
             </View>
         )
     }
@@ -59,13 +70,16 @@ export default DetailTickets = (props) => {
             <View style={styles.header}>
                 <Text style={styles.titleTicket}>{ticket.title}</Text>
                 <Text style={styles.date}>{ticket.date}</Text>
-                <Text style={styles.des}>hhhhh</Text>
+                <Text style={styles.des}>{post_content}</Text>
                 <ImagesView data={photos} />
             </View>
             <View style={{ margin: 0, padding: 0 }}>
-                <FlatList data={listReply} renderItem={renderItemReply}>
+                <Card containerStyle={styles.styleCardList}>
 
-                </FlatList>
+                    {listReply.length == 0 && (<Text style={{ padding: 20, fontSize: 22 }}> No comments found. </Text>)}
+                    {listReply.length > 0 && (<Text style={{ margin: 20, fontSize: 20 }}>Comments:</Text>)}
+                    {listReply.length > 0 && (<FlatList style={{ padding: 0 }} data={listReply} renderItem={renderItemReply} />)}
+                </Card>
             </View>
         </View>
     )
@@ -88,8 +102,16 @@ const styles = StyleSheet.create({
     },
     styleCard: {
         borderRadius: 10,
+        borderTopColor: '#a19e9d',
+        borderTopWidth: 0.4,
+        margin: 0,
+        padding: 15
+    },
+    styleCardList: {
+        borderRadius: 10,
         marginHorizontal: 5,
-        marginVertical: 10
+        marginVertical: 10,
+        padding: 0,
     },
     titleTicket: {
         fontSize: 30,
@@ -107,7 +129,9 @@ const styles = StyleSheet.create({
     },
     header: {
         backgroundColor: 'white',
-        paddingHorizontal: 5,
+        paddingHorizontal: 15,
+        borderColor: '#2564d9',
+        borderWidth: 1,
         shadowColor: "#000",
         shadowOffset: {
             width: 1,
@@ -120,7 +144,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white'
     },
     viewItemReply: {
-        margin: 0
+        margin: 0,
+        padding: 0
     },
     viewTopItemReply: {
         flexDirection: 'row',
