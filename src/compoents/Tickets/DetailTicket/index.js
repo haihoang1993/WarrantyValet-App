@@ -75,16 +75,16 @@ const styles = StyleSheet.create({
         margin: 5,
         padding: 5,
         marginHorizontal: 10,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 4,
-            height: 4
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 100,
-        borderRadius: 10,
-        backgroundColor: 'white'
+        // shadowColor: "#000",
+        // shadowOffset: {
+        //     width: 4,
+        //     height: 4
+        // },
+        // shadowOpacity: 0.25,
+        // shadowRadius: 3.84,
+        // elevation: 100,
+        // borderRadius: 10,
+        // backgroundColor: 'white'
     },
     styleCard: {
         borderRadius: 10,
@@ -108,7 +108,16 @@ const styles = StyleSheet.create({
     header: {
         backgroundColor: 'white',
         paddingHorizontal: 5,
-
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 1,
+            height: 1
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 100,
+        borderRadius: 10,
+        backgroundColor: 'white'
     },
     viewItemReply: {
         margin: 0

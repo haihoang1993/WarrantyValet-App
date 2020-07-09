@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 export default (props) => {
-  const {data}=props;
+  const { data } = props;
   return (
     <View>
       <FlatList
@@ -9,7 +9,7 @@ export default (props) => {
         renderItem={({ item }) => {
           return (
             <View style={styles.itemList}>
-              <Text style={{ fontSize: 16,fontWeight:'900' }}>{item}</Text>
+              <Text style={{ fontSize: 16, fontWeight: '500' }}>{item}</Text>
             </View>
           );
         }}

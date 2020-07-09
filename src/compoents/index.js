@@ -9,6 +9,7 @@ import SignupForm from './SignUp';
 import AppBarDraw from './Appbar';
 import IconBackHeader from './Appbar/IconBackHeader';
 import AddTickets from './AddTickets';
+import DetailUpdateUser from './DetailUpdateUser';
 import ViewTestSaga from './ViewTestSaga';
 import LoadingView from './LoadingView';
 import * as MySubscriptionView from './MySubscriptionCompoent';
@@ -32,5 +33,6 @@ export {
   ListTickets,
   DetailTicket,
   IconBackHeader,
-  BaseView
+  BaseView,
+  DetailUpdateUser
 };

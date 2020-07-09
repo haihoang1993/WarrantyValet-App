@@ -28,8 +28,10 @@ export default (props) => {
     try {
       const res = await ApiHepler.Login(data);
       const { data: { data: { token } } } = res;
+      const resUser=await ApiHepler.GetUserInfo(token);
+      console.log('res user:',resUser);
       await StorageDB.setIsLogin(true);
-      await StorageDB.setUserLogin({ ...data, ...{ token: token } });
+      await StorageDB.setUserLogin({ ...data, ...{ token: token,info:resUser.data } });
       setLoading(false);
       navigation.replace(ScreensName.MainScreen);
     } catch (error) {

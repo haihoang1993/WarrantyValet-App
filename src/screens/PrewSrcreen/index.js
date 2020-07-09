@@ -73,7 +73,7 @@ const ListPlansScreen = (props) => {
                 onPress={() => {
                   navigation.push(ScreensName.ListPlanScreen);
                 }}
-                titleStyle={{ fontSize: 23, fontWeight: "bold", marginVertical: 10 }}
+                titleStyle={{ fontSize: 20, fontWeight: "bold", marginVertical: 10 }}
                 rightIcon={{ name: 'login' }}
                 title="PLANS & PRICING"
                 buttonStyle={{ backgroundColor: "#fa3939", fontWeight: "bold" }}

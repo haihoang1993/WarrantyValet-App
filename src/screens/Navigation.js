@@ -6,7 +6,7 @@ import * as React from 'react';
 import { View, Text,StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { ListPlansScreen, DetailTicketsScreen,
+import { ListPlansScreen, DetailTicketsScreen,DetailUserUpdateScreen,
   DetailProductScreen, AddTicketsScreen, 
   TestReduxSaga, SignUpScreen, MainScreen, LoginScreen, AddProducts, PrewSrcreen } from '@screens';
 import { useTheme } from 'react-native-paper';
@@ -21,6 +21,7 @@ const Screens = {
   DetailProuctScreen: 'DetailProductScreen',
   DetailTicketScreen: 'DetailTicketScreen',
   AddTicketsScreen: 'AddTicketsScreen',
+  DetailUpdateUser: 'DetailUpdateUser',
   PrewScreen: 'PrewScreen',
 };
 
@@ -52,9 +53,10 @@ function NavApp(props) {
       <Stack.Screen options={header('Register')} name={Screens.SignUpScreen} component={SignUpScreen} />
       <Stack.Screen options={{ headerShown: false }} name={Screens.MainScreen} component={MainScreen} />
       <Stack.Screen name={Screens.DetailTicketScreen} component={DetailTicketsScreen} />
-      <Stack.Screen options={header('Add New Tickets')} name={Screens.AddTicketsScreen} component={AddTicketsScreen} />
+      <Stack.Screen name={Screens.AddTicketsScreen} component={AddTicketsScreen} />
       <Stack.Screen name={Screens.AddProductsScreen} component={AddProducts} />
-      <Stack.Screen options={header('Product')} name={Screens.DetailProuctScreen} component={DetailProductScreen} />
+      <Stack.Screen name={Screens.DetailUpdateUser} component={DetailUserUpdateScreen} />
+      <Stack.Screen name={Screens.DetailProuctScreen} component={DetailProductScreen} />
     </Stack.Navigator>
   );
 }

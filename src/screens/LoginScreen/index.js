@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import _ from 'lodash';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import {
   View,
   Text,
@@ -12,12 +12,21 @@ import {
   Image,
 } from 'react-native';
 import BaseScreen from '../BaseScreen';
-import { LoginForm } from '@compoents';
+import { LoginForm, IconBackHeader } from '@compoents';
 import { connect } from 'react-redux';
 // import {Button} from 'react-native-elements';
 import { Device, Images } from '@common';
 
 const LoginScreen = (props) => {
+  const { navigation } = props;
+  useLayoutEffect(() => {
+    const title = 'Login';
+    navigation.setOptions({
+      title: title,
+      headerLeft: () => <IconBackHeader {...props} />,
+    });
+  }, [navigation]);
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View

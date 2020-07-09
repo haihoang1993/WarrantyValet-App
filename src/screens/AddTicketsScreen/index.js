@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { useState } from 'react';
+import React, { useState,useLayoutEffect } from 'react';
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
-import { AddTickets as AddProductsView } from '@compoents';
+import { AddTickets as AddProductsView,IconBackHeader } from '@compoents';
 import { connect } from 'react-redux';
 import { StorageDB, ApiHepler } from '@helpers';
 import Toast from 'react-native-simple-toast';
@@ -28,8 +28,17 @@ const formatPhotos = (list) => {
 }
 
 const AddTicketsScreen = (props) => {
+
   const { listProucts, navigation } = props;
   const [isLoading, setLoading] = useState(false);
+
+  useLayoutEffect(() => {
+    const title = 'Add New Tickets';
+    navigation.setOptions({
+      title: title,
+      headerLeft: () => <IconBackHeader {...props} />,
+    });
+  }, [navigation]);
 
   const onAddTicket = async (data) => {
     const user = await StorageDB.getUserLogin();

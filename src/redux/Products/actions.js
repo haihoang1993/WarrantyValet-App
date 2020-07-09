@@ -8,7 +8,7 @@ export const setListProducts = (list = []) => {
 };
 
 export const deleteProduct = (index) => {
-  console.log('deleteProduct action:',index);
+  console.log('deleteProduct action:', index);
   return {
     type: DELETE_PRODUCT,
     value: index

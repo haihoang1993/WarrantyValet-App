@@ -30,7 +30,7 @@ const ListProducts = (props) => {
                 <Text style={styles.title}>{title}</Text>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <Text style={styles.priceSub}> Status:</Text>
-                  <Text style={{ color: '#ff1414', fontWeight: '600' }}>Open</Text>
+                  <Text style={{ color: '#1fad4a', fontWeight: '600' }}>Open</Text>
                 </View>
               </View>
             </View>

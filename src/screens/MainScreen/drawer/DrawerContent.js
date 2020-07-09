@@ -11,6 +11,7 @@ import {
 } from 'react-native-paper';
 import { EventHelper } from '@helpers';
 import { Button } from 'react-native-elements';
+import {ScreensName} from '@screens';
 
 export default function DrawerContent(props) {
   const { listScreens = [], navigation } = props;
@@ -25,7 +26,7 @@ export default function DrawerContent(props) {
           onPress: () => console.log("Cancel Pressed"),
           style: "cancel"
         },
-        { text: "OK", onPress: () => EventHelper.EmitToScreen('logout',{}) }
+        { text: "OK", onPress: () => EventHelper.EmitToScreen('logout', {}) }
       ],
       { cancelable: false }
     );
@@ -73,8 +74,10 @@ export default function DrawerContent(props) {
               </Paragraph>
               <Caption style={styles.caption} />
             </View>
-            <View style={styles.section} d dddd>
-              <Button title="Account details" />
+            <View style={styles.section}>
+              <Button onPress={()=>{
+                  EventHelper.EmitToScreen(ScreensName.DetailUpdateUser,{})
+              }} title="Account details"/>
             </View>
           </View>
         </View>

@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect,useLayoutEffect} from 'react';
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
-import { ListPlans, LoadingView } from '@compoents';
+import { ListPlans, LoadingView,IconBackHeader } from '@compoents';
 import { ApiHepler } from '@helpers';
 import {  PlanReduxAll } from '@redux';
 import { connect } from 'react-redux';
@@ -10,6 +10,14 @@ const ListPlansScreen = (props) => {
   const { navigation,setListPlans } = props;
   const [loading,setLoading]=useState(false);
   const [listPlans,setPlans]=useState([]);
+
+  useLayoutEffect(() => {
+    const title = 'PLANS & PRICING';
+    navigation.setOptions({
+      title: title,
+      headerLeft: () => <IconBackHeader {...props} />,
+    });
+  }, [navigation]);
 
   useEffect(()=>{
     const getData=async ()=>{

@@ -28,6 +28,12 @@ const GetTickets = async (token) => {
     return res;
 }
 
+const GetUserInfo = async (token) => {
+    const url = URL_API_BASE + 'user';
+    const res = await ApiBase.GetRequest(url, null, token);
+    return res;
+}
+
 const AddReplyTicket = async (data) => {
     let newToken = null;
     if (!newToken) {
@@ -92,4 +98,5 @@ export {
     AddReplyTicket,
     AddProductNew,
     DeleteProduct,
+    GetUserInfo
 }

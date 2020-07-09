@@ -8,7 +8,7 @@ const ListProductsReducers = (listPlans = [], action) => {
       return [...action.value];
     case DELETE_PRODUCT:
       listPlans.splice(action.value);
-      console.log('deleteed:',listPlans);
+      console.log('deleteed:', listPlans);
       return [...listPlans]
     case ADD_PRODUCT:
       // listPlans.pop(action.value)
