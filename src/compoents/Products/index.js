@@ -16,14 +16,14 @@ const ListProducts = (props) => {
 
   const { data, removeItem } = props;
 
-  const renderItem = ({ item, position }) => {
+  const renderItem = ({ item, index }) => {
     const { p_title, p_price_format, p_created_date } = item;
     return (
       <TouchableOpacity
         onLongPress={
           () => {
             if (removeItem)
-              removeItem(item, position)
+              removeItem(item, index)
           }
         }
         onPress={() => {

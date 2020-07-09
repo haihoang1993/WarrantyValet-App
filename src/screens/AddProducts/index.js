@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import Toast from 'react-native-simple-toast';
 
 const AddProducts = (props) => {
-  const { navigation } = props;
+  const { navigation ,addProduct} = props;
   const [isLoading, setLoading] = useState(false);
 
   useLayoutEffect(() => {
@@ -25,9 +25,12 @@ const AddProducts = (props) => {
     try {
       const res = await ApiHepler.AddProductNew(data);
       console.log('add res:', res);
+      const {data:newData}=res;
       const toastContent = 'Created Product successful!';
       Toast.show(toastContent, 3);
-      navigation.pop(1)
+      console.log('add res: obj', newData.data);
+      addProduct(newData.data);
+      navigation.pop(1);
     } catch (error) {
       console.log('add res error:', error)
     } finally {
@@ -60,4 +63,18 @@ const AddProducts = (props) => {
 }
 
 
-export default AddProducts;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addProduct:(obj)=>{
+      dispatch(ProductReduxAll.ActionsProduct.addProduct(obj))
+    }
+  };
+};
+
+
+const AddContainer = connect(
+  null,
+  mapDispatchToProps,
+)(AddProducts);
+
+export default AddContainer;

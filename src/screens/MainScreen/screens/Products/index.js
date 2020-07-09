@@ -8,6 +8,7 @@ import { EventHelper, StorageDB, ApiHepler } from '@helpers';
 const axios = require('axios');
 import { ProductReduxAll } from '@redux';
 import { connect } from 'react-redux';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 const Type_Load = {
   LOADING: 1,
@@ -18,6 +19,7 @@ const Type_Load = {
 function ProductsScreen(props) {
   console.log('ProductsScreen:', props);
   const [isLoaing, setLoading] = useState(false);
+  const [isLoaingApp, setLoadingApp] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
 
   // const [data, setData] = useState([]);
@@ -59,14 +61,17 @@ function ProductsScreen(props) {
         },
         {
           text: 'OK', onPress: async () => {
+            setLoadingApp(true);
             try {
               const { p_id } = item;
               console.log('remove prouct:', p_id);
               const res = await ApiHepler.DeleteProduct(p_id);
+              props.deleteProduct(pos);
               console.log('remove prouct:', res);
             } catch (error) {
               console.log('remove prouct error:', error);
-
+            } finally {
+              setLoadingApp(false);
             }
 
           }
@@ -92,6 +97,13 @@ function ProductsScreen(props) {
         style={{
           flex: 1,
         }}>
+        <Spinner
+          visible={isLoaingApp}
+          textContent={'Loading...'}
+          textStyle={{
+            color: '#FFF'
+          }}
+        />
         <ScrollView
           refreshControl={
             <RefreshControl
@@ -125,6 +137,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setListProucts: (listPans) => {
       dispatch(ProductReduxAll.ActionsProduct.setListProducts(listPans))
+    },
+    deleteProduct: (index) => {
+      dispatch(ProductReduxAll.ActionsProduct.deleteProduct(index))
     }
   };
 };

@@ -6,3 +6,4 @@ export const setListPlan = (list = []) => {
     value: list,
   };
 };
+
