@@ -16,6 +16,8 @@ const ListPlansScreen = (props) => {
     navigation.setOptions({
       title: title,
       headerLeft: () => <IconBackHeader {...props} />,
+      headerRight: () => <View />,
+
     });
   }, [navigation]);
 

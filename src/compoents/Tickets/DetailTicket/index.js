@@ -39,11 +39,11 @@ export default DetailTickets = (props) => {
                                     uri: avartar
                                 }}
                             />
-                            <View style={{marginLeft:10,justifyContent:'space-between'}}>
-                                <Text style={{ marginHorizontal: 5, fontSize: 18 ,fontWeight:'bold'}}>
-                                    {comment_author?comment_author:"Admin"}
+                            <View style={{ marginLeft: 10, justifyContent: 'space-between' }}>
+                                <Text style={{ marginHorizontal: 5, fontSize: 17, fontWeight: 'bold' }}>
+                                    {comment_author ? comment_author : "Admin"}
                                 </Text>
-                                <Text style={{ fontSize: 15, marginTop:3}}>
+                                <Text style={{ fontSize: 15, marginTop: 3, color: '#807f7d', }}>
                                     {stDate}  at {time}
                                 </Text>
                             </View>
@@ -76,8 +76,8 @@ export default DetailTickets = (props) => {
             <View style={{ margin: 0, padding: 0 }}>
                 <Card containerStyle={styles.styleCardList}>
 
-                    {listReply.length == 0 && (<Text style={{ padding: 20, fontSize: 22 }}> No comments found. </Text>)}
-                    {listReply.length > 0 && (<Text style={{ margin: 20, fontSize: 20 }}>Comments:</Text>)}
+                    {listReply.length == 0 && (<Text style={{ padding: 20, fontSize: 18 }}> No comments found. </Text>)}
+                    {listReply.length > 0 && (<Text style={{ margin: 20, fontSize: 17 }}>Comments:</Text>)}
                     {listReply.length > 0 && (<FlatList style={{ padding: 0 }} data={listReply} renderItem={renderItemReply} />)}
                 </Card>
             </View>
@@ -87,8 +87,7 @@ export default DetailTickets = (props) => {
 const styles = StyleSheet.create({
     wrap: {
         margin: 5,
-        padding: 5,
-        marginHorizontal: 10,
+
         // shadowColor: "#000",
         // shadowOffset: {
         //     width: 4,
@@ -114,15 +113,16 @@ const styles = StyleSheet.create({
         padding: 0,
     },
     titleTicket: {
-        fontSize: 30,
+        fontSize: 22,
         fontWeight: 'bold',
         marginTop: 10,
+        color: '#2564d9'
     },
     des: {
-        fontSize: 20,
+        fontSize: 19,
     },
     date: {
-        fontSize: 17,
+        fontSize: 16,
         marginBottom: 10,
         color: '#807f7d',
         fontWeight: 'bold',
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-        elevation: 100,
+        elevation: 8,
         borderRadius: 10,
         backgroundColor: 'white'
     },

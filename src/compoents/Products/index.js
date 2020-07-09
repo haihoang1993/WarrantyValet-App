@@ -20,12 +20,12 @@ const ListProducts = (props) => {
     const { p_title, p_price_format, p_created_date } = item;
     return (
       <TouchableOpacity
-        onLongPress={
-          () => {
-            if (removeItem)
-              removeItem(item, index)
-          }
-        }
+        // onLongPress={
+        //   () => {
+        //     if (removeItem)
+        //       removeItem(item, index)
+        //   }
+        // }
         onPress={() => {
           EventHelper.EmitToScreen(ScreensName.DetailProuctScreen, item);
         }}>
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   },
   styleViewRow: { flexDirection: 'row', justifyContent: 'space-between' },
   title: {
-    fontSize: 23,
+    fontSize: 18,
     color: '#2564d9',
     fontWeight: '700',
   },

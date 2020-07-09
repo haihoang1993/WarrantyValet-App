@@ -83,7 +83,7 @@ export default NavApp;
 
 const styles = StyleSheet.create({
   titleHeader: {
-      fontSize: 20,
+      fontSize: 18,
       fontWeight: '500',
       color: 'white',
       textAlign: 'center',

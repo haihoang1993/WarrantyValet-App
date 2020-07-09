@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, FlatList, Alert } from 'react-native';
 import { DrawerItem, DrawerContentScrollView } from '@react-navigation/drawer';
 import {
@@ -11,11 +11,23 @@ import {
 } from 'react-native-paper';
 import { EventHelper } from '@helpers';
 import { Button } from 'react-native-elements';
-import {ScreensName} from '@screens';
+import { ScreensName } from '@screens';
+import { StorageDB } from '@helpers';
 
 export default function DrawerContent(props) {
   const { listScreens = [], navigation } = props;
   console.log('DrawerContent', props);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const getUser = async () => {
+      const user = await StorageDB.getUserLogin();
+      const { info: { data: userInfo } } = user
+      console.log('user info:', userInfo);
+      setUser(userInfo);
+    }
+    getUser();
+  }, [])
   const createAlertLogout = () => {
     Alert.alert(
       "Logout",
@@ -61,23 +73,24 @@ export default function DrawerContent(props) {
           <Avatar.Image
             source={{
               uri:
-                'https://pbs.twimg.com/profile_images/952545910990495744/b59hSXUd_400x400.jpg',
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRfBzhsIthnvitXwnkj8dkdhBxop2IYp9cS1g&usqp=CAU',
             }}
-            size={50}
+            size={70}
           />
-          <Title style={styles.title}>Dawid Urbaniak</Title>
-          <Caption style={styles.caption}>@trensik</Caption>
+          {user && (<Title style={styles.title}>{user.display_name}</Title>)}
+          {user && (<Caption style={styles.caption}>{user.user_email}</Caption>)}
+
           <View style={styles.row}>
             <View style={styles.section}>
               <Paragraph style={[styles.paragraph, styles.caption]}>
-                Home Plan
+
               </Paragraph>
               <Caption style={styles.caption} />
             </View>
             <View style={styles.section}>
-              <Button onPress={()=>{
-                  EventHelper.EmitToScreen(ScreensName.DetailUpdateUser,{})
-              }} title="Account details"/>
+              <Button onPress={() => {
+                EventHelper.EmitToScreen(ScreensName.DetailUpdateUser, {})
+              }} title="Account details" />
             </View>
           </View>
         </View>

@@ -16,6 +16,7 @@ import * as MySubscriptionView from './MySubscriptionCompoent';
 import DetailTicket from './Tickets/DetailTicket';
 import * as PaymentCompoent from './PaymentCompoent';
 import * as BaseView from './base';
+import * as DialogText from './DialogText';
 export {
   ViewTest,
   ListPlans,
@@ -34,5 +35,6 @@ export {
   DetailTicket,
   IconBackHeader,
   BaseView,
-  DetailUpdateUser
+  DetailUpdateUser,
+  DialogText
 };

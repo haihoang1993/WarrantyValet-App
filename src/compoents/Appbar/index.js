@@ -12,8 +12,8 @@ export default (props) => {
           props.navigation.openDrawer();
         }}
       />
-      <Appbar.Content title={title} />
-      {/* <Appbar.Action icon="magnify" onPress={this._handleSearch} /> */}
+      <Appbar.Content titleStyle={{fontWeight:'600',fontSize:18}} title={title} />
+      {/* <Appbar.Action icon="magnify" onPress={thi._handleSearch} /> */}
       {/* <Appbar.Action icon="dots-vertical" onPress={this._handleMore} /> */}
     </Appbar.Header>
   );

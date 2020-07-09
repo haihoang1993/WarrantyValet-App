@@ -19,6 +19,7 @@ function DetailTicketsScreen(props) {
     navigation.setOptions({
       title: title,
       headerLeft: () => <IconBackHeader {...props} />,
+      headerRight: () => <View />,
     });
   }, [navigation]);
 
@@ -108,7 +109,7 @@ function DetailTicketsScreen(props) {
           flexDirection: 'column',
           justifyContent: 'space-between',
         }}>
-        <View style={{ flex: 1 }}>
+        {(!isLoaing) && (<View style={{ flex: 1 }}>
           {renderModal()}
           <ScrollView>
             <DetailTicket listReply={listReply} ticket={ticket} />
@@ -118,12 +119,13 @@ function DetailTicketsScreen(props) {
               <TouchableOpacity onPress={() => {
                 setModalVisible(!modalVisible);
               }}>
-                <Text style={{ fontSize: 23, color: '#8a8a8a', paddingHorizontal: 5 }}>Leave a Reply</Text>
+                <Text style={{ fontSize: 20, color: '#8a8a8a', paddingHorizontal: 5 }}>Leave a Reply</Text>
               </TouchableOpacity>
             </View>
           </View>
-          {(isLoaing) && (<LoadingView />)}
-        </View>
+        </View>)}
+
+        {(isLoaing) && (<LoadingView />)}
       </View>
     </SafeAreaView>
   );

@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { useState,useLayoutEffect } from 'react';
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, Alert } from 'react-native';
 import { AddTickets as AddProductsView,IconBackHeader } from '@compoents';
 import { connect } from 'react-redux';
 import { StorageDB, ApiHepler } from '@helpers';
@@ -37,6 +37,7 @@ const AddTicketsScreen = (props) => {
     navigation.setOptions({
       title: title,
       headerLeft: () => <IconBackHeader {...props} />,
+      headerRight: () => <View />,
     });
   }, [navigation]);
 
@@ -71,16 +72,26 @@ const AddTicketsScreen = (props) => {
           flex: 1,
           flexDirection: 'column',
           justifyContent: 'space-between',
-          padding: 5,
+          padding: 10,
         }}>
         <AddProductsView isLoading={isLoading} onSubmit={(data) => {
           const check = validateObj(data, ['t_title', 't_product_id', 't_content']);
           // console.log('check validate', da);
           console.log('check validate', check);
+          //Please complete require field!
           if (check) {
             onAddTicket(data);
           } else {
+            Alert.alert(
+              'Alert:',
+              'Please complete require field!',
+              [
+                { text: 'OK', onPress: () => console.log('OK Pressed') }
+              ],
+              { cancelable: false }
+            );
             setLoading(false);
+
           }
         }} listProduct={listProucts} />
       </View>

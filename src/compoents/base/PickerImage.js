@@ -120,7 +120,7 @@ export default (props) => {
 
 const styles = StyleSheet.create({
   textTile: {
-    fontSize: 20,
+    fontSize: 18,
   },
   wrap: {
     flexDirection: 'column',

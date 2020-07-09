@@ -18,6 +18,7 @@ const UserDetailScreen = (props) => {
     navigation.setOptions({
       title: title,
       headerLeft: () => <IconBackHeader {...props} />,
+      headerRight: () => <View />,
     });
   }, [navigation]);
 

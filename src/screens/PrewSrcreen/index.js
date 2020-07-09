@@ -50,7 +50,7 @@ const ListPlansScreen = (props) => {
                 onPress={() => {
                   navigation.push(ScreensName.LoginScreen);
                 }}
-                titleStyle={{ fontSize: 20, fontWeight: "bold", marginVertical: 5 }}
+                titleStyle={{ fontSize: 17, fontWeight: "bold", marginVertical: 5 }}
 
                 rightIcon={{ name: 'login' }}
                 title="LOGIN"
@@ -61,7 +61,7 @@ const ListPlansScreen = (props) => {
                 onPress={() => {
                   navigation.push(ScreensName.SignUpScreen);
                 }}
-                titleStyle={{ fontSize: 20, fontWeight: "bold", marginVertical: 5 }}
+                titleStyle={{ fontSize: 17, fontWeight: "bold", marginVertical: 5 }}
 
                 rightIcon={{ name: 'LOGIN' }}
                 title="REGISTER"
@@ -74,7 +74,7 @@ const ListPlansScreen = (props) => {
                 onPress={() => {
                   navigation.push(ScreensName.ListPlanScreen);
                 }}
-                titleStyle={{ fontSize: 20, fontWeight: "bold", marginVertical: 10 }}
+                titleStyle={{ fontSize: 17, fontWeight: "bold", marginVertical: 10 }}
                 rightIcon={{ name: 'login' }}
                 title="PLANS & PRICING"
                 buttonStyle={{ backgroundColor: "#fa3939", fontWeight: "bold" }}

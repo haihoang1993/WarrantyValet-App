@@ -6,7 +6,7 @@ export default (props) => {
   return (
     <>
       <AppBarDraw title="My Subscription" {...props} />
-      <View style={{flex: 1}}>
+      <View style={{flex: 1,margin:10}}>
         <ScrollView>
           <MySubscriptionView.TopView />
           <MySubscriptionView.SubscriptionTotalsView />

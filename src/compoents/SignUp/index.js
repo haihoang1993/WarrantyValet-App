@@ -11,7 +11,7 @@ export default (props) => {
   const {navigation} = props;
 
   useEffect(() => {
-    register({name: 'email'}, {required: true});
+    register({name: 'email'}, {required: false});
     register({name: 'password'});
     register({name: 'password_repeat'});
   }, [register]);
@@ -37,7 +37,7 @@ export default (props) => {
       /> */}
       <Button
         onPress={() => {
-          navigation.replace(ScreensName.MainScreen);
+          // navigation.replace(ScreensName.MainScreen);
         }}
         style={{marginVertical: 10}}
         large

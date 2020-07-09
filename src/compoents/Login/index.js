@@ -24,17 +24,42 @@ export default (props) => {
   }, [register]);
 
   const login = async (data) => {
+    const {user_name='',password=''} =data;
+    if(user_name==''||password==''){
+      Alert.alert(
+        'Error:',
+        'Please complete require field!',
+        [
+          { text: 'OK', onPress: () => console.log('OK Pressed') }
+        ],
+        { cancelable: false }
+      );
+      return;
+    }
     setLoading(true)
     try {
       const res = await ApiHepler.Login(data);
       const { data: { data: { token } } } = res;
-      const resUser=await ApiHepler.GetUserInfo(token);
-      console.log('res user:',resUser);
+      const resUser = await ApiHepler.GetUserInfo(token);
+      console.log('res login:', res);
       await StorageDB.setIsLogin(true);
-      await StorageDB.setUserLogin({ ...data, ...{ token: token,info:resUser.data } });
+      await StorageDB.setUserLogin({ ...data, ...{ token: token, info: resUser.data } });
       setLoading(false);
       navigation.replace(ScreensName.MainScreen);
     } catch (error) {
+      console.log('error:', error);
+      const { status } = error;
+      if (status == 404) {
+        Alert.alert(
+          'Error:',
+          'Incorrect username or password!',
+          [
+            { text: 'OK', onPress: () => console.log('OK Pressed') }
+          ],
+          { cancelable: false }
+        );
+      }
+      //Incorrect username or password.
       setLoading(false);
     };
   }

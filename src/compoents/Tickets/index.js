@@ -16,7 +16,7 @@ const ListProducts = (props) => {
   const { data } = props;
 
   const ItemList = ({ item }) => {
-    const { title, date, status } = item;
+    const { title, date, status, product_name = '' } = item;
 
     return (
       <TouchableOpacity
@@ -30,14 +30,14 @@ const ListProducts = (props) => {
                 <Text style={styles.title}>{title}</Text>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <Text style={styles.priceSub}> Status:</Text>
-                  <Text style={{ color: '#1fad4a', fontWeight: '600' }}>Open</Text>
+                  <Text style={{ color: '#1fad4a', fontWeight: '600' }}>{status?'Open':'Close'}</Text>
                 </View>
               </View>
             </View>
             <View style={styles.styleViewRow}>
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Text style={styles.priceSub}> Product:</Text>
-                <Text style={styles.price}>Test</Text>
+                <Text style={styles.price}>{product_name}</Text>
               </View>
               <Text> {date} </Text>
             </View>
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   title: {
-    fontSize: 23,
+    fontSize: 18,
     color: '#2564d9',
     fontWeight: '700',
   },
