@@ -21,7 +21,7 @@ export default (props) => {
     const { photo_url: uri } = item;
     return (
       <ImageModal
-        isTranslucent={Platform.OS === 'android' ? true : false}
+        isTranslucent={Platform.OS === 'android' ? false : false}
         resizeMode="contain"
         imageBackgroundColor="#000000"
         style={styles.image}

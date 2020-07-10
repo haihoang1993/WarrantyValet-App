@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { useLayoutEffect ,useState} from 'react';
+import React, { useLayoutEffect ,useState,useEffect} from 'react';
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
 import BaseScreen from '../BaseScreen';
 import { DetailProduct as AddProductsView, IconBackHeader } from '@compoents';
@@ -9,6 +9,7 @@ import Toast from 'react-native-simple-toast';
 
 const AddProducts = (props) => {
   const { navigation, route: { params: product } } = props;
+  const [productMain,setProductMain]=useState(null);
   const { addProduct } = props;
   const [isLoading, setLoading] = useState(false);
 
@@ -17,9 +18,16 @@ const AddProducts = (props) => {
     navigation.setOptions({
       title: title,
       headerLeft: () => <IconBackHeader {...props} />,
+      headerRight: () => <View />,
     });
   }, [navigation]);
 
+  useEffect(()=>{
+    setTimeout(function(){
+      setProductMain(product);
+     }, 300);
+
+  },[])
 
   const onSubmitApi = async (data) => {
     setLoading(true);
@@ -48,7 +56,7 @@ const AddProducts = (props) => {
           justifyContent: 'space-between',
           padding: 5,
         }}>
-        <AddProductsView  isLoading={isLoading} onSubmitUpdate={(data) => {
+          {productMain && (   <AddProductsView  isLoading={isLoading} onSubmitUpdate={(data) => {
           // const checkVali = Utils.validateObj(data, ['p_title',
           //   'receipt_photos',
           //   'product_photos', 'information_photos', 'actual_product_photos', 'additional_photos'])
@@ -59,7 +67,8 @@ const AddProducts = (props) => {
           // }
           onSubmitApi(data);
 
-        }}  product={product} />
+        }}  product={product} />)}
+     
       </View>
     </SafeAreaView>
   );

@@ -48,9 +48,9 @@ function NavApp(props) {
         headerTitleStyle: styles.titleHeader
       }}>
       <Stack.Screen options={{ headerShown: false }} name={Screens.PrewScreen} component={PrewSrcreen} />
-      <Stack.Screen options={header('PLANS & PRICING')} name={Screens.ListPlanScreen} component={ListPlansScreen} />
-      <Stack.Screen options={header('Login')} name={Screens.LoginScreen} component={LoginScreen} />
-      <Stack.Screen options={header('Register')} name={Screens.SignUpScreen} component={SignUpScreen} />
+      <Stack.Screen name={Screens.ListPlanScreen} component={ListPlansScreen} />
+      <Stack.Screen name={Screens.LoginScreen} component={LoginScreen} />
+      <Stack.Screen name={Screens.SignUpScreen} component={SignUpScreen} />
       <Stack.Screen options={{ headerShown: false }} name={Screens.MainScreen} component={MainScreen} />
       <Stack.Screen name={Screens.DetailTicketScreen} component={DetailTicketsScreen} />
       <Stack.Screen name={Screens.AddTicketsScreen} component={AddTicketsScreen} />

@@ -62,11 +62,6 @@ export default DetailTickets = (props) => {
     }
     return (
         <View style={styles.wrap}>
-            {/* <View>
-                <TouchableOpacity onPress={onBack}>
-                    <Icon size={30} style={{ fontWeight: '800' }} name="angle-left" />
-                </TouchableOpacity>
-            </View> */}
             <View style={styles.header}>
                 <Text style={styles.titleTicket}>{ticket.title}</Text>
                 <Text style={styles.date}>{ticket.date}</Text>
@@ -87,7 +82,6 @@ export default DetailTickets = (props) => {
 const styles = StyleSheet.create({
     wrap: {
         margin: 5,
-
         // shadowColor: "#000",
         // shadowOffset: {
         //     width: 4,

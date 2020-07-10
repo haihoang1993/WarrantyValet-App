@@ -20,14 +20,14 @@ const ListProducts = (props) => {
     const { p_title, p_price_format, p_created_date } = item;
     return (
       <TouchableOpacity
-        // onLongPress={
-        //   () => {
-        //     if (removeItem)
-        //       removeItem(item, index)
-        //   }
-        // }
+        onLongPress={
+          () => {
+            if (removeItem)
+              removeItem(item, index)
+          }
+        }
         onPress={() => {
-          EventHelper.EmitToScreen(ScreensName.DetailProuctScreen, item);
+          EventHelper.EmitToScreen(ScreensName.DetailProuctScreen,item);
         }}>
         <View style={{ flex: 1, }}>
           <Card containerStyle={styles.styleCard}>

@@ -86,6 +86,6 @@ const styles = StyleSheet.create({
     height: 45,
     marginBottom: 20,
     flexDirection: 'row',
-    alignItems: 'center',
+    // alignItems: 'center',
   },
 });
