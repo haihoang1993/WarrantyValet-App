@@ -1,4 +1,4 @@
-import { SET_PRODUCT, DELETE_PRODUCT, ADD_PRODUCT } from './actionTypes';
+import { SET_PRODUCT, DELETE_PRODUCT, ADD_PRODUCT,UPDATE_PRODUCT } from './actionTypes';
 
 export const setListProducts = (list = []) => {
   return {
@@ -19,5 +19,12 @@ export const addProduct = (product) => {
   return {
     type: ADD_PRODUCT,
     value: product
+  }
+}
+
+export const updateProduct =(product)=>{
+  return {
+    type:UPDATE_PRODUCT,
+    value:product
   }
 }

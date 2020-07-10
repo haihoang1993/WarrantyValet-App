@@ -8,7 +8,7 @@ import { Button, CheckBox } from 'react-native-elements';
 
 export default (props) => {
   const { product: { p_title = '',
-    p_product_description,p_content, p_upc_code, p_purchase_date,
+     p_content, p_upc_code, p_purchase_date,
     p_warranty_expiration
     , p_actual_product_photos,
     p_additional_photos,
@@ -102,7 +102,7 @@ export default (props) => {
           console.log('onChangeTextForm:', name, text);
           setValue(name, text, true)
         }} textTime={p_warranty_expiration} title="Warranty Expiration" />
-  
+
         <PickerImage data={p_receipt_photo} onChangeData={(data) => {
           setValue('receipt_photos', data);
         }} title="Receipt Photo" />
@@ -113,8 +113,8 @@ export default (props) => {
           setValue('product_photos', data)
         }} title="Product Photo" />
         <PickerImage data={p_actual_product_photos} onChangeData={(data) => {
-         console.log('actual_product_photos',data);
-         setValue('actual_product_photos', data)
+          console.log('actual_product_photos', data);
+          setValue('actual_product_photos', data)
         }} numPhotos={2} title="Actual Product Photos" />
         <PickerImage data={p_additional_photos} onChangeData={(data) => {
           setValue('additional_photos', data)

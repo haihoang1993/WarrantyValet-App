@@ -69,6 +69,19 @@ const GetReplysTicket = async (idTicktet, token = null) => {
     return res;
 }
 
+const GetProduct = async (idProduct, token = null) => {
+    // https://valetwarranty.com/wp-json/wv/v1/list-reply-ticket
+    let newToken = token;
+    if (!token) {
+        const user = await Storage.getUserLogin();
+        newToken = user.token;
+    }
+    console.log('token:', newToken);
+    const url = URL_API_BASE + 'product';
+    const res = await ApiBase.GetRequest(url, { p_id: idProduct }, newToken);
+    return res;
+}
+
 const AddNewTicket = async (data, token) => {
     const url = URL_API_BASE + 'add-ticket';
     const res = await ApiBase.PostRequest(url, data, token);
@@ -110,5 +123,6 @@ export {
     AddProductNew,
     DeleteProduct,
     GetUserInfo,
-    UpdateProduct
+    UpdateProduct,
+    GetProduct,
 }
