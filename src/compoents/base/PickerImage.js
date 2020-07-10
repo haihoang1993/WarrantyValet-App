@@ -14,8 +14,24 @@ import { Utils } from '@common';
 
 export default (props) => {
   const { title = '', numPhotos = 1, onChangeData = null, data = [] } = props;
-  console.log('data picker:',data);
-  const [listImages, setListImages] = useState(data);
+  // console.log('data picker:', data);
+  const list = data.map(e => {
+    const { photo_url } = e;
+    return {
+      uri: photo_url
+    }
+  })
+  const [listImages, setListImages] = useState([]);
+
+  useEffect(() => {
+    setListImages(list);
+    if (onChangeData)
+      onChangeData(list.length > 0 ? list : undefined);
+    // setTimeout(function () {
+      
+    // }, 300);
+
+  }, [])
 
   const pickImg = () => {
     const options = {
@@ -98,11 +114,11 @@ export default (props) => {
           horizontal={true}
           data={listImages}
           renderItem={({ item, index }) => {
-            console.log('item select:', item);
+            // console.log('item select:', item);
             const { uri, photo_url } = item;
             const renderView = (
               <View style={styles.viewImage}>
-                <Image style={styles.image} source={{uri: (uri) ? uri : photo_url }} />
+                <Image style={styles.image} source={{ uri: uri }} />
                 {iconRemove(index)}
               </View>
             );

@@ -37,7 +37,7 @@ const GetRequest = async (url, param = null, token = null, method = 'GET') => {
     return result;
 }
 
-const PostRequest = async (url, body, token) => {
+const PostRequest = async (url, body, token,method="POST") => {
     console.log('PostRequest:', url, body, token);
     let result = {};
     const myHeaders = new Headers();
@@ -55,7 +55,7 @@ const PostRequest = async (url, body, token) => {
     requestOptions = {
         headers: myHeaders,
     };
-    const options = { ...requestOptions, ...{ method: 'POST', body: JSON.stringify(body), redirect: 'follow' } };
+    const options = { ...requestOptions, ...{ method: method, body: JSON.stringify(body), redirect: 'follow' } };
     try {
         const res = await fetch(url, options);
         result = { ...result, ...{ status: res.status } }

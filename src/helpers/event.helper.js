@@ -11,4 +11,15 @@ const OnToScreen = (callback) => {
   });
 };
 
-export { EmitToScreen, OnToScreen };
+const EmitCreateTicket = (data)=>{
+  console.log('EmitCreateTicket',data)
+  EventRegister.emit('createTicket',data);
+}
+
+const OnToCreateTicket = (callback)=>{
+  EventRegister.addEventListener('createTicket', (data) => {
+      callback(data)
+  });
+}
+
+export { EmitToScreen, OnToScreen, EmitCreateTicket, OnToCreateTicket };

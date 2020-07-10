@@ -1,11 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { useState,useLayoutEffect } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, Alert } from 'react-native';
-import { AddTickets as AddProductsView,IconBackHeader } from '@compoents';
+import { AddTickets as AddProductsView, IconBackHeader } from '@compoents';
 import { connect } from 'react-redux';
-import { StorageDB, ApiHepler } from '@helpers';
+import { StorageDB, ApiHepler, EventHelper } from '@helpers';
 import Toast from 'react-native-simple-toast';
-
+import { TicketsReduxAll } from '@redux'
 const validateObj = (obj, keys = []) => {
   let check = false;
   keys.forEach((value) => {
@@ -29,7 +29,7 @@ const formatPhotos = (list) => {
 
 const AddTicketsScreen = (props) => {
 
-  const { listProucts, navigation } = props;
+  const { listProucts, navigation,addNewTicket } = props;
   const [isLoading, setLoading] = useState(false);
 
   useLayoutEffect(() => {
@@ -53,10 +53,14 @@ const AddTicketsScreen = (props) => {
       const { token } = user;
       try {
         const res = await ApiHepler.AddNewTicket(newData, token);
-        console.log('add res:', res);
+        console.log('add res ticket:', res);
+        const { data } = res;
+        // EventHelper.EmitCreateTicket(data.data);
+        if(addNewTicket)
+          addNewTicket(data.data);
         const toastContent = 'Created ticket successful!';
         Toast.show(toastContent, 3);
-        navigation.pop(1)
+        navigation.pop(1);
       } catch (error) {
         console.log('add res error:', error)
       } finally {
@@ -107,7 +111,13 @@ const TicketsContainer = connect(
       listProucts: state.ProductsReducer,
     };
   },
-  null,
+  (dispatch) => {
+    return {
+      addNewTicket: (newTicket) => {
+        dispatch(TicketsReduxAll.ActionsTicket.addTicket(newTicket))
+      }
+    }
+  },
 )(AddTicketsScreen);
 
 export default TicketsContainer;

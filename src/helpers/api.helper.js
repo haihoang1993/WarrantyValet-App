@@ -52,7 +52,7 @@ const UpdateProduct = async (data) => {
         newToken = user.token;
     }
     const url = URL_API_BASE + 'update-product';
-    const res = await ApiBase.PostRequest(url, data, newToken);
+    const res = await ApiBase.PostRequest(url, data, newToken,'PUT');
     return res;
 }
 
