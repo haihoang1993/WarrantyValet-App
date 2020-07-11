@@ -8,7 +8,7 @@ import { Button } from 'react-native-elements';
 function DetailTicketsScreen(props) {
   // const { navigation } = props;
   const { navigation, route: { params: ticket } } = props;
-  const [ticketObj,setTicketObj]=useState(null);
+  const [ticketObj, setTicketObj] = useState(null);
   const [listReply, setListReplys] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [loadingButton, setLoadingButton] = useState(false);
@@ -40,7 +40,7 @@ function DetailTicketsScreen(props) {
     } catch (error) {
       setIsLoaing(false)
     } finally {
-        setTicketObj(ticket);
+      setTicketObj(ticket);
     }
   }
 
@@ -58,7 +58,7 @@ function DetailTicketsScreen(props) {
       setModalVisible(false);
     } catch (error) {
       setLoadingButton(false);
-    } 
+    }
   }
 
   const renderModal = () => {
@@ -114,9 +114,9 @@ function DetailTicketsScreen(props) {
         }}>
         {(!isLoaing) && (<View style={{ flex: 1 }}>
           {renderModal()}
-          
+
           <ScrollView>
-            {(ticketObj)&&(<DetailTicket listReply={listReply} ticket={ticket} />)}
+            {(ticketObj) && (<DetailTicket listReply={listReply} ticket={ticket} />)}
           </ScrollView>
           <View style={styles.viewReply}>
             <View style={styles.textReply}>

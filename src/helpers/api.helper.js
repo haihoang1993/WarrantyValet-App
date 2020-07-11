@@ -112,6 +112,12 @@ const DeleteProduct = async (idProduct=-100)=>{
     return res;
 }
 
+const SignUp =async (obj = {}) => {
+    const url = URL_API_BASE + 'register';
+    const res = await ApiBase.PostRequest(url, obj);
+    return res;
+}
+
 export {
     Login,
     GetListPlan,
@@ -125,4 +131,5 @@ export {
     GetUserInfo,
     UpdateProduct,
     GetProduct,
+    SignUp
 }
