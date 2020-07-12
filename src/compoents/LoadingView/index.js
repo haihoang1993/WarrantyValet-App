@@ -1,19 +1,29 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {View, ActivityIndicator} from 'react-native';
-
+import {
+    BallIndicator,
+    BarIndicator,
+    DotIndicator,
+    MaterialIndicator,
+    PacmanIndicator,
+    PulseIndicator,
+    SkypeIndicator,
+    UIActivityIndicator,
+    WaveIndicator,
+  } from 'react-native-indicators';
 const Loading = props => {
     const {containerStyle, style, size, color} = props;
 
     return (
         <View style={[containerStyle, style]}>
-            <ActivityIndicator animating size={size} color={color} />
+            <UIActivityIndicator animating size={size} color={color} />
         </View>
     );
 };
 
 Loading.defaultProps = {
-    size: 70,
+    size: 30,
     color: '#3252a8',
     containerStyle: {
         position: 'absolute',
