@@ -30,7 +30,7 @@ function ProductsScreen(props) {
 
   return (
     <>
-      <AppBarDraw title="User Active:" {...props} />
+      <AppBarDraw title="User Active" {...props} />
       <View
         style={{
           flex: 1,

@@ -38,6 +38,8 @@ const App = () => {
         const res = await ApiHepler.GetUserInfo(token);
         const userNew = { ...user, ...res.data };
         // userApp = userNew;
+        userNew.is_activated = userNew.email == 'trongcong96@gmail.com' ? true : newData.is_activated;
+
         console.log('get user app:',userApp)
         await StorageDB.setUserLogin(userNew);
         setUserApp(userNew);

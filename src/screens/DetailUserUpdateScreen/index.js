@@ -56,7 +56,6 @@ const UserDetailScreen = (props) => {
           flex: 1,
           flexDirection: 'column',
         }}>
-        <View style={{backgroundColor:'#f44336',marginBottom:5, padding:5}}><Text style={{color:'#fff',fontSize:16,fontWeight:'bold'}}>Please go to the mailbox verify your email address and complete the registration process!</Text></View>
         {(user) && (<DetailUpdateUserView user={user} isLoading={isLoading} onSubmit={(data) => {
           onSubmitApi(data);
         }} />)}
