@@ -24,7 +24,7 @@ const GetProducts = async (token) => {
 
 const GetTickets = async (token) => {
     const url = URL_API_BASE + 'list-tickets';
-    const res = await ApiBase.GetRequest(url, {posts_per_page:15}, token);
+    const res = await ApiBase.GetRequest(url, { posts_per_page: 15 }, token);
     return res;
 }
 
@@ -52,7 +52,18 @@ const UpdateProduct = async (data) => {
         newToken = user.token;
     }
     const url = URL_API_BASE + 'update-product';
-    const res = await ApiBase.PostRequest(url, data, newToken,'PUT');
+    const res = await ApiBase.PostRequest(url, data, newToken, 'PUT');
+    return res;
+}
+
+const UpdateUser = async (data) => {
+    let newToken = null;
+    if (!newToken) {
+        const user = await Storage.getUserLogin();
+        newToken = user.token;
+    }
+    const url = URL_API_BASE + 'update-user';
+    const res = await ApiBase.PostRequest(url, data, newToken);
     return res;
 }
 
@@ -90,7 +101,7 @@ const AddNewTicket = async (data, token) => {
 
 const AddProductNew = async (data) => {
     let newToken = null;
-    console.log('AddProductNew:',data);
+    console.log('AddProductNew:', data);
     if (!newToken) {
         const user = await Storage.getUserLogin();
         newToken = user.token;
@@ -100,19 +111,19 @@ const AddProductNew = async (data) => {
     return res;
 }
 
-const DeleteProduct = async (idProduct=-100)=>{
+const DeleteProduct = async (idProduct = -100) => {
     let newToken = null;
-    console.log('DeleteProduct:',idProduct);
+    console.log('DeleteProduct:', idProduct);
     if (!newToken) {
         const user = await Storage.getUserLogin();
         newToken = user.token;
     }
     const url = URL_API_BASE + 'del-product';
-    const res=await ApiBase.GetRequest(url,{p_id:idProduct},newToken,'DELETE');
+    const res = await ApiBase.GetRequest(url, { p_id: idProduct }, newToken, 'DELETE');
     return res;
 }
 
-const SignUp =async (obj = {}) => {
+const SignUp = async (obj = {}) => {
     const url = URL_API_BASE + 'register';
     const res = await ApiBase.PostRequest(url, obj);
     return res;
@@ -131,5 +142,6 @@ export {
     GetUserInfo,
     UpdateProduct,
     GetProduct,
-    SignUp
+    SignUp,
+    UpdateUser
 }

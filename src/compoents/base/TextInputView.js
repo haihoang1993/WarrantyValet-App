@@ -4,6 +4,11 @@ import { Text, View, TextInput, StyleSheet } from 'react-native';
 export default (props) => {
   const { title = '', multiline = false, value = null, name = null, onChangeText = null, onChangeTextForm } = props;
   const [valueString, setValueString] = useState(value);
+  
+  if (value != null && onChangeTextForm && name) {
+    console.log('text input   1:',value);
+    onChangeTextForm(name, valueString)
+  }
   if (value != null && onChangeText != null) {
     onChangeText(value);
   }
@@ -34,6 +39,7 @@ export default (props) => {
       <Text style={styles.textTile}>{title}</Text>
       <View styles={styles.inputContainer}>
         <TextInput
+          autoCapitalize='none'
           {...props}
           onChangeText={(st) => {
             setValueString(st);
@@ -42,7 +48,7 @@ export default (props) => {
             }
             if (onChangeText)
               onChangeText(st);
-          }} value={valueString} style={styles.textInput} />
+          }} value={valueString} style={[styles.textInput]} />
       </View>
     </View>
   );
@@ -63,6 +69,10 @@ const styles = StyleSheet.create({
     borderColor: '#a2a2a3',
     borderWidth: 0.5,
     minHeight: 45,
+  },
+  textInputError: {
+    borderColor: '#a2a3',
+    borderWidth: 2,
   },
   textInputMutiline: {
     minHeight: 100,

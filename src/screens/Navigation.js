@@ -10,6 +10,9 @@ import { ListPlansScreen, DetailTicketsScreen,DetailUserUpdateScreen,
   DetailProductScreen, AddTicketsScreen, 
   TestReduxSaga, SignUpScreen, MainScreen, LoginScreen, AddProducts, PrewSrcreen } from '@screens';
 import { useTheme } from 'react-native-paper';
+import { connect  } from 'react-redux'
+import { UserReduxAll } from '@redux';
+
 const Stack = createStackNavigator();
 
 const Screens = {
@@ -26,7 +29,10 @@ const Screens = {
 };
 
 function NavApp(props) {
-  const { initPage } = props;
+  const { initPage, userApp } = props;
+  console.log('nav app:',props);
+  if(userApp)
+    props.setUser(userApp);
   const theme = useTheme();
   const { colors } = theme;
   return (
@@ -61,25 +67,18 @@ function NavApp(props) {
   );
 }
 
-function header(title = '') {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const theme = useTheme();
-  const { colors } = theme;
-  return {
-    title: title,
-    headerStyle: {
-      backgroundColor: colors.primary,
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-  };
-}
 export {
   Screens
 }
-export default NavApp;
+// export default NavApp;
+
+export default connect(null,(dispatch)=>{
+  return { 
+    setUser:(use)=>{
+      dispatch(UserReduxAll.ActionsUser.setUser(use));
+    }
+  }
+})(NavApp)
 
 const styles = StyleSheet.create({
   titleHeader: {

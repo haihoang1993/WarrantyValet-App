@@ -34,14 +34,14 @@ const UserDetailScreen = (props) => {
   const onSubmitApi = async (data) => {
     setLoading(true);
     try {
-      const res = await ApiHepler.UpdateProduct(data);
+      const res = await ApiHepler.UpdateUser(data);
       console.log('add res:', res);
       const { data: newData } = res;
-      // const toastContent = 'Created Product successful!';
+      const toastContent = 'Upate User successful!';
       Toast.show(toastContent, 3);
-      console.log('add res: obj', newData.data);
-      addProduct(newData.data);
-      navigation.pop(1);
+      console.log('add res Upate User:', newData.data);
+      // addProduct(newData.data);
+      // navigation.pop(1);
     } catch (error) {
       console.log('add res error:', error)
     } finally {
@@ -55,28 +55,16 @@ const UserDetailScreen = (props) => {
         style={{
           flex: 1,
           flexDirection: 'column',
-          justifyContent: 'space-between',
-          padding: 5,
-          paddingHorizontal: 15
         }}>
-        {(user) && (<DetailUpdateUserView user={user} isLoading={isLoading} onSubmitUpdate={(data) => {
-          // const checkVali = Utils.validateObj(data, ['p_title',
-          //   'receipt_photos',
-          //   'product_photos', 'information_photos', 'actual_product_photos', 'additional_photos'])
-         
-          // console.log('check vali:',checkVali);
-          // if (checkVali) {
-          //   onSubmitApi(data);
-          // }
-          // onSubmitApi({p_title:'tesst'});
-
+        <View style={{backgroundColor:'#f44336',marginBottom:5, padding:5}}><Text style={{color:'#fff',fontSize:16,fontWeight:'bold'}}>Please go to the mailbox verify your email address and complete the registration process!</Text></View>
+        {(user) && (<DetailUpdateUserView user={user} isLoading={isLoading} onSubmit={(data) => {
+          onSubmitApi(data);
         }} />)}
 
       </View>
     </SafeAreaView>
   );
 }
-
 
 const mapDispatchToProps = (dispatch) => {
   return {

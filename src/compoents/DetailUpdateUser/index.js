@@ -7,34 +7,42 @@ import { Button, CheckBox } from 'react-native-elements';
 
 export default (props) => {
 
-  const { isLoading = false, onSubmit: onSubmitData, user: { info: { data: userInfo } } } = props
+  const { isLoading = false, onSubmit: onSubmitData, user:userInfo } = props;
+  const { first_name, last_name, display_name, address, phone } = userInfo;
   const { register, setValue, handleSubmit, errors } = useForm();
-  const [isChecked, setChecked] = useState(false);
+  const [isSegister,setRegistered]=useState(false);
   const onSubmit = (data) => {
     console.log('Form Data', data);
-    console.log('Form Data', data.length);
+    // console.log('Form Data', data.length);
     // Alert.alert('Form Data', JSON.stringify(data))
     onSubmitData(data);
   };
 
   useEffect(() => {
-    register({ name: 'p_title' }, { required: false });
-    
+    register({ name: 'first_name' }, { required: false });
+    register({ name: 'last_name' }, { required: false });
+    register({ name: 'display_name' }, { required: false });
+    register({ name: 'email' }, { required: false });
+    register({ name: 'address' }, { required: false });
+    register({ name: 'phone' }, { required: false });
+    setRegistered(true);
   }, [register]);
+  if(!isSegister) 
+      return (<View></View>)
   return (
-    <View>
+    <View style={{marginHorizontal:15}}>
       <ScrollView>
         <TextInputView
+          value={first_name}
           name='first_name'
-          onChangeText={(text) => setValue('p_title', text, true)}
           title="First name:"
           onChangeTextForm={(name, text) => {
             setValue(name, text, true)
           }}
         />
         <TextInputView
+          value={last_name}
           name='last_name'
-          onChangeText={(text) => setValue('p_title', text, true)}
           title="Last name:"
           onChangeTextForm={(name, text) => {
             setValue(name, text, true)
@@ -43,7 +51,6 @@ export default (props) => {
         <TextInputView
           name='display_name'
           value={userInfo.display_name}
-          onChangeText={(text) => setValue('p_title', text, true)}
           title="Display name:"
           onChangeTextForm={(name, text) => {
             setValue(name, text, true)
@@ -52,16 +59,15 @@ export default (props) => {
 
         <TextInputView
           name='email'
-          value={userInfo.user_email}
-          onChangeText={(text) => setValue('p_title', text, true)}
+          value={userInfo.email}
           title="Email addres:"
           onChangeTextForm={(name, text) => {
             setValue(name, text, true)
           }}
         />
         <TextInputView
+          value={address}
           name='address'
-          onChangeText={(text) => setValue('p_title', text, true)}
           title="Address:"
           onChangeTextForm={(name, text) => {
             setValue(name, text, true)
@@ -69,8 +75,8 @@ export default (props) => {
         />
         <TextInputView
           name='phone'
-          onChangeText={(text) => setValue('p_title', text, true)}
           title="Phone:"
+          value={phone}
           onChangeTextForm={(name, text) => {
             setValue(name, text, true)
           }}

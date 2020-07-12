@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View, ScrollView, RefreshControl, Alert } from 'react-native';
 import BaseScreen from '../../drawer/BaseScreen';
-import { ListProducts, AppBarDraw, LoadingView } from '@compoents';
+import { ListProducts, AppBarDraw, LoadingView, ViewErrorUserActive } from '@compoents';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { EventHelper, StorageDB, ApiHepler } from '@helpers';
 const axios = require('axios');
-import { ProductReduxAll } from '@redux';
+import { ProductReduxAll, UserReduxAll } from '@redux';
 import { connect } from 'react-redux';
 import Spinner from 'react-native-loading-spinner-overlay';
 
@@ -24,6 +24,9 @@ function ProductsScreen(props) {
 
   // const [data, setData] = useState([]);
   const data = props.listProucts;
+  const { userCurent} = props;
+  console.log('user curent;',userCurent);
+  // props.getUser();
 
   const getListProducts = async (type = Type_Load.LOADING) => {
 
@@ -130,6 +133,7 @@ function ProductsScreen(props) {
 const mapStateToProps = (state) => {
   return {
     listProucts: state.ProductsReducer,
+    userCurent: state.UserReducer
   };
 };
 
@@ -140,6 +144,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     deleteProduct: (index) => {
       dispatch(ProductReduxAll.ActionsProduct.deleteProduct(index))
+    },
+    getUser: () => {
+      dispatch({ type: UserReduxAll.TypeActions.GET_USER, value: { test: 'test' } })
     }
   };
 };

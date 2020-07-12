@@ -5,8 +5,9 @@ import { useForm } from 'react-hook-form';
 import { Button } from 'react-native-elements';
 import { ScreensName } from '@screens';
 import { ApiHepler, StorageDB } from '@helpers';
-
-export default (props) => {
+import { connect  } from 'react-redux'
+import { UserReduxAll } from '@redux';
+const LoginView = (props) => {
 
   const { navigation } = props;
   const [isLoading, setLoading] = useState(false);
@@ -24,8 +25,8 @@ export default (props) => {
   }, [register]);
 
   const login = async (data) => {
-    const {user_name='',password=''} =data;
-    if(user_name==''||password==''){
+    const { user_name = '', password = '' } = data;
+    if (user_name == '' || password == '') {
       Alert.alert(
         'Error:',
         'Please complete require field!',
@@ -41,9 +42,12 @@ export default (props) => {
       const res = await ApiHepler.Login(data);
       const { data: { data: { token } } } = res;
       const resUser = await ApiHepler.GetUserInfo(token);
-      console.log('res login:', res);
+      console.log('res login resUser:', res);
       await StorageDB.setIsLogin(true);
-      await StorageDB.setUserLogin({ ...data, ...{ token: token, info: resUser.data } });
+      const dataSave = { ...data, ...{ token: token } }
+      await StorageDB.setUserLogin({ ...dataSave, ...resUser.data });
+      props.setUser({...dataSave,...resUser.data});
+      // await StorageDB.setUserLogin({...data, ...{ token: token, info: resUser.data } });
       setLoading(false);
       navigation.replace(ScreensName.MainScreen);
     } catch (error) {
@@ -76,6 +80,7 @@ export default (props) => {
         title="Username"
       />
       <TextInputView
+        secureTextEntry={true}
         onChangeText={(text) => setValue('password', text, true)}
         title="Password"
       />
@@ -84,18 +89,16 @@ export default (props) => {
         rightIcon={{ name: 'login' }}
         loading={isLoading}
         onPress={handleSubmit(onSubmit)}
-        // onPress={async () => {
-        //   // navigation.replace(ScreensName.MainScreen);
-        //   await loginTest();
-        // }}
         title="Login"
       />
-      {/* <Button
-        style={{marginVertical: 10}}
-        large
-        rightIcon={{name: 'login'}}
-        title="Sign Up"
-      /> */}
     </View>
   );
 };
+
+export default connect(null,(dispatch)=>{
+  return { 
+    setUser:(use)=>{
+      dispatch(UserReduxAll.ActionsUser.setUser(use));
+    }
+  }
+})(LoginView)

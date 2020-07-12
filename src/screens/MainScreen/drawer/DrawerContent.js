@@ -13,20 +13,22 @@ import { EventHelper } from '@helpers';
 import { Button } from 'react-native-elements';
 import { ScreensName } from '@screens';
 import { StorageDB } from '@helpers';
+import { connect } from 'react-redux';
 
-export default function DrawerContent(props) {
-  const { listScreens = [], navigation } = props;
+function DrawerContent(props) {
+  const { listScreens = [], navigation, userCurent: user } = props;
+  const { is_activated } = user
   console.log('DrawerContent', props);
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(userCurent);
 
   useEffect(() => {
-    const getUser = async () => {
-      const user = await StorageDB.getUserLogin();
-      const { info: { data: userInfo } } = user
-      console.log('user info:', userInfo);
-      setUser(userInfo);
-    }
-    getUser();
+    // const getUser = async () => {
+    //   const user = await StorageDB.getUserLogin();
+    //   const { info } = user
+    //   // console.log('user info:', userInfo);
+    //   setUser(info);
+    // }
+    // getUser();
   }, [])
   const createAlertLogout = () => {
     Alert.alert(
@@ -54,9 +56,16 @@ export default function DrawerContent(props) {
               style={styles.itemMenu}
               label={item.label}
               onPress={() => {
+                if (!is_activated) {
+                  if (item.name == 'logout') {
+                    createAlertLogout();
+                  }
+                  return;
+                }
                 if (item.name == 'logout') {
                   createAlertLogout();
                 } else {
+
                   navigation.navigate(item.name);
                 }
               }}
@@ -78,12 +87,11 @@ export default function DrawerContent(props) {
             size={70}
           />
           {user && (<Title style={styles.title}>{user.display_name}</Title>)}
-          {user && (<Caption style={styles.caption}>{user.user_email}</Caption>)}
+          {user && (<Caption style={styles.caption}>{user.email}</Caption>)}
 
           <View style={styles.row}>
             <View style={styles.section}>
               <Paragraph style={[styles.paragraph, styles.caption]}>
-
               </Paragraph>
               <Caption style={styles.caption} />
             </View>
@@ -102,15 +110,40 @@ export default function DrawerContent(props) {
   );
 }
 
+
+
+const mapStateToProps = (state) => {
+  return {
+    userCurent: state.UserReducer
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getUser: () => {
+      dispatch({ type: UserReduxAll.TypeActions.GET_USER, value: { test: 'test' } })
+    }
+  };
+};
+
+
+const Container = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(DrawerContent);
+
+export default Container;
+
 const styles = StyleSheet.create({
   drawerContent: {
     flex: 1,
   },
   userInfoSection: {
     paddingLeft: 20,
+
   },
   title: {
-    marginTop: 20,
+    marginTop: 5,
     fontWeight: 'bold',
   },
   caption: {
@@ -118,7 +151,7 @@ const styles = StyleSheet.create({
     lineHeight: 14,
   },
   row: {
-    marginTop: 20,
+    marginTop: 10,
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -126,6 +159,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginRight: 15,
+    // flex:1
   },
   paragraph: {
     fontWeight: 'bold',

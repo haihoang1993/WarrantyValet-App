@@ -1,6 +1,7 @@
 import ProductsScreen from './Products';
 import MySubscriptionScreen from './MySubscription';
 import PaymentScreen from './PaymentScreen';
+import ScreenErrorActive from './ScreenErrorActive';
 import TicketsScreen from './Tickets';
 
 const ListScreens = {
@@ -32,4 +33,5 @@ export {
   MySubscriptionScreen,
   PaymentScreen,
   TicketsScreen,
+  ScreenErrorActive
 };
