@@ -67,14 +67,14 @@ export default (props) => {
 
 const styles = StyleSheet.create({
   textTile: {
-    fontSize: 20,
+    fontSize: 16,
   },
   wrap: {
     flexDirection: 'column',
     marginBottom: 10,
   },
   textInput: {
-    fontSize: 18,
+    fontSize: 16,
   },
   textInputMutiline: {
     minHeight: 100,

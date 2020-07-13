@@ -12,9 +12,10 @@ export default (props) => {
           props.navigation.openDrawer();
         }}
       />
-      <Appbar.Content titleStyle={{fontWeight:'600',fontSize:18}} title={title} />
+      <Appbar.Content titleStyle={{fontWeight:'600',alignSelf:'center',fontSize:18,alignItems:'center',justifyContent:'center'}} title={title} />
       {/* <Appbar.Action icon="magnify" onPress={thi._handleSearch} /> */}
-      {/* <Appbar.Action icon="dots-vertical" onPress={this._handleMore} /> */}
+      {/* <Appbar.Action icon="none" /> */}
+      <View style={{width:50}}></View>
     </Appbar.Header>
   );
 };

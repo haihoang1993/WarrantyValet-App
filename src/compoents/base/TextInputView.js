@@ -56,14 +56,14 @@ export default (props) => {
 
 const styles = StyleSheet.create({
   textTile: {
-    fontSize: 18,
+    fontSize: 16,
   },
   wrap: {
     flexDirection: 'column',
     marginBottom: 10,
   },
   textInput: {
-    fontSize: 18,
+    fontSize: 17,
     backgroundColor: '#e8e8ed',
     borderRadius: 10,
     borderColor: '#a2a2a3',
